@@ -1,4 +1,4 @@
-package Util;
+package Utils;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -20,7 +20,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class HibenateUtil {
+public class HibenateUtils {
     private static SessionFactory sessionFactory = buildSessionFactory();
     
     private static SessionFactory buildSessionFactory() {
@@ -38,7 +38,7 @@ public class HibenateUtil {
     }
     
     public static void main(String[] args) {
-        Session session = HibenateUtil.getSessionFactory().openSession();
+        Session session = HibenateUtils.getSessionFactory().openSession();
         session.beginTransaction();
         List<Product> product = session.createQuery("From Product", Product.class).list();
         product.forEach(System.out::println);
