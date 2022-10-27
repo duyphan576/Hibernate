@@ -1,6 +1,6 @@
 # Hibernate
 ```
-watch_.sql is for MySQL
-watch.sql is for SQL Server
+watch_mysql.sql is for MySQL
+watch_sqlserver.sql is for SQL Server
 ```
 
