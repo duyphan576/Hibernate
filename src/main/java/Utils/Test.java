@@ -4,7 +4,8 @@
  */
 package Utils;
 
-import Entity.Product;
+import Entity.Strap;
+import Entity.Strap;
 import org.hibernate.Session;
 
 /**
@@ -17,15 +18,10 @@ public class Test {
         try ( Session session = HibernateUtils.getSessionFactory().openSession();) {
             // Begin a unit of work
             session.beginTransaction();
-            Product pr = new Product();
-            pr.setBrandID(1);
-            pr.setStrapID(1);
-            pr.setProductName("Gucci");
-            pr.setPrice(100);
-            pr.setQuantity(10);
-            pr.setProductDetail("ProductDetail");
-            int productID = (int) session.save(pr);
-            System.out.println("Product id: "+productID);
+            Strap st = new Strap();
+            st.setStrapName("cc");
+            int StrapID = (int) session.save(st);
+            System.out.println("StrapID id: "+StrapID);
             session.getTransaction().commit();
         }
     }

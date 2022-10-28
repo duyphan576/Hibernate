@@ -7,13 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
  
 <hibernate-configuration>
     <session-factory>
-        <!-- Database setting -->
-        <!-- SQL dialect -->
-<!--        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
-        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="connection.url">jdbc:sqlserver://DUYPHAN\WATCH:1455;databaseName=Watch;;encrypt=true;trustServerCertificate=true</property>
-        <property name="connection.username">sa</property>
-        <property name="connection.password">123</property>-->
+        <property name="dialect"></property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/watch?zeroDateTimeBehavior=CONVERT_TO_NULL</property>
         <property name="connection.username">root</property>
@@ -29,6 +23,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <property name="show_sql">true</property>
         <!-- Entity mapping -->
         <mapping class="Entity.Product"/>
+        <mapping class="Entity.Brand"/>
+        <mapping class="Entity.Customer"/>
+        <mapping class="Entity.Order"/>
+        <mapping class="Entity.OrderDetail"/>
+        <mapping class="Entity.Role"/>
+        <mapping class="Entity.Strap"/>
+        <mapping class="Entity.User"/>
     </session-factory>
 </hibernate-configuration>
 
