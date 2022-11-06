@@ -18,7 +18,7 @@ import Entity.Strap;
 public class StrapGUI extends javax.swing.JFrame {
     private DefaultTableModel model;
     private StrapBLL strbll ;
-    private static StrapDAL strdal = new StrapDAL();
+    private static StrapDAL strdal;
     private static int id;
     /**
      * Creates new form Strap
@@ -31,7 +31,7 @@ public class StrapGUI extends javax.swing.JFrame {
     public void showTable() {
         List listCate = strbll.loadStrap();
         Object[][] datamodel;
-        datamodel = strbll.converStrap(listCate);
+        datamodel = strbll.convertList(listCate);
         String[] title = {"ID", "Name"};
         DefaultTableModel model = new DefaultTableModel(datamodel, title);
         tblstrap.setModel(model);
