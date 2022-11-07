@@ -6,10 +6,8 @@ package GUI;
 
 import DAL.StrapDAL;
 import BLL.StrapBLL;
-import Utils.HibernateUtils;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import org.hibernate.Session;
 import Entity.Strap;
 /**
  *

@@ -33,13 +33,6 @@ public class StrapDAL {
         session.delete(str);
         session.getTransaction().commit();
     }
-    public void strapdele(int strapID)
-    {
-        session.beginTransaction();
-        Query q = session.createQuery("Delete * FROM strap WHERE StrapID = :strapID");
-        q.setParameter("strapID", strapID);
-        session.getTransaction().commit();
-    }
     public void updateStrap(Strap obj) {
         session.update(obj);
     }
@@ -53,10 +46,17 @@ public class StrapDAL {
     }
 
     public List getlistStrap() {
-        List list;
+        List<Strap> list;
         session.beginTransaction();
-        list = session.createQuery("From Strap", Strap.class).list();
+        list = session.createQuery("FROM Strap", Strap.class).list();
         session.getTransaction().commit();
         return list;
+    }
+    public static void main(String[] args) {
+        StrapDAL s = new StrapDAL();
+        List l = s.getlistStrap();
+        for(int i=0 ; i<l.size();i++){
+            System.out.println(l.get(i).toString());
+        }
     }
 }
