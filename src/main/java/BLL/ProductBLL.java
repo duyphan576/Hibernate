@@ -6,6 +6,8 @@ package BLL;
 
 import DAL.ProductDAL;
 import Entity.Product;
+import Entity.Strap;
+import Entity.Brand;
 import java.util.List;
 
 /**
@@ -25,7 +27,15 @@ public class ProductBLL {
         list = proDAL.getAllProduct();
         return list;
     }
+    
+    public void delProduct(int id){
+        proDAL.deleteProduct(id);
+    }
 
+    public void updateProduct(int id,Strap strap,Brand brand,String name,int price,int quantity,String detail) {
+        proDAL.updateproduct(id, strap, brand, name, price, quantity, detail);
+    }
+    
     public Object[][] converProduct(List<Product> list) {
         int rows = list.size();
         int cols = 7;
@@ -38,6 +48,16 @@ public class ProductBLL {
             obj[i][4] = list.get(i).getPrice();
             obj[i][5] = list.get(i).getQuantity();
             obj[i][6] = list.get(i).getProductDetail();
+        }
+        return obj;
+    }
+    public Object[][] converStrap(List<Strap> list) {
+        int rows = list.size();
+        int cols = 2;
+        Object[][] obj = new Object[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            obj[i][0] = list.get(i).getStrapID();
+            obj[i][1] = list.get(i).getStrapName();
         }
         return obj;
     }

@@ -31,7 +31,7 @@ public class BrandDAL {
         session.clear();
         session.beginTransaction();
         Brand br = new Brand();
-        br.setBranID(id);
+        br.setBrandID(id);
         session.delete(br);
         session.getTransaction().commit();
     }
@@ -40,16 +40,16 @@ public class BrandDAL {
         session.clear();
         session.beginTransaction();
         Brand br = new Brand();
-        br.setBranID(id);
+        br.setBrandID(id);
         br.setBrandName(name);
         session.update(br);
         session.getTransaction().commit();
     }
 
-    public Brand getBrand(int BrandID) {
+    public Brand getBrand(String name) {
         Brand obj;
         session.beginTransaction();
-        obj = session.get(Brand.class, BrandID);
+        obj = session.get(Brand.class, name);
         session.getTransaction().commit();
         return obj;
     }
@@ -60,11 +60,5 @@ public class BrandDAL {
         list = session.createQuery("FROM Brand", Brand.class).list();
         session.getTransaction().commit();
         return list;
-    }
-
-    public static void main(String[] args) {
-        BrandDAL brdal = new BrandDAL();
-        List l = brdal.getlistBrand();
-        System.out.println(l.get(1).toString());
     }
 }

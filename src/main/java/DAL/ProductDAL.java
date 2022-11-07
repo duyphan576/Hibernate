@@ -5,6 +5,8 @@
 package DAL;
 
 import Entity.Product;
+import Entity.Strap;
+import Entity.Brand;
 import Utils.HibernateUtils;
 import java.util.List;
 import org.hibernate.Session;
@@ -55,8 +57,27 @@ public class ProductDAL {
     public void updateProduct(Product obj) {
         session.update(obj);
     }
-
-    public void deleteProduct(Product obj) {
-        session.delete(obj);
+    
+    public void deleteProduct(int id) {
+        session.clear();
+        session.beginTransaction();
+        Product pr = new Product();
+        pr.setProductID(id);
+        session.delete(pr);
+        session.getTransaction().commit();
+    }
+    public void updateproduct(int id,Strap strap,Brand brand,String name,int price,int quantity,String detail) {
+        session.clear();
+        session.beginTransaction();
+        Product pr = new Product();
+        pr.setProductID(id);
+        pr.setProductName(name);
+        pr.setProductDetail(detail);
+        pr.setQuantity(quantity);
+        pr.setPrice(price);
+        pr.setBrand(brand);
+        pr.setStrap(strap);
+        session.update(pr);
+        session.getTransaction().commit();
     }
 }

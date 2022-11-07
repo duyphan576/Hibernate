@@ -47,7 +47,7 @@ public class BrandBLL {
         int cols = 2;
         Object[][] obj = new Object[rows][cols];
         for (int i = 0; i < rows; i++) {
-            obj[i][0] = list.get(i).getBranID();
+            obj[i][0] = list.get(i).getBrandID();
             obj[i][1] = list.get(i).getBrandName();
         }
         return obj;
