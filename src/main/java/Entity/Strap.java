@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Entity;
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 /**
@@ -12,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "Strap")
-public class Strap {
+public class Strap implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int StrapID;
