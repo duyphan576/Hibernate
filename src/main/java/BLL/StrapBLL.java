@@ -1,9 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package BLL;
 
 import DAL.StrapDAL;
-import java.util.List;
 import Entity.Strap;
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
+import java.util.List;
 
 /**
  *
@@ -11,10 +14,18 @@ import com.sun.org.apache.bcel.internal.generic.AALOAD;
  */
 public class StrapBLL {
 
-    private static StrapDAL strdal;
+    private StrapDAL strdal;
 
     public StrapBLL() {
         strdal = new StrapDAL();
+    }
+
+    public void addstrap(String name) {
+        Strap str = new Strap();
+        str.setStrapName(name);
+        strdal.addStrap(str);
+    }
+    public void delstrap(int id){
     }
 
     public List loadStrap() {
@@ -23,12 +34,7 @@ public class StrapBLL {
         return list;
     }
 
-    public void addstrap(String name) {
-        Strap st = new Strap();
-        strdal.addStrap(st);
-    }
-
-    public Strap[] converstrap(List<Strap> list) {
+    public Object[] convertList1(List<Strap> list) {
         int rows = list.size();
         Strap[] newList = new Strap[rows];
         for (int i = 0; i < rows; i++) {
@@ -38,7 +44,7 @@ public class StrapBLL {
         return newList;
     }
 
-    public Object[][] convertList(List<Strap> list) {
+    public Object[][] converStrap(List<Strap> list) {
         int rows = list.size();
         int cols = 2;
         Object[][] obj = new Object[rows][cols];

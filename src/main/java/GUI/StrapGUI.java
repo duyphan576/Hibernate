@@ -31,7 +31,7 @@ public class StrapGUI extends javax.swing.JFrame {
     public void showTable() {
         List listCate = strbll.loadStrap();
         Object[][] datamodel;
-        datamodel = strbll.convertList(listCate);
+        datamodel = strbll.converStrap(listCate);
         String[] title = {"ID", "Name"};
         DefaultTableModel model = new DefaultTableModel(datamodel, title);
         tblstrap.setModel(model);
@@ -198,7 +198,6 @@ public class StrapGUI extends javax.swing.JFrame {
 
     private void btndelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelActionPerformed
         // TODO add your handling code here:
-        strdal.deleteStrap(id);
         showTable();
     }//GEN-LAST:event_btndelActionPerformed
 
