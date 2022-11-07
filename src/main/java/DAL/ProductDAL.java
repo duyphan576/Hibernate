@@ -16,9 +16,18 @@ public class ProductDAL {
 
     private static Session session = HibernateUtils.getSessionFactory().openSession();
 
-    public static void addProduct(Product pr) {
+    public void addProduct(Product pr) {
         session.beginTransaction();
         session.save(pr);
+        session.getTransaction().commit();
+    }
+    
+    public void deleteProduct(int id){
+        session.clear();
+        session.beginTransaction();
+        Product pr = new Product();
+        pr.setProductID(id);
+        session.delete(pr);
         session.getTransaction().commit();
     }
 }
