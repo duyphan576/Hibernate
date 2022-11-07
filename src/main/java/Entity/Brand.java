@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Entity;
+
 import javax.persistence.*;
 import lombok.Data;
+
 /**
  *
  * @author jukut
@@ -13,10 +15,11 @@ import lombok.Data;
 @Entity
 @Table(name = "Brand")
 public class Brand {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int BranID;
-    
+
     @Column
     private String BrandName;
 }
