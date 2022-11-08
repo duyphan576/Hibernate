@@ -43,10 +43,10 @@ public class StrapDAL {
         session.getTransaction().commit();
     }
 
-    public Strap getStrap(String name) {
+    public Strap getStrap(int StrapID) {
         Strap obj;
         session.beginTransaction();
-        obj = session.get(Strap.class, name);
+        obj = session.get(Strap.class, StrapID);
         session.getTransaction().commit();
         return obj;
     }

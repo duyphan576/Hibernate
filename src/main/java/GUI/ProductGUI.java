@@ -11,8 +11,10 @@ import DAL.BrandDAL;
 import DAL.ProductDAL;
 import DAL.StrapDAL;
 import Entity.Brand;
+import Entity.Product;
 import Entity.Strap;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,11 +33,13 @@ public class ProductGUI extends javax.swing.JFrame {
     StrapDAL strdal = new StrapDAL();
     BrandDAL brdal = new BrandDAL();
     private static int id;
+    private static int strID;
+
     public ProductGUI() {
         initComponents();
         loadAllproduct();
-        comboxstap();
-        comboxbrand();
+        comboxfindstap();
+        comboxfindBrand();
     }
 
     /**
@@ -49,28 +53,16 @@ public class ProductGUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         productTbl = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        txtfindid = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnadd = new javax.swing.JButton();
         btndel = new javax.swing.JButton();
         btnedit = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbfinstrap = new javax.swing.JComboBox<>();
         refreshBtn = new javax.swing.JButton();
-        txtproductid = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtproductname = new javax.swing.JTextField();
-        txtprice = new javax.swing.JTextField();
-        cbstrap = new javax.swing.JComboBox<>();
-        cbbrand = new javax.swing.JComboBox<>();
-        txtquantity = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtDetail = new javax.swing.JTextArea();
-        jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        cbfinbrand = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,11 +89,19 @@ public class ProductGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(productTbl);
 
-        jTextField1.setText("jTextField1");
-
         jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Add");
+        btnadd.setText("Add");
+        btnadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddActionPerformed(evt);
+            }
+        });
 
         btndel.setText("Del");
         btndel.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +117,16 @@ public class ProductGUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbfinstrap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbfinstrapMouseClicked(evt);
+            }
+        });
+        cbfinstrap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbfinstrapActionPerformed(evt);
+            }
+        });
 
         refreshBtn.setText("Refresh");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,125 +135,60 @@ public class ProductGUI extends javax.swing.JFrame {
             }
         });
 
-        txtproductid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Strap Type :");
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Product Name :");
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Brand :");
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Price :");
-
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Quantity :");
-
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Product ID :");
-
-        txtproductname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtproductname.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Choose");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtproductnameActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        txtprice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        cbstrap.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Choose");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbstrapActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        cbbrand.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbbrandActionPerformed(evt);
+        cbfinbrand.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbfinbrandMouseClicked(evt);
             }
         });
-
-        txtquantity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtquantity.addActionListener(new java.awt.event.ActionListener() {
+        cbfinbrand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtquantityActionPerformed(evt);
+                cbfinbrandActionPerformed(evt);
             }
         });
-
-        txtDetail.setColumns(20);
-        txtDetail.setRows(5);
-        jScrollPane2.setViewportView(txtDetail);
-
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Product Name :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(refreshBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1)))
+                            .addComponent(btnadd)
+                            .addComponent(btndel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnedit, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(cbstrap, 0, 240, Short.MAX_VALUE)
-                                                .addComponent(txtproductname)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(108, 108, 108)
-                                    .addComponent(cbbrand, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtproductid, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnedit)
-                                    .addComponent(btndel)
-                                    .addComponent(jButton3)))
-                            .addComponent(jLabel8))
-                        .addGap(0, 48, Short.MAX_VALUE)))
-                .addGap(19, 19, 19))
+                        .addComponent(txtfindid, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(refreshBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbfinstrap, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbfinbrand, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,53 +196,27 @@ public class ProductGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(refreshBtn)))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbfinbrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton3))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbfinstrap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(refreshBtn)
+                                .addComponent(jButton2))))
+                    .addComponent(txtfindid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtproductid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtproductname, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(btnedit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnadd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbstrap, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbbrand, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(btnedit)
-                            .addGap(12, 12, 12)
-                            .addComponent(jButton3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btndel)
-                            .addGap(18, 18, 18))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(btndel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -306,19 +224,16 @@ public class ProductGUI extends javax.swing.JFrame {
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
         // TODO add your handling code her
+        loadAllproduct();
+        cbfinstrap.setSelectedItem("ALL");
+        cbfinbrand.setSelectedItem("ALL");
     }//GEN-LAST:event_refreshBtnActionPerformed
 
     private void productTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productTblMouseClicked
         // TODO add your handling code here:
         int i = productTbl.getSelectedRow();
-        id = Integer.parseInt(productTbl.getValueAt(i,0).toString());
-        txtproductid.setText(productTbl.getValueAt(i,0).toString());
-        txtproductname.setText(productTbl.getValueAt(i,1).toString());
-        comboxstapsl(productTbl.getValueAt(i,2).toString());
-        comboxbrandsl(productTbl.getValueAt(i,3).toString());
-        txtprice.setText(productTbl.getValueAt(i,4).toString());
-        txtquantity.setText(productTbl.getValueAt(i,5).toString());
-        txtDetail.setText(productTbl.getValueAt(i,6).toString());
+        id = Integer.parseInt(productTbl.getValueAt(i, 0).toString());
+//        System.out.println(cbbrand.getSelectedItem().);
     }//GEN-LAST:event_productTblMouseClicked
 
     private void btndelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelActionPerformed
@@ -327,27 +242,67 @@ public class ProductGUI extends javax.swing.JFrame {
         loadAllproduct();
     }//GEN-LAST:event_btndelActionPerformed
 
-    private void cbstrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbstrapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbstrapActionPerformed
-
-    private void cbbrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbrandActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbbrandActionPerformed
-
-    private void txtquantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtquantityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtquantityActionPerformed
-
-    private void txtproductnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproductnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtproductnameActionPerformed
-
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         // TODO add your handling code here:
-        
+        new editProductGUI(id).setVisible(true);
 //       proBLL.updateProduct(Integer.parseInt(txtproductid.getText()),s,b,txtproductname.getText(),Integer.getInteger(txtprice.getText()),Integer.parseInt(txtquantity.getText()), txtDetail.getText());
     }//GEN-LAST:event_btneditActionPerformed
+
+    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+        new addProductGUI().setVisible(true);
+    }//GEN-LAST:event_btnaddActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Product pr = proDAL.getProduct(Integer.valueOf(txtfindid.getText()));
+        DefaultTableModel model = (DefaultTableModel) productTbl.getModel();
+        model.setRowCount(0);
+        model.addRow(new Object[]{
+            pr.getProductID(), pr.getProductName(), pr.getStrap().getStrapName(), pr.getBrand().getBrandName(), pr.getPrice(), pr.getQuantity(), pr.getProductDetail()
+        });
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbfinstrapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbfinstrapMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_cbfinstrapMouseClicked
+
+    private void cbfinstrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbfinstrapActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_cbfinstrapActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String temp = cbfinstrap.getSelectedItem().toString();
+        if (temp.equals("ALL"))
+            loadAllproduct();
+        else {
+            String[] temp1 = temp.split("-");
+            int idfindstrap = Integer.valueOf(temp1[0].trim());
+            findproduct(idfindstrap);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String temp = cbfinbrand.getSelectedItem().toString();
+        if (temp.equals("ALL"))
+            loadAllproduct();
+        else {
+            String[] temp1 = temp.split("-");
+            int idfindbrand = Integer.valueOf(temp1[0].trim());
+            findproductbybrand(idfindbrand);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cbfinbrandMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbfinbrandMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbfinbrandMouseClicked
+
+    private void cbfinbrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbfinbrandActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbfinbrandActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,61 +346,52 @@ public class ProductGUI extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel(data, title);
         productTbl.setModel(model);
     }
-    private void comboxstap(){
+
+    private void findproduct(int idstr) {
+        List proList = proBLL.loadProductbyStrap(idstr);
+        Object[][] data = proBLL.converProduct(proList);
+        String[] title = {"Product ID", "Product Name", "Srtap Type", "Brand", "Price", "Quantity", "Detail"};
+        DefaultTableModel model = new DefaultTableModel(data, title);
+        productTbl.setModel(model);
+    }
+    private void findproductbybrand(int idbr) {
+        List proList = proBLL.loadProductbyBrand(idbr);
+        Object[][] data = proBLL.converProduct(proList);
+        String[] title = {"Product ID", "Product Name", "Srtap Type", "Brand", "Price", "Quantity", "Detail"};
+        DefaultTableModel model = new DefaultTableModel(data, title);
+        productTbl.setModel(model);
+    }
+
+    private void comboxfindBrand() {
+        cbfinbrand.addItem("ALL");
+        cbfinstrap.setSelectedItem("ALL");
+       List<Brand> l = brbll.loadBrand();
+        for (Brand b : l) {
+            cbfinbrand.addItem(b.getBrandID() + " - " + b.getBrandName());
+        }
+    }
+    
+    private void comboxfindstap() {
+        cbfinstrap.addItem("ALL");
+        cbfinstrap.setSelectedItem("ALL");
         List<Strap> l = strbll.loadStrap();
-        for(Strap s : l){
-            cbstrap.addItem(s.getStrapName());
-        }
-    }
-    private void comboxstapsl(String sl){
-        List<Strap> l = strbll.loadStrap();
-        for(Strap s : l){
-            if(s.getStrapName().trim().equals(sl.trim())){
-            cbstrap.addItem(s.getStrapName());
-            cbstrap.setSelectedItem(s.getStrapName());
-            }
-        }
-    }
-    private void comboxbrand(){
-        List<Brand> l = brbll.loadBrand();
-        for(Brand b : l){
-            cbbrand.addItem(b.getBrandName());
-        }
-    }
-    private void comboxbrandsl(String sl){
-        List<Brand> l = brbll.loadBrand();
-        for(Brand b : l){
-            if(b.getBrandName().equals(sl)){
-            cbbrand.addItem(b.getBrandName());
-            cbbrand.setSelectedItem(b.getBrandName());
-            }
+        for (Strap s : l) {
+            cbfinstrap.addItem(s.getStrapID() + " - " + s.getStrapName());
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnadd;
     private javax.swing.JButton btndel;
     private javax.swing.JButton btnedit;
-    private javax.swing.JComboBox<String> cbbrand;
-    private javax.swing.JComboBox<String> cbstrap;
+    private javax.swing.JComboBox<String> cbfinbrand;
+    private javax.swing.JComboBox<String> cbfinstrap;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable productTbl;
     private javax.swing.JButton refreshBtn;
-    private javax.swing.JTextArea txtDetail;
-    private javax.swing.JTextField txtprice;
-    private javax.swing.JLabel txtproductid;
-    private javax.swing.JTextField txtproductname;
-    private javax.swing.JTextField txtquantity;
+    private javax.swing.JTextField txtfindid;
     // End of variables declaration//GEN-END:variables
 }

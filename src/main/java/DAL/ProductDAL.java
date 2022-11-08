@@ -49,6 +49,15 @@ public class ProductDAL {
         session.getTransaction().commit();
         return list;
     }
+    public List getProductByBrand(int brandID) {
+        List list;
+        session.beginTransaction();
+        Query q = session.createQuery("FROM Product WHERE BrandID = :brandID");
+        q.setParameter("brandID", brandID);
+        list = q.list();
+        session.getTransaction().commit();
+        return list;
+    }
 
     public void addProduct(Product obj) {
         session.save(obj);
@@ -66,7 +75,7 @@ public class ProductDAL {
         session.delete(pr);
         session.getTransaction().commit();
     }
-    public void updateproduct(int id,Strap strap,Brand brand,String name,int price,int quantity,String detail) {
+    public void updateproduct(int id,Strap strap,Brand brand,String name,float price,int quantity,String detail) {
         session.clear();
         session.beginTransaction();
         Product pr = new Product();
@@ -78,6 +87,19 @@ public class ProductDAL {
         pr.setBrand(brand);
         pr.setStrap(strap);
         session.update(pr);
+        session.getTransaction().commit();
+    }
+    public void addproduct(Strap strap,Brand brand,String name,float price,int quantity,String detail) {
+        session.clear();
+        session.beginTransaction();
+        Product pr = new Product();
+        pr.setProductName(name);
+        pr.setProductDetail(detail);
+        pr.setQuantity(quantity);
+        pr.setPrice(price);
+        pr.setBrand(brand);
+        pr.setStrap(strap);
+        session.save(pr);
         session.getTransaction().commit();
     }
 }

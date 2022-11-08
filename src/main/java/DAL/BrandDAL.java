@@ -46,10 +46,10 @@ public class BrandDAL {
         session.getTransaction().commit();
     }
 
-    public Brand getBrand(String name) {
+    public Brand getBrand(int BrandID) {
         Brand obj;
         session.beginTransaction();
-        obj = session.get(Brand.class, name);
+        obj = session.get(Brand.class, BrandID);
         session.getTransaction().commit();
         return obj;
     }
@@ -60,5 +60,11 @@ public class BrandDAL {
         list = session.createQuery("FROM Brand", Brand.class).list();
         session.getTransaction().commit();
         return list;
+    }
+
+    public static void main(String[] args) {
+        BrandDAL brdal = new BrandDAL();
+        List l = brdal.getlistBrand();
+        System.out.println(l.get(1).toString());
     }
 }
