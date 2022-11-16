@@ -20,4 +20,8 @@ public class Brand {
     @Column
     private String BrandName;
     
+    @Override
+    public String toString() {
+        return this.BrandName;
+    }
 }

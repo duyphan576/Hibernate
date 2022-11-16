@@ -21,11 +21,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ProductID;
 
-    @Column
-    private int StrapID;
-
-    @Column
-    private int BrandID;
+//    @Column
+//    private int StrapID;
+//
+//    @Column
+//    private int BrandID;
 
     @Column
     private String ProductName;

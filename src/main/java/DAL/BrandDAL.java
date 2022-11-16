@@ -21,7 +21,7 @@ public class BrandDAL {
         session = HibernateUtils.getSessionFactory().openSession();
     }
 
-    public static void addBrand(Brand br) {
+    public void addBrand(Brand br) {
         session.beginTransaction();
         session.save(br);
         session.getTransaction().commit();

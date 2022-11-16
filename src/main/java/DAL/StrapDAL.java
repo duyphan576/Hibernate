@@ -19,7 +19,7 @@ public class StrapDAL {
         session = HibernateUtils.getSessionFactory().openSession();
     }
 
-    public static void addStrap(Strap st) {
+    public void addStrap(Strap st) {
         session.beginTransaction();
         session.save(st);
         session.getTransaction().commit();
