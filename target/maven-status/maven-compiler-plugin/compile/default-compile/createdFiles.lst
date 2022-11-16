@@ -1,0 +1,13 @@
+Entity\Brand.class
+GUI\StrapGUI.class
+GUI\BrandComboBoxModel.class
+GUI\StrapGUI$3.class
+GUI\StrapGUI$5.class
+DAL\StrapDAL.class
+GUI\StrapGUI$4.class
+Entity\Role.class
+Entity\Strap.class
+GUI\StrapGUI$1.class
+GUI\StrapGUI$2.class
+BLL\StrapBLL.class
+GUI\StrapGUI$6.class
