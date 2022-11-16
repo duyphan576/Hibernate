@@ -15,8 +15,13 @@ import lombok.Data;
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int BranID;
+    private int BrandID;
     
     @Column
     private String BrandName;
+    
+    @Override
+    public String toString() {
+        return this.BrandName;
+    }
 }

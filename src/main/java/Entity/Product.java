@@ -21,22 +21,29 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ProductID;
 
-    @Column
-    private int StrapID;
+//    @Column
+//    private int StrapID;
+//
+//    @Column
+//    private int BrandID;
 
     @Column
-    private int BrandID;
-    
-    @Column
     private String ProductName;
-    
+
     @Column
     private float Price;
-    
+
     @Column
     private int Quantity;
-    
+
     @Column
     private String ProductDetail;
 
+    @ManyToOne
+    @JoinColumn(name = "StrapID")
+    private Strap strap;
+
+    @ManyToOne
+    @JoinColumn(name = "BrandID")
+    private Brand brand;
 }
