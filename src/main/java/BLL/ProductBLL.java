@@ -23,20 +23,31 @@ public class ProductBLL {
     }
 
     public List loadProduct() {
-        List list;
-        list = proDAL.getAllProduct();
+        List list = proDAL.getAllProduct();
         return list;
     }
 
     public List loadProductbyStrap(int id) {
-        List list;
-        list = proDAL.getProductByStrap(id);
+        List list = proDAL.getProductByStrap(id);
         return list;
     }
 
     public List loadProductbyBrand(int id) {
-        List list;
-        list = proDAL.getProductByBrand(id);
+        List list = proDAL.getProductByBrand(id);
+        return list;
+    }
+
+    public Product getProduct(int productID) {
+        return proDAL.getProduct(productID);
+    }
+
+    public List getProductByStrap(int strapID) {
+        List list = proDAL.getProductByStrap(strapID);
+        return list;
+    }
+
+    public List getProductByBrand(int brandID) {
+        List list = proDAL.getProductByBrand(brandID);
         return list;
     }
 
@@ -68,14 +79,14 @@ public class ProductBLL {
         return obj;
     }
 
-    public Object[][] converStrap(List<Strap> list) {
-        int rows = list.size();
-        int cols = 2;
-        Object[][] obj = new Object[rows][cols];
-        for (int i = 0; i < rows; i++) {
-            obj[i][0] = list.get(i).getStrapID();
-            obj[i][1] = list.get(i).getStrapName();
-        }
-        return obj;
-    }
+//    public Object[][] converStrap(List<Strap> list) {
+//        int rows = list.size();
+//        int cols = 2;
+//        Object[][] obj = new Object[rows][cols];
+//        for (int i = 0; i < rows; i++) {
+//            obj[i][0] = list.get(i).getStrapID();
+//            obj[i][1] = list.get(i).getStrapName();
+//        }
+//        return obj;
+//    }
 }

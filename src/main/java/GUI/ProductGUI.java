@@ -7,14 +7,11 @@ package GUI;
 import BLL.BrandBLL;
 import BLL.ProductBLL;
 import BLL.StrapBLL;
-import DAL.BrandDAL;
 import DAL.ProductDAL;
-import DAL.StrapDAL;
 import Entity.Brand;
 import Entity.Product;
 import Entity.Strap;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,14 +23,10 @@ public class ProductGUI extends javax.swing.JFrame {
     /**
      * Creates new form ProductGUI
      */
-    ProductDAL proDAL = new ProductDAL();
     ProductBLL proBLL = new ProductBLL();
     StrapBLL strbll = new StrapBLL();
     BrandBLL brbll = new BrandBLL();
-    StrapDAL strdal = new StrapDAL();
-    BrandDAL brdal = new BrandDAL();
     private static int id;
-    private static int strID;
 
     public ProductGUI() {
         initComponents();
@@ -103,7 +96,7 @@ public class ProductGUI extends javax.swing.JFrame {
             }
         });
 
-        btndel.setText("Del");
+        btndel.setText("Delete");
         btndel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndelActionPerformed(evt);
@@ -114,17 +107,6 @@ public class ProductGUI extends javax.swing.JFrame {
         btnedit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btneditActionPerformed(evt);
-            }
-        });
-
-        cbfinstrap.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cbfinstrapMouseClicked(evt);
-            }
-        });
-        cbfinstrap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbfinstrapActionPerformed(evt);
             }
         });
 
@@ -149,17 +131,6 @@ public class ProductGUI extends javax.swing.JFrame {
             }
         });
 
-        cbfinbrand.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cbfinbrandMouseClicked(evt);
-            }
-        });
-        cbfinbrand.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbfinbrandActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,10 +141,10 @@ public class ProductGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnadd)
-                            .addComponent(btndel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnedit, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnadd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btndel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtfindid, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -233,7 +204,6 @@ public class ProductGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         int i = productTbl.getSelectedRow();
         id = Integer.parseInt(productTbl.getValueAt(i, 0).toString());
-//        System.out.println(cbbrand.getSelectedItem().);
     }//GEN-LAST:event_productTblMouseClicked
 
     private void btndelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelActionPerformed
@@ -245,7 +215,6 @@ public class ProductGUI extends javax.swing.JFrame {
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         // TODO add your handling code here:
         new editProductGUI(id).setVisible(true);
-//       proBLL.updateProduct(Integer.parseInt(txtproductid.getText()),s,b,txtproductname.getText(),Integer.getInteger(txtprice.getText()),Integer.parseInt(txtquantity.getText()), txtDetail.getText());
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
@@ -254,23 +223,13 @@ public class ProductGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Product pr = proDAL.getProduct(Integer.valueOf(txtfindid.getText()));
+        Product pr = proBLL.getProduct(Integer.valueOf(txtfindid.getText()));
         DefaultTableModel model = (DefaultTableModel) productTbl.getModel();
         model.setRowCount(0);
         model.addRow(new Object[]{
             pr.getProductID(), pr.getProductName(), pr.getStrap().getStrapName(), pr.getBrand().getBrandName(), pr.getPrice(), pr.getQuantity(), pr.getProductDetail()
         });
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void cbfinstrapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbfinstrapMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_cbfinstrapMouseClicked
-
-    private void cbfinstrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbfinstrapActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_cbfinstrapActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -295,49 +254,6 @@ public class ProductGUI extends javax.swing.JFrame {
             findproductbybrand(idfindbrand);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void cbfinbrandMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbfinbrandMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbfinbrandMouseClicked
-
-    private void cbfinbrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbfinbrandActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbfinbrandActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProductGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProductGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProductGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProductGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProductGUI().setVisible(true);
-            }
-        });
-    }
 
     private void loadAllproduct() {
         List proList = proBLL.loadProduct();
@@ -379,6 +295,42 @@ public class ProductGUI extends javax.swing.JFrame {
             cbfinstrap.addItem(s.getStrapID() + " - " + s.getStrapName());
         }
     }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ProductGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ProductGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ProductGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ProductGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ProductGUI().setVisible(true);
+            }
+        });
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadd;
