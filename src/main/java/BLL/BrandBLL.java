@@ -7,7 +7,6 @@ package BLL;
 import DAL.BrandDAL;
 import Entity.Brand;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,15 +15,12 @@ import javax.swing.table.DefaultTableModel;
 public class BrandBLL {
 
     public BrandDAL brdal;
-    private DefaultTableModel model;
 
     public BrandBLL() {
         brdal = new BrandDAL();
     }
 
-    public void addbrand(String name) {
-        Brand br = new Brand();
-        br.setBrandName(name);
+    public void addBrand(Brand br) {
         brdal.addBrand(br);
     }
 
@@ -36,12 +32,20 @@ public class BrandBLL {
         brdal.updateBrand(id, name);
     }
 
+    public void updateBrand(int id, String name) {
+        brdal.updateBrand(id, name);
+    }
+
+    public Brand getBrand(int BrandID) {
+        return brdal.getBrand(BrandID);
+    }
+
     public List loadBrand() {
         List list;
         list = brdal.getlistBrand();
         return list;
     }
-    
+
     public Object[][] converBrand(List<Brand> list) {
         int rows = list.size();
         int cols = 2;

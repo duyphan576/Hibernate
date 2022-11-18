@@ -2,10 +2,8 @@ package DAL;
 
 import Entity.Strap;
 import Utils.HibernateUtils;
-import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 /**
  *
@@ -33,7 +31,8 @@ public class StrapDAL {
         session.delete(st);
         session.getTransaction().commit();
     }
-    public void updateStrap(int id,String name) {
+
+    public void updateStrap(int id, String name) {
         session.clear();
         session.beginTransaction();
         Strap st = new Strap();

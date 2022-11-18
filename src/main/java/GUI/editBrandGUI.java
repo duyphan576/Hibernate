@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BLL.BrandBLL;
 import DAL.BrandDAL;
 import DAL.StrapDAL;
 import Entity.Brand;
@@ -18,16 +19,19 @@ public class editBrandGUI extends javax.swing.JFrame {
     /**
      * Creates new form editStrapGUI
      */
+    BrandBLL brbll = new BrandBLL();
+
     public editBrandGUI() {
         initComponents();
     }
-     public editBrandGUI(int id) {
+
+    public editBrandGUI(int id) {
         initComponents();
-        BrandDAL brdal = new BrandDAL();
-        Brand br =brdal.getBrand(id);
+        Brand br = brbll.getBrand(id);
         txtid.setText(String.valueOf(br.getBrandID()));
         txtname.setText(br.getBrandName());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,8 +123,7 @@ public class editBrandGUI extends javax.swing.JFrame {
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         // TODO add your handling code here:
-        BrandDAL brdal = new BrandDAL();
-        brdal.updateBrand(Integer.valueOf(txtid.getText()),txtname.getText());
+        brbll.updateBrand(Integer.valueOf(txtid.getText()), txtname.getText());
     }//GEN-LAST:event_btneditActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

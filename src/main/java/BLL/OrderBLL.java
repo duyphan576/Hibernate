@@ -4,60 +4,51 @@
  * and open the template in the editor.
  */
 package BLL;
+
 import Entity.Order;
 import DAL.OrderDAL;
 import java.util.List;
+
 /**
  *
  * @author Clock
  */
 public class OrderBLL {
-    
+
     private OrderDAL orderDAL;
-    
-    
-    public OrderBLL()
-    {
+
+    public OrderBLL() {
         orderDAL = new OrderDAL();
     }
-    
-    public List loadOrder()
-    {
+
+    public List loadOrder() {
         List list;
         list = orderDAL.loadOrder();
-        
         return list;
     }
-    
-    public Order getOrder(int OrderID)
-    {
+
+    public Order getOrder(int OrderID) {
         Order c = orderDAL.getOrder(OrderID);
         return c;
     }
-    
-    public void addOrder(Order c)
-    {
+
+    public void addOrder(Order c) {
         orderDAL.addOrder(c);
     }
-    
-    public void updateOrder(Order c)
-    {
+
+    public void updateOrder(Order c) {
         orderDAL.updateOrder(c);
     }
-    
-    public void deleteOrder(Order c)
-    {
+
+    public void deleteOrder(Order c) {
         orderDAL.deleteOrder(c);
     }
     
-    
-    public Object[][] convertList(List<Order> list)
-    {
+    public Object[][] convertList(List<Order> list) {
         int rows = list.size();
         int cols = 8;
         Object[][] obj = new Object[rows][cols];
-        for(int i = 0; i < rows; i++)
-        {
+        for (int i = 0; i < rows; i++) {
             obj[i][0] = list.get(i).getOrderID();
             obj[i][1] = list.get(i).getUserID();
             obj[i][2] = list.get(i).getCustomerID();
@@ -69,17 +60,15 @@ public class OrderBLL {
         }
         return obj;
     }
-    
-    public Order[] convertList1 (List<Order> list)
-    {
+
+    public Order[] convertList1(List<Order> list) {
         int rows = list.size();
         Order[] newList = new Order[rows];
-        for(int i = 0; i < rows; i++)
-        {
+        for (int i = 0; i < rows; i++) {
             newList[i] = list.get(i);
-            
+
         }
         return newList;
     }
-    
+
 }

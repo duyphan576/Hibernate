@@ -20,24 +20,26 @@ public class StrapBLL {
         strdal = new StrapDAL();
     }
 
-    public void addstrap(String name) {
-        Strap str = new Strap();
-        str.setStrapName(name);
+    public void addStrap(Strap str) {
         strdal.addStrap(str);
     }
 
-    public void delstrap(int id) {
+    public void delStrap(int id) {
         strdal.deleteStrap(id);
     }
 
-    public void editstrap(int id,String name) {
-        strdal.updateStrap(id,name);
+    public void editStrap(int id, String name) {
+        strdal.updateStrap(id, name);
     }
 
     public List loadStrap() {
         List list;
         list = strdal.getlistStrap();
         return list;
+    }
+
+    public Strap getStrap(int StrapID) {
+        return strdal.getStrap(StrapID);
     }
 
     public Object[] convertList1(List<Strap> list) {

@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BLL.StrapBLL;
 import DAL.StrapDAL;
 import Entity.Strap;
 
@@ -16,6 +17,8 @@ public class addStrapGUI extends javax.swing.JFrame {
     /**
      * Creates new form addStrapGUI
      */
+    StrapBLL strbll = new StrapBLL();
+
     public addStrapGUI() {
         initComponents();
     }
@@ -97,10 +100,9 @@ public class addStrapGUI extends javax.swing.JFrame {
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
         // TODO add your handling code here:
-        StrapDAL strdal = new StrapDAL();
         Strap str = new Strap();
         str.setStrapName(txtname.getText());
-        strdal.addStrap(str);
+        strbll.addStrap(str);
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

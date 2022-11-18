@@ -5,7 +5,6 @@
 package GUI;
 
 import BLL.BrandBLL;
-import DAL.BrandDAL;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,18 +13,19 @@ import javax.swing.table.DefaultTableModel;
  * @author jukut
  */
 public class BrandGUI extends javax.swing.JFrame {
+
     private static int id;
     private BrandBLL brbll;
-    private BrandDAL brdal;
+
     /**
      * Creates new form BrandGUI
      */
     public BrandGUI() {
         initComponents();
         brbll = new BrandBLL();
-        brdal = new BrandDAL();
         showTable();
     }
+
     public void showTable() {
         List listCate = brbll.loadBrand();
         Object[][] datamodel;
@@ -34,6 +34,7 @@ public class BrandGUI extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel(datamodel, title);
         tblbrand.setModel(model);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -199,7 +200,7 @@ public class BrandGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         int i = tblbrand.getSelectedRow();
         txtname.setText(tblbrand.getValueAt(i, 1).toString());
-        txtid.setText(tblbrand.getValueAt(i,0).toString());
+        txtid.setText(tblbrand.getValueAt(i, 0).toString());
         id = Integer.parseInt(txtid.getText());
     }//GEN-LAST:event_tblbrandMouseClicked
 

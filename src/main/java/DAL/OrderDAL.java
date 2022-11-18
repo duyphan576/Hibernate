@@ -4,22 +4,23 @@
  * and open the template in the editor.
  */
 package DAL;
+
 import Entity.Order;
 import Utils.HibernateUtils;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Session;
+
 /**
  *
  * @author Clock
  */
 public class OrderDAL {
 
-    private static Session session = HibernateUtils.getSessionFactory().openSession();
+    private static Session session;
 
     public OrderDAL() {
-        // private static Session session = HibernateUtils.getSessionFactory().openSession();
+        session = HibernateUtils.getSessionFactory().openSession();
     }
 
     public List loadOrder() {
@@ -41,10 +42,10 @@ public class OrderDAL {
 
     public void addOrder(Order c) {
         session.clear();
-       session.beginTransaction();
-       session.save(c);
-       session.getTransaction().commit();
-        
+        session.beginTransaction();
+        session.save(c);
+        session.getTransaction().commit();
+
     }
 
     public void updateOrder(Order c) {
@@ -60,6 +61,5 @@ public class OrderDAL {
         session.delete(c);
         session.getTransaction().commit();
     }
-   
-}
 
+}

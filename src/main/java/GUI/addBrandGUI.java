@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BLL.BrandBLL;
 import DAL.BrandDAL;
 import Entity.Brand;
 
@@ -16,6 +17,8 @@ public class addBrandGUI extends javax.swing.JFrame {
     /**
      * Creates new form addBrandGUI
      */
+    BrandBLL brbll = new BrandBLL();
+
     public addBrandGUI() {
         initComponents();
     }
@@ -102,10 +105,9 @@ public class addBrandGUI extends javax.swing.JFrame {
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
         // TODO add your handling code here:
-        BrandDAL strdal = new BrandDAL();
-        Brand str = new Brand();
-        str.setBrandName(txtname.getText());
-        strdal.addBrand(str);
+        Brand br = new Brand();
+        br.setBrandName(txtname.getText());
+        brbll.addBrand(br);
     }//GEN-LAST:event_btnaddActionPerformed
 
     /**

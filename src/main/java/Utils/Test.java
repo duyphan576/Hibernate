@@ -5,7 +5,6 @@
 package Utils;
 
 import Entity.Strap;
-import Entity.Strap;
 import org.hibernate.Session;
 
 /**

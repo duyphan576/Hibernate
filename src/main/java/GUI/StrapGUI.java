@@ -9,15 +9,16 @@ import BLL.StrapBLL;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import Entity.Strap;
+
 /**
  *
  * @author jukut
  */
 public class StrapGUI extends javax.swing.JFrame {
-    private DefaultTableModel model;
-    private StrapBLL strbll ;
-    private static StrapDAL strdal;
+
+    private StrapBLL strbll;
     private static int id;
+
     /**
      * Creates new form Strap
      */
@@ -26,6 +27,7 @@ public class StrapGUI extends javax.swing.JFrame {
         strbll = new StrapBLL();
         showTable();
     }
+
     public void showTable() {
         List listCate = strbll.loadStrap();
         Object[][] datamodel;
@@ -34,7 +36,7 @@ public class StrapGUI extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel(datamodel, title);
         tblstrap.setModel(model);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,7 +182,7 @@ public class StrapGUI extends javax.swing.JFrame {
 
     private void btndelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelActionPerformed
         // TODO add your handling code here:
-        strbll.delstrap(id);
+        strbll.delStrap(id);
         showTable();
     }//GEN-LAST:event_btndelActionPerformed
 
@@ -198,9 +200,8 @@ public class StrapGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         int i = tblstrap.getSelectedRow();
         txtname.setText(tblstrap.getValueAt(i, 1).toString());
-        txtid.setText(tblstrap.getValueAt(i,0).toString());
+        txtid.setText(tblstrap.getValueAt(i, 0).toString());
         id = Integer.parseInt(txtid.getText());
-        System.out.println(id);
     }//GEN-LAST:event_tblstrapMouseClicked
 
     /**

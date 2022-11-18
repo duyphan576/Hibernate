@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BLL.StrapBLL;
 import DAL.StrapDAL;
 import Entity.Strap;
 
@@ -16,16 +17,19 @@ public class editStrapGUI extends javax.swing.JFrame {
     /**
      * Creates new form editStrapGUI
      */
+    StrapBLL strbll = new StrapBLL();
+
     public editStrapGUI() {
         initComponents();
     }
-     public editStrapGUI(int id) {
+
+    public editStrapGUI(int id) {
         initComponents();
-        StrapDAL strdal = new StrapDAL();
-        Strap st =strdal.getStrap(id);
+        Strap st = strbll.getStrap(id);
         txtid.setText(String.valueOf(st.getStrapID()));
         txtname.setText(st.getStrapName());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,8 +121,7 @@ public class editStrapGUI extends javax.swing.JFrame {
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         // TODO add your handling code here:
-        StrapDAL strdal = new StrapDAL();
-        strdal.updateStrap(Integer.valueOf(txtid.getText()),txtname.getText());
+        strbll.editStrap(Integer.valueOf(txtid.getText()), txtname.getText());
     }//GEN-LAST:event_btneditActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -129,7 +132,6 @@ public class editStrapGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnedit;
