@@ -57,27 +57,25 @@
                                   <Component id="jButtonYes" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
                                   <Component id="jLabelPrice" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
                                   <Component id="jLabelQuantity" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                  <Component id="jLabelDate1" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabelUID" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                               <Component id="jLabelOID" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextFieldDate" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
-                              <Component id="jTextFieldCID" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
-                              <Component id="jTextFieldUID" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                  <Component id="jLabelTitle" min="-2" pref="142" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jTextFieldPrice" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jTextFieldQuantity" alignment="0" pref="72" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldStatus" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="jTextFieldOID" min="-2" pref="72" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextFieldDate" alignment="0" pref="195" max="32767" attributes="0"/>
+                              <Component id="jTextFieldPrice" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextFieldQuantity" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextFieldStatus" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextFieldCID" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextFieldUID" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextFieldOID" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabelDate1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Component id="jLabelTitle" min="-2" pref="142" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="76" max="32767" attributes="0"/>
@@ -138,9 +136,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="jTextFieldUID">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUIDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelUID">
           <Properties>
@@ -153,9 +148,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCID">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCIDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelDate">
           <Properties>
@@ -163,9 +155,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDate">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldDateActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelStatus">
           <Properties>
@@ -173,22 +162,22 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldStatus">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldStatusActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonYes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Yes"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonYesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnYes"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonNo">
           <Properties>
             <Property name="text" type="java.lang.String" value="No"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNo"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelTitle">
           <Properties>
@@ -207,9 +196,6 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPriceActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelQuantity">
           <Properties>
@@ -220,9 +206,6 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldQuantityActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelDate1">
           <Properties>
@@ -238,9 +221,6 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldOIDActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

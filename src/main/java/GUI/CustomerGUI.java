@@ -5,7 +5,6 @@
 package GUI;
 
 import BLL.CustomerBLL;
-import DAL.CustomerDAL;
 import Entity.Customer;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +18,15 @@ import javax.swing.table.DefaultTableModel;
 public class CustomerGUI extends javax.swing.JFrame {
 
     private DefaultTableModel model;
-    private CustomerBLL cusbll ;
+    private CustomerBLL cusbll;
     private int id;
-    private int cusID;
-    private int row = -1;
+
     public CustomerGUI() {
         initComponents();
         cusbll = new CustomerBLL();
         showTable();
     }
-    
+
     public void showTable() {
         List listCate = cusbll.loadCustomer();
         Object[][] datamodel;
@@ -37,6 +35,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel(datamodel, title);
         Customer_JTA.setModel(model);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +87,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         });
         Customer_JTA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Customer_JTAMouseClicked(evt);
+                tblMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(Customer_JTA);
@@ -104,7 +103,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
+                btnSearch(evt);
             }
         });
 
@@ -112,7 +111,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         editButton.setText("Edit");
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
+                btnEdit(evt);
             }
         });
 
@@ -120,7 +119,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
+                btnAdd(evt);
             }
         });
 
@@ -128,15 +127,15 @@ public class CustomerGUI extends javax.swing.JFrame {
         delButton.setText("Del");
         delButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delButtonActionPerformed(evt);
+                btnDelete(evt);
             }
         });
 
         refreshButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        refreshButton.setText("Refesh");
+        refreshButton.setText("Refresh");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonActionPerformed(evt);
+                btnRefresh(evt);
             }
         });
 
@@ -152,7 +151,7 @@ public class CustomerGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refreshButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(BG_DetailLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,10 +174,10 @@ public class CustomerGUI extends javax.swing.JFrame {
                 .addContainerGap(142, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BG_DetailLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refreshButton)
+                .addGroup(BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchText))
+                    .addComponent(searchText)
+                    .addComponent(refreshButton))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -216,87 +215,69 @@ public class CustomerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+    private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         new addCustomerGUI().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_addButtonActionPerformed
+    }//GEN-LAST:event_btnAdd
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        if(this.getId() == -1)
-        {
+    private void btnEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit
+        if (this.getId() == -1) {
             JOptionPane.showMessageDialog(this, "Vui long chon Customer muon sua thong tin!");
-        }
-        else
-        {
+        } else {
             new editCustomerGUI(this.getId()).setVisible(true);
             this.dispose();
         }
-    }//GEN-LAST:event_editButtonActionPerformed
+    }//GEN-LAST:event_btnEdit
 
-    private void Customer_JTAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Customer_JTAMouseClicked
+    private void tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseClicked
         int i = Customer_JTA.getSelectedRow();
         this.setId(Integer.parseInt(Customer_JTA.getValueAt(i, 0).toString()));
-    }//GEN-LAST:event_Customer_JTAMouseClicked
+    }//GEN-LAST:event_tblMouseClicked
 
-    private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
+    private void btnDelete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete
         int result = JOptionPane.showConfirmDialog(this,
-                        "Ban co chac muon xoa Customer nay?",
-                        "Xac nhan",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-        if(result == JOptionPane.YES_OPTION)
-        {
+                "Ban co chac muon xoa Customer nay?",
+                "Xac nhan",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION) {
             int err = 0;
-            try
-            {
+            try {
                 cusbll.delCustomer(id);
                 loadAllCustomer();
-            }
-            catch(Exception e)
-            {
+            } catch (Exception e) {
                 err = 1;
             }
-            if(err == 0)
-            {
+            if (err == 0) {
                 JOptionPane.showMessageDialog(this, "Xoa Customer thanh cong!");
             }
-            if(err == 1)
-            {
+            if (err == 1) {
                 JOptionPane.showMessageDialog(this, "Xoa Customer khong thanh cong!");
             }
         }
-    }//GEN-LAST:event_delButtonActionPerformed
+    }//GEN-LAST:event_btnDelete
 
-    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+    private void btnRefresh(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh
         loadAllCustomer();
         this.searchText.setText("");
         this.setId(-1);
-    }//GEN-LAST:event_refreshButtonActionPerformed
+    }//GEN-LAST:event_btnRefresh
 
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        if(this.searchText.getText().trim().equals(""))
-        {
+    private void btnSearch(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch
+        if (this.searchText.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap noi dung tim kiem!");
-        }
-        else
-        {
+        } else {
             List<Customer> list = cusbll.loadCustomer();
             List<Customer> listSearch = new ArrayList<Customer>();
-            for(int index = 0; index < list.size(); index ++)
-            {
+            for (int index = 0; index < list.size(); index++) {
                 Customer cus = list.get(index);
-                if(Integer.toString(cus.getCustomerID()).contains(searchText.getText().trim()))
-                {
+                if (Integer.toString(cus.getCustomerID()).contains(searchText.getText().trim())) {
                     listSearch.add(cus);
                     continue;
-                }
-                else if(cus.getFullName().contains(searchText.getText().trim()))
-                {
+                } else if (cus.getFullName().contains(searchText.getText().trim())) {
                     listSearch.add(cus);
                     continue;
-                }
-                else if(cus.getAddress().contains(searchText.getText().trim()))
-                {
+                } else if (cus.getAddress().contains(searchText.getText().trim())) {
                     listSearch.add(cus);
                     continue;
                 }
@@ -306,7 +287,7 @@ public class CustomerGUI extends javax.swing.JFrame {
             DefaultTableModel model = new DefaultTableModel(data, title);
             Customer_JTA.setModel(model);
         }
-    }//GEN-LAST:event_searchButtonActionPerformed
+    }//GEN-LAST:event_btnSearch
 
     private void loadAllCustomer() {
         List cusList = cusbll.loadCustomer();
@@ -323,8 +304,8 @@ public class CustomerGUI extends javax.swing.JFrame {
     public void setId(int id) {
         this.id = id;
     }
-    
-        public static void main(String args[]) {
+
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -355,7 +336,7 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BG_Detail;
     private javax.swing.JPanel BG_JPanell;

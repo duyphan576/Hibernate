@@ -15,32 +15,33 @@ import javax.swing.JOptionPane;
  *
  * @author Clock
  */
-public class EditOrderDetailGUI extends javax.swing.JFrame {
+public class editOrderDetailGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form EditOrderDetailGUI
+     * Creates new form editOrderDetailGUI
      */
     OrderDetailBLL odBll = new OrderDetailBLL();
     int globalQuantity = 0;
     Float globalPrice = 0f;
-    public EditOrderDetailGUI() {
+
+    public editOrderDetailGUI() {
         initComponents();
     }
 
-    public EditOrderDetailGUI(int data) {
+    public editOrderDetailGUI(int data) {
         initComponents();
-        OrderDetail ode = new OrderDetail();
-        ode = odBll.getOrderDetail(data);
-        
+        OrderDetail ode = odBll.getOrderDetail(data);
+
         jTextFieldODID.setText(Integer.toString(ode.getOrderDetailID()));
         jTextFieldOID.setText(Integer.toString(ode.getOrderID()));
         jTextFieldPID.setText(Integer.toString(ode.getProductID()));
         jTextFieldQuantity.setText(Integer.toString(ode.getQuantity()));
         jTextFieldPrice.setText(Float.toString(ode.getPrice()));
-        
+
         globalQuantity = ode.getQuantity();
         globalPrice = ode.getPrice();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,49 +69,26 @@ public class EditOrderDetailGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextFieldOID.setEditable(false);
-        jTextFieldOID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldOIDActionPerformed(evt);
-            }
-        });
 
         jLabelOID.setText("OrderID");
 
         jLabelCID.setText("ProductID");
 
-        jTextFieldPID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPIDActionPerformed(evt);
-            }
-        });
-
         jLabelDate.setText("Quantity");
 
-        jTextFieldQuantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldQuantityActionPerformed(evt);
-            }
-        });
-
         jLabelStatus.setText("Price");
-
-        jTextFieldPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPriceActionPerformed(evt);
-            }
-        });
 
         jButtonYes.setText("Yes");
         jButtonYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonYesActionPerformed(evt);
+                btnYes(evt);
             }
         });
 
         jButtonNo.setText("No");
         jButtonNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNoActionPerformed(evt);
+                btnNo(evt);
             }
         });
 
@@ -120,31 +98,26 @@ public class EditOrderDetailGUI extends javax.swing.JFrame {
         jLabelODID.setText("OrderDetailID");
 
         jTextFieldODID.setEditable(false);
-        jTextFieldODID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldODIDActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(169, Short.MAX_VALUE)
                 .addComponent(jButtonNo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(105, 105, 105))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabelODID)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextFieldODID, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+                            .addComponent(jTextFieldODID))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -153,13 +126,13 @@ public class EditOrderDetailGUI extends javax.swing.JFrame {
                                     .addComponent(jLabelCID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonYes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabelOID, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldPID, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                                .addComponent(jTextFieldPrice)
-                                .addComponent(jTextFieldQuantity)
-                                .addComponent(jTextFieldOID)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                            .addGap(44, 44, 44)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldOID, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldPID)
+                                    .addComponent(jTextFieldPrice))
+                                .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,23 +180,7 @@ public class EditOrderDetailGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldOIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldOIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldOIDActionPerformed
-
-    private void jTextFieldPIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPIDActionPerformed
-
-    private void jTextFieldQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldQuantityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldQuantityActionPerformed
-
-    private void jTextFieldPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPriceActionPerformed
-
-    private void jButtonYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonYesActionPerformed
+    private void btnYes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYes
         // TODO add your handling code here:
         OrderDetail oDe = new OrderDetail();
         oDe.setOrderDetailID(Integer.parseInt(jTextFieldODID.getText()));
@@ -247,18 +204,14 @@ public class EditOrderDetailGUI extends javax.swing.JFrame {
         oBll.updateOrder(ord);
 
         JOptionPane.showMessageDialog(this, "Complete to update OrderDetail", "Message",
-            JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
 
-    }//GEN-LAST:event_jButtonYesActionPerformed
+    }//GEN-LAST:event_btnYes
 
-    private void jButtonNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoActionPerformed
+    private void btnNo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNo
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_jButtonNoActionPerformed
-
-    private void jTextFieldODIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldODIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldODIDActionPerformed
+    }//GEN-LAST:event_btnNo
 
     /**
      * @param args the command line arguments
@@ -277,20 +230,21 @@ public class EditOrderDetailGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(editOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(editOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(editOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(editOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditOrderDetailGUI().setVisible(true);
+                new editOrderDetailGUI().setVisible(true);
             }
         });
     }

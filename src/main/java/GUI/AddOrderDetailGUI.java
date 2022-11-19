@@ -15,19 +15,19 @@ import javax.swing.JOptionPane;
  *
  * @author Clock
  */
-public class AddOrderDetailGUI extends javax.swing.JFrame {
+public class addOrderDetailGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddOrderDetailGUI
+     * Creates new form addOrderDetailGUI
      */
     OrderDetailBLL odBll = new OrderDetailBLL();
-    public AddOrderDetailGUI() {
+
+    public addOrderDetailGUI() {
         initComponents();
     }
-    
-    public AddOrderDetailGUI(int data) {
+
+    public addOrderDetailGUI(int data) {
         initComponents();
-        
         jTextFieldOID.setText(Integer.toString(data));
     }
 
@@ -56,49 +56,26 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextFieldOID.setEditable(false);
-        jTextFieldOID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldOIDActionPerformed(evt);
-            }
-        });
 
         jLabelOID.setText("OrderID");
 
         jLabelCID.setText("ProductID");
 
-        jTextFieldPID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPIDActionPerformed(evt);
-            }
-        });
-
         jLabelDate.setText("Quantity");
 
-        jTextFieldQuantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldQuantityActionPerformed(evt);
-            }
-        });
-
         jLabelStatus.setText("Price");
-
-        jTextFieldPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPriceActionPerformed(evt);
-            }
-        });
 
         jButtonYes.setText("Yes");
         jButtonYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonYesActionPerformed(evt);
+                btnYes(evt);
             }
         });
 
         jButtonNo.setText("No");
         jButtonNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNoActionPerformed(evt);
+                btnNo(evt);
             }
         });
 
@@ -120,14 +97,19 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
                             .addComponent(jButtonYes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                            .addComponent(jTextFieldPrice)
                             .addComponent(jTextFieldPID)
-                            .addComponent(jTextFieldOID)
                             .addComponent(jTextFieldQuantity)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelOID, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelOID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldOID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(144, 144, 144)))))
                 .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -176,53 +158,37 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldOIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldOIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldOIDActionPerformed
-
-    private void jTextFieldPIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPIDActionPerformed
-
-    private void jTextFieldQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldQuantityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldQuantityActionPerformed
-
-    private void jTextFieldPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPriceActionPerformed
-
-    private void jButtonYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonYesActionPerformed
+    private void btnYes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYes
         // TODO add your handling code here:
         OrderDetail oDe = new OrderDetail();
         oDe.setOrderID(Integer.parseInt(jTextFieldOID.getText()));
         oDe.setProductID(Integer.parseInt(jTextFieldPID.getText()));
         oDe.setQuantity(Integer.parseInt(jTextFieldQuantity.getText()));
         oDe.setPrice(Float.parseFloat(jTextFieldPrice.getText()));
-        
+
         odBll.addOrderDetail(oDe);
-        
+
         OrderBLL oBll = new OrderBLL();
         Order ord = oBll.getOrder(oDe.getOrderID());
-        
+
         int toquan = ord.getTotalQuantity();
-        Float topri = ord.getTotalPrice();      
+        Float topri = ord.getTotalPrice();
         toquan = toquan + oDe.getQuantity();
         topri = topri + oDe.getPrice();
-        
+
         ord.setTotalQuantity(toquan);
         ord.setTotalPrice(topri);
         oBll.updateOrder(ord);
-        
+
         JOptionPane.showMessageDialog(this, "Complete to add OrderDetail", "Message",
                 JOptionPane.INFORMATION_MESSAGE);
-        
-    }//GEN-LAST:event_jButtonYesActionPerformed
 
-    private void jButtonNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoActionPerformed
+    }//GEN-LAST:event_btnYes
+
+    private void btnNo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNo
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_jButtonNoActionPerformed
+    }//GEN-LAST:event_btnNo
 
     /**
      * @param args the command line arguments
@@ -241,20 +207,21 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddOrderDetailGUI().setVisible(true);
+                new addOrderDetailGUI().setVisible(true);
             }
         });
     }

@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class addCustomerGUI extends javax.swing.JFrame {
 
-    CustomerDAL cusDAL = new CustomerDAL();
     CustomerBLL cusBLL = new CustomerBLL();
+    
     public addCustomerGUI() {
         initComponents();
     }
@@ -56,17 +56,11 @@ public class addCustomerGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jLabel4.setText("Address");
 
-        addressText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressTextActionPerformed(evt);
-            }
-        });
-
         addButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
+                btnAdd(evt);
             }
         });
 
@@ -74,7 +68,7 @@ public class addCustomerGUI extends javax.swing.JFrame {
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                btnCancel(evt);
             }
         });
 
@@ -152,7 +146,7 @@ public class addCustomerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+    private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         if(nameText.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Name");
@@ -199,16 +193,12 @@ public class addCustomerGUI extends javax.swing.JFrame {
                 new CustomerGUI().setVisible(true);
             } 
         }
-    }//GEN-LAST:event_addButtonActionPerformed
+    }//GEN-LAST:event_btnAdd
 
-    private void addressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressTextActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void btnCancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel
         new CustomerGUI().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }//GEN-LAST:event_btnCancel
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

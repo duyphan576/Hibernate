@@ -81,7 +81,7 @@ public class StrapGUI extends javax.swing.JFrame {
         });
         tblstrap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblstrapMouseClicked(evt);
+                tblMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblstrap);
@@ -93,21 +93,21 @@ public class StrapGUI extends javax.swing.JFrame {
         btnadd.setText("ADD");
         btnadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaddActionPerformed(evt);
+                btnAdd(evt);
             }
         });
 
         btnedit.setText("EDIT");
         btnedit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
+                btnEdit(evt);
             }
         });
 
         btndel.setText("DEL");
         btndel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndelActionPerformed(evt);
+                btnDelete(evt);
             }
         });
 
@@ -180,29 +180,29 @@ public class StrapGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btndelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelActionPerformed
+    private void btnDelete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete
         // TODO add your handling code here:
         strbll.delStrap(id);
         showTable();
-    }//GEN-LAST:event_btndelActionPerformed
+    }//GEN-LAST:event_btnDelete
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+    private void btnEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit
         // TODO add your handling code here:
         new editStrapGUI(Integer.valueOf(txtid.getText())).setVisible(true);
-    }//GEN-LAST:event_btneditActionPerformed
+    }//GEN-LAST:event_btnEdit
 
-    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+    private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         // TODO add your handling code here:
         new addStrapGUI().setVisible(true);
-    }//GEN-LAST:event_btnaddActionPerformed
+    }//GEN-LAST:event_btnAdd
 
-    private void tblstrapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblstrapMouseClicked
+    private void tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseClicked
         // TODO add your handling code here:
         int i = tblstrap.getSelectedRow();
         txtname.setText(tblstrap.getValueAt(i, 1).toString());
         txtid.setText(tblstrap.getValueAt(i, 0).toString());
         id = Integer.parseInt(txtid.getText());
-    }//GEN-LAST:event_tblstrapMouseClicked
+    }//GEN-LAST:event_tblMouseClicked
 
     /**
      * @param args the command line arguments

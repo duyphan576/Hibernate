@@ -15,12 +15,13 @@ import org.hibernate.Session;
  */
 public class StatisticDAL {
 
-    public StatisticDAL() {
+    private Session session;
 
+    public StatisticDAL() {
+        session = HibernateUtils.getSessionFactory().openSession();
     }
 
     public List totalSale() {
-        Session session = HibernateUtils.getSessionFactory().openSession();
         session.clear();
         session.beginTransaction();
         List<Object[][]> data = session.createQuery("SELECT year(Date), month(Date), sum(TotalPrice) FROM Order GROUP BY year(Date), month(Date) ORDER BY year(Date), month(Date)").list();
@@ -29,7 +30,6 @@ public class StatisticDAL {
     }
 
     public List topProduct() {
-        Session session = HibernateUtils.getSessionFactory().openSession();
         session.clear();
         session.beginTransaction();
         List<Object[][]> data = session.createQuery("SELECT p.ProductName, SUM(od.Quantity) FROM Product p, OrderDetail od WHERE p.ProductID = od.ProductID GROUP BY p.ProductName ORDER BY SUM(od.Quantity) DESC").list();
@@ -37,19 +37,4 @@ public class StatisticDAL {
         return data;
     }
 
-    public static void main(String[] args) {
-        StatisticDAL s = new StatisticDAL();
-        List<Object[]> list = s.topProduct();
-        String a = "";
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 1; j < Arrays.toString(list.get(i)).length() - 1; j++) {
-                a += Arrays.toString(list.get(i)).charAt(j);
-            }
-            a += ", ";
-        }
-        String[] part = a.split(", ");
-        for (int i = 0; i < part.length; i++) {
-            System.out.println(part[i]);
-        }
-    }
 }

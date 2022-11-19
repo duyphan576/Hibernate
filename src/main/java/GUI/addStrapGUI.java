@@ -45,7 +45,7 @@ public class addStrapGUI extends javax.swing.JFrame {
         btnadd.setText("ADD");
         btnadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaddActionPerformed(evt);
+                btnAdd(evt);
             }
         });
 
@@ -56,7 +56,7 @@ public class addStrapGUI extends javax.swing.JFrame {
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBack(evt);
             }
         });
 
@@ -98,17 +98,17 @@ public class addStrapGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+    private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         // TODO add your handling code here:
         Strap str = new Strap();
         str.setStrapName(txtname.getText());
         strbll.addStrap(str);
-    }//GEN-LAST:event_btnaddActionPerformed
+    }//GEN-LAST:event_btnAdd
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack
         // TODO add your handling code here:
         new StrapGUI().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBack
 
     /**
      * @param args the command line arguments

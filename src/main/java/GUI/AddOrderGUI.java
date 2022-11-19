@@ -4,25 +4,27 @@
  * and open the template in the editor.
  */
 package GUI;
+
 import BLL.OrderBLL;
 import Entity.Order;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Clock
  */
-public class AddOrderGUI extends javax.swing.JFrame {
+public class addOrderGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddOrderGUI
+     * Creates new form addOrderGUI
      */
     OrderBLL oBll = new OrderBLL();
-    public AddOrderGUI() {
+
+    public addOrderGUI() {
         initComponents();
     }
 
@@ -51,49 +53,25 @@ public class AddOrderGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextFieldUID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUIDActionPerformed(evt);
-            }
-        });
-
         jLabelUID.setText("UserID");
 
         jLabelCID.setText("CustomerID");
 
-        jTextFieldCID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCIDActionPerformed(evt);
-            }
-        });
-
         jLabelDate.setText("Date");
 
-        jTextFieldDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDateActionPerformed(evt);
-            }
-        });
-
         jLabelStatus.setText("Status");
-
-        jTextFieldStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldStatusActionPerformed(evt);
-            }
-        });
 
         jButtonYes.setText("Yes");
         jButtonYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonYesActionPerformed(evt);
+                btnYes(evt);
             }
         });
 
         jButtonNo.setText("No");
         jButtonNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNoActionPerformed(evt);
+                btnNo(evt);
             }
         });
 
@@ -118,18 +96,18 @@ public class AddOrderGUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabelDate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelCID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabelCID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabelUID, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldCID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldUID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldDate, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                            .addComponent(jTextFieldUID)
+                            .addComponent(jTextFieldCID)
+                            .addComponent(jTextFieldStatus)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelDate1)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -176,51 +154,35 @@ public class AddOrderGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldUIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUIDActionPerformed
-
-    private void jTextFieldCIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCIDActionPerformed
-
-    private void jTextFieldDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDateActionPerformed
-
-    private void jTextFieldStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldStatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldStatusActionPerformed
-
-    private void jButtonNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoActionPerformed
+    private void btnNo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNo
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_jButtonNoActionPerformed
+    }//GEN-LAST:event_btnNo
 
-    private void jButtonYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonYesActionPerformed
+    private void btnYes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYes
         // TODO add your handling code here:
         Order ord = new Order();
         ord.setUserID(Integer.parseInt(jTextFieldUID.getText()));
         ord.setCustomerID(Integer.parseInt(jTextFieldCID.getText()));
-        
+
         try {
             java.util.Date d = new SimpleDateFormat("dd/MM/yyyy").parse(jTextFieldDate.getText());
             java.sql.Date sqlDate = new java.sql.Date(d.getTime());
 
-            ord.setDate(sqlDate);  
+            ord.setDate(sqlDate);
             System.out.println(sqlDate);
         } catch (ParseException ex) {
-            Logger.getLogger(AddOrderGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(addOrderGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         ord.setStatus(Integer.parseInt(jTextFieldStatus.getText()));
         ord.setTotalQuantity(0);
         ord.setTotalPrice(0);
-        
+
         oBll.addOrder(ord);
         JOptionPane.showMessageDialog(this, "Complete to add Order", "Message",
                 JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jButtonYesActionPerformed
+    }//GEN-LAST:event_btnYes
 
     /**
      * @param args the command line arguments
@@ -239,20 +201,21 @@ public class AddOrderGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddOrderGUI().setVisible(true);
+                new addOrderGUI().setVisible(true);
             }
         });
     }

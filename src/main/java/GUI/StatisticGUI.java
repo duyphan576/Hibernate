@@ -23,9 +23,8 @@ public class StatisticGUI extends javax.swing.JFrame {
      */
     private StatisticBLL sta = new StatisticBLL();
 
-    public StatisticGUI() throws SQLException {
+    public StatisticGUI(){
         initComponents();
-        listTopProduct();
     }
 
     /**
@@ -41,6 +40,8 @@ public class StatisticGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btnSale = new javax.swing.JButton();
+        btnTop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +62,20 @@ public class StatisticGUI extends javax.swing.JFrame {
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
+        btnSale.setText("Total Sale");
+        btnSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSale(evt);
+            }
+        });
+
+        btnTop.setText("Top Product");
+        btnTop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTop(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -69,7 +84,11 @@ public class StatisticGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSale)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnTop))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -78,9 +97,12 @@ public class StatisticGUI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnSale)
+                    .addComponent(btnTop))
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -98,6 +120,24 @@ public class StatisticGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSale(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSale
+        try {
+            // TODO add your handling code here:
+            listTotalSale();
+        } catch (SQLException ex) {
+            Logger.getLogger(StatisticGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSale
+
+    private void btnTop(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop
+        try {
+            // TODO add your handling code here:
+            listTopProduct();
+        } catch (SQLException ex) {
+            Logger.getLogger(StatisticGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnTop
 
     private void listTotalSale() throws SQLException {
         List<Object[]> list = sta.totalSale();
@@ -204,16 +244,14 @@ public class StatisticGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new StatisticGUI().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(StatisticGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new StatisticGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSale;
+    private javax.swing.JButton btnTop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

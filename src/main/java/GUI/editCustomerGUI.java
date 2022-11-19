@@ -16,6 +16,7 @@ public class editCustomerGUI extends javax.swing.JFrame {
 
     CustomerBLL cusbll = new CustomerBLL();
     private int id;
+
     public editCustomerGUI(int id) {
         initComponents();
         this.id = id;
@@ -60,17 +61,11 @@ public class editCustomerGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jLabel4.setText("Address");
 
-        addressText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressTextActionPerformed(evt);
-            }
-        });
-
         editButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         editButton.setText("Edit");
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
+                btnEdit(evt);
             }
         });
 
@@ -78,7 +73,7 @@ public class editCustomerGUI extends javax.swing.JFrame {
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                btnCancel(evt);
             }
         });
 
@@ -156,55 +151,40 @@ public class editCustomerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        if(nameText.getText().equals(""))
-        {
+    private void btnEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit
+        if (nameText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Name");
-        }
-        else if(passText.getText().equals(""))
-        {
+        } else if (passText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Password");
-        }
-        else if(addressText.getText().equals(""))
-        {
+        } else if (addressText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Address");
-        }
-        else
-        {
+        } else {
             int result = JOptionPane.showConfirmDialog(this,
-                        "Ban co chac muon sua thong tin Customer nay?",
-                        "Xac nhan",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-            if(result == JOptionPane.YES_OPTION)
-            {
+                    "Ban co chac muon sua thong tin Customer nay?",
+                    "Xac nhan",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
                 int err = 0;
-                try
-                {
+                try {
                     Customer cus = new Customer();
                     cus.setCustomerID(this.getId());
                     cus.setFullName(nameText.getText().trim());
                     cus.setPassword(passText.getText().trim());
                     cus.setAddress(addressText.getText().trim());
                     cusbll.editCustomer(cus);
-                }
-                catch(Exception e)
-                {
+                } catch (Exception e) {
                     err = 1;
                 }
-                if(err == 0)
-                {
+                if (err == 0) {
                     JOptionPane.showMessageDialog(this, "Sua thong tin Customer thanh cong!");
-                }
-                else
-                {
+                } else {
                     JOptionPane.showMessageDialog(this, "Sua thong tin Customer khong thanh cong!");
                 }
                 this.dispose();
                 new CustomerGUI().setVisible(true);
             }
-            if(result == JOptionPane.NO_OPTION)
-            {
+            if (result == JOptionPane.NO_OPTION) {
                 Customer custemp = cusbll.getCustomer(this.getId());
                 this.nameText.setText(custemp.getFullName().trim());
                 this.passText.setText(custemp.getPassword().trim());
@@ -212,23 +192,16 @@ public class editCustomerGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Thong tin Customer vưa sua se khong duoc luu!");
             }
         }
-    }//GEN-LAST:event_editButtonActionPerformed
+    }//GEN-LAST:event_btnEdit
 
-    private void addressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressTextActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void btnCancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel
         new CustomerGUI().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }//GEN-LAST:event_btnCancel
 
-    
-    
     /**
      * @param args the command line arguments
      */
-
     public int getId() {
         return id;
     }

@@ -99,7 +99,7 @@ public class editProductGUI extends javax.swing.JFrame {
         btnedit.setText("Edit");
         btnedit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
+                btnEdit(evt);
             }
         });
 
@@ -117,7 +117,7 @@ public class editProductGUI extends javax.swing.JFrame {
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBack(evt);
             }
         });
 
@@ -193,7 +193,7 @@ public class editProductGUI extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnedit)
                     .addComponent(jButton1))
                 .addGap(0, 86, Short.MAX_VALUE))
@@ -202,7 +202,7 @@ public class editProductGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+    private void btnEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit
         if (txtproductname.equals(""))
             JOptionPane.showMessageDialog(rootPane, "Vui long nhap Product Name");
         else if (txtquantity.equals(""))
@@ -226,12 +226,12 @@ public class editProductGUI extends javax.swing.JFrame {
                     Float.valueOf(txtprice.getText()), Integer.valueOf(txtquantity.getText()), txtDetail.getText());
             new ProductGUI().setVisible(true);
         }
-    }//GEN-LAST:event_btneditActionPerformed
+    }//GEN-LAST:event_btnEdit
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack
         // TODO add your handling code here:
         new addProductGUI().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBack
 
     /**
      * @param args the command line arguments

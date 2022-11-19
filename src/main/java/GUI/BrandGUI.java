@@ -83,7 +83,7 @@ public class BrandGUI extends javax.swing.JFrame {
         });
         tblbrand.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblbrandMouseClicked(evt);
+                tblMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblbrand);
@@ -95,21 +95,21 @@ public class BrandGUI extends javax.swing.JFrame {
         btnadd.setText("ADD");
         btnadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaddActionPerformed(evt);
+                btnAdd(evt);
             }
         });
 
         btnedit.setText("EDIT");
         btnedit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
+                btnEdit(evt);
             }
         });
 
         btndel.setText("DEL");
         btndel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndelActionPerformed(evt);
+                btnDelete(evt);
             }
         });
 
@@ -180,29 +180,29 @@ public class BrandGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btndelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelActionPerformed
+    private void btnDelete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete
         // TODO add your handling code here:
         brbll.delBrand(id);
         showTable();
-    }//GEN-LAST:event_btndelActionPerformed
+    }//GEN-LAST:event_btnDelete
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+    private void btnEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit
         // TODO add your handling code here:
         new editBrandGUI(Integer.valueOf(txtid.getText())).setVisible(true);
-    }//GEN-LAST:event_btneditActionPerformed
+    }//GEN-LAST:event_btnEdit
 
-    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+    private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         // TODO add your handling code here:
         new addBrandGUI().setVisible(true);
-    }//GEN-LAST:event_btnaddActionPerformed
+    }//GEN-LAST:event_btnAdd
 
-    private void tblbrandMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbrandMouseClicked
+    private void tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseClicked
         // TODO add your handling code here:
         int i = tblbrand.getSelectedRow();
         txtname.setText(tblbrand.getValueAt(i, 1).toString());
         txtid.setText(tblbrand.getValueAt(i, 0).toString());
         id = Integer.parseInt(txtid.getText());
-    }//GEN-LAST:event_tblbrandMouseClicked
+    }//GEN-LAST:event_tblMouseClicked
 
     /**
      * @param args the command line arguments

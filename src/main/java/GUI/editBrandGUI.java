@@ -58,7 +58,7 @@ public class editBrandGUI extends javax.swing.JFrame {
         btnedit.setText("EDIT");
         btnedit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
+                btnEdit(evt);
             }
         });
 
@@ -69,7 +69,7 @@ public class editBrandGUI extends javax.swing.JFrame {
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBack(evt);
             }
         });
 
@@ -121,15 +121,15 @@ public class editBrandGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+    private void btnEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit
         // TODO add your handling code here:
         brbll.updateBrand(Integer.valueOf(txtid.getText()), txtname.getText());
-    }//GEN-LAST:event_btneditActionPerformed
+    }//GEN-LAST:event_btnEdit
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack
         // TODO add your handling code here:
         new BrandGUI().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBack
 
     /**
      * @param args the command line arguments

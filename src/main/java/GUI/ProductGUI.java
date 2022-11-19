@@ -77,7 +77,7 @@ public class ProductGUI extends javax.swing.JFrame {
         });
         productTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                productTblMouseClicked(evt);
+                tblMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(productTbl);
@@ -85,49 +85,49 @@ public class ProductGUI extends javax.swing.JFrame {
         jButton1.setText("Search");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSearch(evt);
             }
         });
 
         btnadd.setText("Add");
         btnadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaddActionPerformed(evt);
+                btnAdd(evt);
             }
         });
 
         btndel.setText("Delete");
         btndel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndelActionPerformed(evt);
+                btnDelete(evt);
             }
         });
 
         btnedit.setText("Edit");
         btnedit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
+                btnEdit(evt);
             }
         });
 
         refreshBtn.setText("Refresh");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshBtnActionPerformed(evt);
+                btnRefresh(evt);
             }
         });
 
         jButton2.setText("Choose");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSChoose(evt);
             }
         });
 
         jButton3.setText("Choose");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnBChoose(evt);
             }
         });
 
@@ -193,35 +193,35 @@ public class ProductGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+    private void btnRefresh(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh
         // TODO add your handling code her
         loadAllproduct();
         cbfinstrap.setSelectedItem("ALL");
         cbfinbrand.setSelectedItem("ALL");
-    }//GEN-LAST:event_refreshBtnActionPerformed
+    }//GEN-LAST:event_btnRefresh
 
-    private void productTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productTblMouseClicked
+    private void tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseClicked
         // TODO add your handling code here:
         int i = productTbl.getSelectedRow();
         id = Integer.parseInt(productTbl.getValueAt(i, 0).toString());
-    }//GEN-LAST:event_productTblMouseClicked
+    }//GEN-LAST:event_tblMouseClicked
 
-    private void btndelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelActionPerformed
+    private void btnDelete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete
         // TODO add your handling code here:
         proBLL.delProduct(id);
         loadAllproduct();
-    }//GEN-LAST:event_btndelActionPerformed
+    }//GEN-LAST:event_btnDelete
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+    private void btnEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit
         // TODO add your handling code here:
         new editProductGUI(id).setVisible(true);
-    }//GEN-LAST:event_btneditActionPerformed
+    }//GEN-LAST:event_btnEdit
 
-    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+    private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         new addProductGUI().setVisible(true);
-    }//GEN-LAST:event_btnaddActionPerformed
+    }//GEN-LAST:event_btnAdd
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSearch(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch
         // TODO add your handling code here:
         Product pr = proBLL.getProduct(Integer.valueOf(txtfindid.getText()));
         DefaultTableModel model = (DefaultTableModel) productTbl.getModel();
@@ -229,9 +229,9 @@ public class ProductGUI extends javax.swing.JFrame {
         model.addRow(new Object[]{
             pr.getProductID(), pr.getProductName(), pr.getStrap().getStrapName(), pr.getBrand().getBrandName(), pr.getPrice(), pr.getQuantity(), pr.getProductDetail()
         });
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSearch
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSChoose(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSChoose
         // TODO add your handling code here:
         String temp = cbfinstrap.getSelectedItem().toString();
         if (temp.equals("ALL"))
@@ -241,9 +241,9 @@ public class ProductGUI extends javax.swing.JFrame {
             int idfindstrap = Integer.valueOf(temp1[0].trim());
             findproduct(idfindstrap);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnSChoose
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnBChoose(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBChoose
         // TODO add your handling code here:
         String temp = cbfinbrand.getSelectedItem().toString();
         if (temp.equals("ALL"))
@@ -253,7 +253,7 @@ public class ProductGUI extends javax.swing.JFrame {
             int idfindbrand = Integer.valueOf(temp1[0].trim());
             findproductbybrand(idfindbrand);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnBChoose
 
     private void loadAllproduct() {
         List proList = proBLL.loadProduct();

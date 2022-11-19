@@ -13,17 +13,17 @@ import java.util.List;
  * @author MSI VN
  */
 public class CustomerBLL {
-     public CustomerDAL cusdal;
+
+    public CustomerDAL cusdal;
 
     public CustomerBLL() {
         cusdal = new CustomerDAL();
     }
 
-    public Customer getCustomer(int id)
-    {
+    public Customer getCustomer(int id) {
         return cusdal.getCustomer(id);
     }
-    
+
     public void addCustomer(Customer customer) {
         Customer cus = new Customer();
         cus.setCustomerID(customer.getCustomerID());
