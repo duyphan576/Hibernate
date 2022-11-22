@@ -45,7 +45,6 @@ public class OrderDAL {
         session.beginTransaction();
         session.save(c);
         session.getTransaction().commit();
-
     }
 
     public void updateOrder(Order c) {

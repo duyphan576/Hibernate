@@ -54,8 +54,7 @@ public class OrderDetailDAL {
        session.clear();
        session.beginTransaction();
        session.save(c);
-       session.getTransaction().commit();
-        
+       session.getTransaction().commit();        
     }
 
     public void updateOrderDetail(OrderDetail c) {

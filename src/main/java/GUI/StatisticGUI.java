@@ -164,13 +164,11 @@ public class StatisticGUI extends javax.swing.JFrame {
                     data[i][j] = part[c];
                     c++;
                 }
-                System.out.println(c);
             } else {
                 for (int j = 0; c < part.length; j++) {
                     data[i][j] = part[c];
                     c++;
                 }
-                System.out.println(c);
             }
         }
         DefaultTableModel model = new DefaultTableModel(data, colummNames);

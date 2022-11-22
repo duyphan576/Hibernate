@@ -30,7 +30,7 @@ public class CustomerBLL {
         cus.setFullName(customer.getFullName());
         cus.setPassword(customer.getPassword());
         cus.setAddress(cus.getAddress());
-        cusdal.addCustomer(customer);
+        cusdal.addCustomer(cus);
     }
 
     public void delCustomer(int id) {

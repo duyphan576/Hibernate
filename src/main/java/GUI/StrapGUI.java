@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import DAL.StrapDAL;
 import BLL.StrapBLL;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;

@@ -41,9 +41,7 @@ public class BrandBLL {
     }
 
     public List loadBrand() {
-        List list;
-        list = brdal.getlistBrand();
-        return list;
+        return brdal.getlistBrand();
     }
 
     public Object[][] converBrand(List<Brand> list) {

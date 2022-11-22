@@ -32,7 +32,7 @@ public class OrderBLL {
         return c;
     }
 
-    public void addOrder(Order c) {
+        public void addOrder(Order c) {
         orderDAL.addOrder(c);
     }
 

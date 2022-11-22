@@ -43,17 +43,15 @@ public class StrapDAL {
     }
 
     public Strap getStrap(int StrapID) {
-        Strap obj;
         session.beginTransaction();
-        obj = session.get(Strap.class, StrapID);
+        Strap obj = session.get(Strap.class, StrapID);
         session.getTransaction().commit();
         return obj;
     }
 
     public List getlistStrap() {
-        List<Strap> list;
         session.beginTransaction();
-        list = session.createQuery("FROM Strap", Strap.class).list();
+        List<Strap> list = session.createQuery("FROM Strap", Strap.class).list();
         session.getTransaction().commit();
         return list;
     }
