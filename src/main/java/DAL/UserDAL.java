@@ -51,4 +51,31 @@ public class UserDAL {
         session.save(us);
         session.getTransaction().commit();
     }
+     public void updateUser(int id,Role role, String username, String password,int status) {
+        session.clear();
+        session.beginTransaction();
+        User us = new User();
+        us.setUserID(id);
+        us.setRole(role);
+        us.setUserName(username);
+        us.setPassword(password);
+        us.setStatus(status);
+        session.update(us);
+        session.getTransaction().commit();
+    }
+     public User getUser(int UserID) {
+        User obj;
+        session.beginTransaction();
+        obj = session.get(User.class, UserID);
+        session.getTransaction().commit();
+        return obj;
+    }
+     public void deleteUser(int id) {
+        session.clear();
+        session.beginTransaction();
+        User pr = new User();
+        pr.setUserID(id);
+        session.delete(pr);
+        session.getTransaction().commit();
+    }
 }

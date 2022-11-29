@@ -52,4 +52,13 @@ public class UserBLL {
     public void addUser(Role role, String username, String password,int status){
         usdal.addUser(role, username, password, status);
     }
+    public void upUser(int id,Role role, String username, String password,int status){
+        usdal.updateUser(id,role, username, password, status);
+    }
+    public User getUser(int UserID) {
+        return usdal.getUser(UserID);
+    }
+     public void delUser(int id) {
+        usdal.deleteUser(id);
+    }
 }
