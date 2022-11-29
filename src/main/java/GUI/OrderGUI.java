@@ -8,10 +8,13 @@ package GUI;
 import BLL.OrderBLL;
 import BLL.OrderDetailBLL;
 import Entity.Order;
-import Entity.OrderDetail;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -22,7 +25,7 @@ import javax.swing.table.TableModel;
 public class OrderGUI extends javax.swing.JFrame {
 
     public static int rowID;
-    public static int rowIDDetail;
+
     public static String key;
     private OrderBLL oBll;
     private OrderDetailBLL ordBll;
@@ -31,41 +34,35 @@ public class OrderGUI extends javax.swing.JFrame {
      * Creates new form OrderGUI
      */
     public OrderGUI() {
-
         initComponents();
         oBll = new OrderBLL();
         ordBll = new OrderDetailBLL();
         listOrder();
-        listOrderDetail();
 
+        jTableOrder.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table = (JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    // your valueChanged overridden method
+                    row = jTableOrder.getSelectedRow();
+                    TableModel model = jTableOrder.getModel();
+                    rowID = Integer.parseInt(model.getValueAt(row, 0).toString());
+                    new OrderDetailGUI(rowID).setVisible(true);
+                }
+            }
+        });
     }
 
     public void listOrder() {
         List list = oBll.loadOrder();
         Object[][] datamodel;
         datamodel = oBll.convertList(list);
-        String[] title = { "OrderID", "UserID", "CustomerID", "TotalQuantity", "TotalPrice", "Date", "Status",
-                "Count" };
+        String[] title = {"OrderID", "UserID", "CustomerID", "TotalQuantity", "TotalPrice", "Date", "Status",
+            "Count"};
         DefaultTableModel model = new DefaultTableModel(datamodel, title);
         jTableOrder.setModel(model);
-    }
-
-    public void listOrderDetail() {
-        List list = ordBll.loadOrderDetail();
-        Object[][] datamodel;
-        datamodel = ordBll.convertList(list);
-        String[] title = { "OrderDetailID", "OrderID", "ProductID", "Quantity", "Price" };
-        DefaultTableModel model = new DefaultTableModel(datamodel, title);
-        jTableOrderDetail.setModel(model);
-    }
-
-    public void listOrderDetailByOrderID() {
-        List list = ordBll.loadOrderDetailByOrderID(rowID);
-        Object[][] datamodel;
-        datamodel = ordBll.convertList(list);
-        String[] title = { "OrderDetailID", "OrderID", "ProductID", "Quantity", "Price" };
-        DefaultTableModel model = new DefaultTableModel(datamodel, title);
-        jTableOrderDetail.setModel(model);
     }
 
     /**
@@ -75,34 +72,27 @@ public class OrderGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableOrder = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableOrderDetail = new javax.swing.JTable();
         jButtonAddO = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
         jButtonEditO = new javax.swing.JButton();
         jButtonDeleteO = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabelSearch = new javax.swing.JLabel();
         jTextFieldSearch = new javax.swing.JTextField();
         jButtonSearch = new javax.swing.JButton();
-        jButtonAddDetail = new javax.swing.JButton();
-        jButtonEditDetail = new javax.swing.JButton();
-        jButtonDeleteDetail = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTableOrder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblOMouseClicked(evt);
+                tblMouseClicked(evt);
             }
         });
         jScrollPane4.setViewportView(jTableOrder);
@@ -110,46 +100,24 @@ public class OrderGUI extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
-                                .addContainerGap()));
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                .addContainerGap())
+        );
         jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 269,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-
-        jTableOrderDetail.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDetailMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTableOrderDetail);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                                .addContainerGap()));
-        jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jButtonAddO.setText("Add");
         jButtonAddO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddO(evt);
+                btnAdd(evt);
             }
         });
 
@@ -163,22 +131,19 @@ public class OrderGUI extends javax.swing.JFrame {
         jButtonEditO.setText("Edit");
         jButtonEditO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditO(evt);
+                btnEdit(evt);
             }
         });
 
         jButtonDeleteO.setText("Delete");
         jButtonDeleteO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteO(evt);
+                btnDelete(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Order");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setText("Detail");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel3.setText("Data Order");
@@ -192,142 +157,73 @@ public class OrderGUI extends javax.swing.JFrame {
             }
         });
 
-        jButtonAddDetail.setText("Add Detail");
-        jButtonAddDetail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddDetail(evt);
-            }
-        });
-
-        jButtonEditDetail.setText("Edit Detail");
-        jButtonEditDetail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditDetail(evt);
-            }
-        });
-
-        jButtonDeleteDetail.setText("Delete Detail");
-        jButtonDeleteDetail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteDetail(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(264, 264, 264)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(197, 197, 197))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 191,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(447, 447, 447))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(22, 22, 22)
-                                                                .addComponent(jButtonAddO,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 77,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(124, 124, 124))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                layout.createSequentialGroup()
-                                                                        .addContainerGap()
-                                                                        .addComponent(jLabelSearch)
-                                                                        .addGap(28, 28, 28)))
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                false)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(jTextFieldSearch,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 163,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(30, 30, 30)
-                                                                .addComponent(jButtonSearch,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(jButtonEditO,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 78,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(115, 115, 115)
-                                                                .addComponent(jButtonDeleteO)))
-                                                .addGap(32, 32, 32)
-                                                .addComponent(jButtonRefresh)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49,
-                                        Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButtonAddDetail)
-                                                .addGap(35, 35, 35)
-                                                .addComponent(jButtonEditDetail)
-                                                .addGap(63, 63, 63)
-                                                .addComponent(jButtonDeleteDetail))
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(24, 24, 24)));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(264, 264, 264)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(197, 803, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(447, 447, 447))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jButtonAddO, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(124, 124, 124))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabelSearch)
-                                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButtonSearch))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58,
-                                        Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButtonAddO)
-                                        .addComponent(jButtonRefresh)
-                                        .addComponent(jButtonEditO)
-                                        .addComponent(jButtonDeleteO)
-                                        .addComponent(jButtonAddDetail)
-                                        .addComponent(jButtonEditDetail)
-                                        .addComponent(jButtonDeleteDetail))
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+                                .addComponent(jLabelSearch)
+                                .addGap(28, 28, 28)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jButtonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonEditO, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115)
+                                .addComponent(jButtonDeleteO)))
+                        .addGap(32, 32, 32)
+                        .addComponent(jButtonRefresh)))
+                .addGap(58, 549, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelSearch)
+                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAddO)
+                    .addComponent(jButtonRefresh)
+                    .addComponent(jButtonEditO)
+                    .addComponent(jButtonDeleteO))
+                .addGap(32, 32, 32)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDeleteO(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteO
+    private void btnDelete(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         Order ord = new Order();
         ord = oBll.getOrder(rowID);
@@ -349,48 +245,36 @@ public class OrderGUI extends javax.swing.JFrame {
         }
 
         listOrder();
-        listOrderDetail();
-    }// GEN-LAST:event_btnDeleteO
+    }
 
-    private void btnEditO(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEditO
+    private void btnEdit(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if (rowID > 0) {
             editOrderGUI ui = new editOrderGUI(rowID);
             ui.setVisible(true);
         }
-    }// GEN-LAST:event_btnEditO
+    }
 
-    private void btnRefresh(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRefresh
+    private void btnRefresh(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         this.listOrder();
-        this.listOrderDetail();
     }// GEN-LAST:event_btnRefresh
 
-    private void btnAddO(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAddO
+    private void btnAdd(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         addOrderGUI ui = new addOrderGUI();
         ui.setVisible(true);
-    }// GEN-LAST:event_btnAddO
+    }
 
-    private void tblDetailMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tblDetailMouseClicked
-        // TODO add your handling code here:
-        int row2 = jTableOrderDetail.getSelectedRow();
-        TableModel model = jTableOrderDetail.getModel();
-        rowIDDetail = Integer.parseInt(model.getValueAt(row2, 0).toString());
-
-    }// GEN-LAST:event_tblDetailMouseClicked
-     // bảng Order
-
-    private void tblOMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tblOMouseClicked
+    private void tblMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         int row = jTableOrder.getSelectedRow();
         TableModel model = jTableOrder.getModel();
         rowID = Integer.parseInt(model.getValueAt(row, 0).toString());
 
-        listOrderDetailByOrderID();
-    }// GEN-LAST:event_tblOMouseClicked
+    }
 
-    private void btnSearch(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSearch
+    private void btnSearch(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         key = jTextFieldSearch.getText();
         if (key.isEmpty() == false) {
@@ -399,63 +283,14 @@ public class OrderGUI extends javax.swing.JFrame {
             list.add(ord);
             Object[][] datamodel;
             datamodel = oBll.convertList(list);
-            String[] title = { "OrderID", "UserID", "CustomerID", "TotalQuantity", "TotalPrice", "Date", "Status",
-                    "Count" };
+            String[] title = {"OrderID", "UserID", "CustomerID", "TotalQuantity", "TotalPrice", "Date", "Status",
+                "Count"};
             DefaultTableModel model = new DefaultTableModel(datamodel, title);
             jTableOrder.setModel(model);
         } else {
             JOptionPane.showMessageDialog(this, "Id is empty", "Message", JOptionPane.ERROR_MESSAGE);
         }
-    }// GEN-LAST:event_btnSearch
-
-    private void btnAddDetail(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAddDetail
-        // TODO add your handling code here:
-        if (rowID > 0) {
-            addOrderDetailGUI ui = new addOrderDetailGUI(rowID);
-            ui.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Choose Order first", "Message", JOptionPane.ERROR_MESSAGE);
-        }
-    }// GEN-LAST:event_btnAddDetail
-
-    private void btnEditDetail(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEditDetail
-        // TODO add your handling code here:
-        if (rowIDDetail > 0) {
-            editOrderDetailGUI ui = new editOrderDetailGUI(rowIDDetail);
-            ui.setVisible(true);
-        }
-    }// GEN-LAST:event_btnEditDetail
-
-    private void btnDeleteDetail(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteDetail
-
-        // TODO add your handling code here:
-        OrderDetail ode = ordBll.getOrderDetail(rowIDDetail);
-
-        int result = JOptionPane.showConfirmDialog(null,
-                "Confirm delete OrderDetail with Id: " + ode.getOrderDetailID() + " has OrderID: " + ode.getOrderID(),
-                "Confirm",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (result == JOptionPane.YES_OPTION) {
-            ordBll.deleteOrderDetail(ode);
-
-            Order ord = oBll.getOrder(ode.getOrderID());
-
-            int toquan = ord.getTotalQuantity();
-            Float topri = ord.getTotalPrice();
-            toquan = toquan - ode.getQuantity();
-            topri = topri - ode.getPrice();
-
-            ord.setTotalQuantity(toquan);
-            ord.setTotalPrice(topri);
-            oBll.updateOrder(ord);
-
-            JOptionPane.showMessageDialog(this, "Complete to delete Order", "Message",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-
-        listOrder();
-        listOrderDetail();
-    }// GEN-LAST:event_btnDeleteDetail
+    }
 
     /**
      * @param args the command line arguments
@@ -497,24 +332,17 @@ public class OrderGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAddDetail;
     private javax.swing.JButton jButtonAddO;
-    private javax.swing.JButton jButtonDeleteDetail;
     private javax.swing.JButton jButtonDeleteO;
-    private javax.swing.JButton jButtonEditDetail;
     private javax.swing.JButton jButtonEditO;
     private javax.swing.JButton jButtonRefresh;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelSearch;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTableOrder;
-    private javax.swing.JTable jTableOrderDetail;
     private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables
 }

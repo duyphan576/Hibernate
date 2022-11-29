@@ -4,62 +4,62 @@
  */
 package DAL;
 
-import Entity.Brand;
+import Entity.Role;
 import Utils.HibernateUtils;
 import java.util.List;
 import org.hibernate.Session;
 
 /**
  *
- * @author jukut
+ * @author duyph
  */
-public class BrandDAL {
+public class RoleDAL {
 
     private static Session session;
 
-    public BrandDAL() {
+    public RoleDAL() {
         session = HibernateUtils.getSessionFactory().openSession();
     }
 
-    public void addBrand(Brand br) {
+    public void addRole(Role role) {
         session.beginTransaction();
-        session.save(br);
+        session.save(role);
         session.getTransaction().commit();
     }
 
-    public void deleteBrand(int id) {
+    public void deleteRole(int id) {
         session.clear();
         session.beginTransaction();
-        Brand br = new Brand();
-        br.setBrandID(id);
-        session.delete(br);
+        Role role = new Role();
+        role.setRoleID(id);
+        session.delete(role);
         session.getTransaction().commit();
     }
 
-    public void updateBrand(int id, String name) {
+    public void updateRole(int id, String name) {
         session.clear();
         session.beginTransaction();
-        Brand br = new Brand();
-        br.setBrandID(id);
-        br.setBrandName(name);
-        session.update(br);
+        Role role = new Role();
+        role.setRoleID(id);
+        role.setRoleName(name);
+        session.update(role);
         session.getTransaction().commit();
     }
 
-    public Brand getBrand(int BrandID) {
-        Brand obj;
+    public Role getRole(int RoleID) {
+        Role obj;
         session.beginTransaction();
-        obj = session.get(Brand.class, BrandID);
+        obj = session.get(Role.class, RoleID);
         session.getTransaction().commit();
         return obj;
     }
 
-    public List getlistBrand() {
-        List<Brand> list;
+    public List getlistRole() {
+        List<Role> list;
         session.beginTransaction();
-        list = session.createQuery("FROM Brand", Brand.class).list();
+        list = session.createQuery("FROM Role", Role.class).list();
         session.getTransaction().commit();
         return list;
     }
-
+    
 }
