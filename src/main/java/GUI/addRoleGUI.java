@@ -43,7 +43,7 @@ public class addRoleGUI extends javax.swing.JFrame {
 
         addRole.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         addRole.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addRole.setText("Add Strap");
+        addRole.setText("Add Role");
 
         Name.setText("Name");
 
@@ -76,8 +76,8 @@ public class addRoleGUI extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Name)
+                .addGap(74, 74, 74)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

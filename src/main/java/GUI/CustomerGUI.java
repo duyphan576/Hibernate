@@ -6,9 +6,10 @@ package GUI;
 
 import BLL.CustomerBLL;
 import Entity.Customer;
-import java.util.ArrayList;
+import com.formdev.flatlaf.FlatLightLaf;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -46,8 +47,6 @@ public class CustomerGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BG_JPanell = new javax.swing.JPanel();
-        Title_JLabel = new javax.swing.JLabel();
         BG_Detail = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Customer_JTA = new javax.swing.JTable();
@@ -57,15 +56,9 @@ public class CustomerGUI extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         delButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
+        Title_JLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Title_JLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 48)); // NOI18N
-        Title_JLabel.setForeground(new java.awt.Color(102, 153, 255));
-        Title_JLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Title_JLabel.setText("Customer Management");
-
-        BG_Detail.setBackground(new java.awt.Color(255, 255, 255));
 
         Customer_JTA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,7 +114,7 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
 
-        delButton.setText("Del");
+        delButton.setText("Delete");
         delButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDelete(evt);
@@ -167,45 +160,41 @@ public class CustomerGUI extends javax.swing.JFrame {
                 .addComponent(addButton)
                 .addGap(50, 50, 50)
                 .addComponent(delButton)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BG_DetailLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(searchText)
-                    .addComponent(refreshButton))
+                    .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout BG_JPanellLayout = new javax.swing.GroupLayout(BG_JPanell);
-        BG_JPanell.setLayout(BG_JPanellLayout);
-        BG_JPanellLayout.setHorizontalGroup(
-            BG_JPanellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG_Detail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BG_JPanellLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Title_JLabel)
-                .addGap(222, 222, 222))
-        );
-        BG_JPanellLayout.setVerticalGroup(
-            BG_JPanellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BG_JPanellLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(Title_JLabel)
-                .addGap(18, 18, 18)
-                .addComponent(BG_Detail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        Title_JLabel.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
+        Title_JLabel.setForeground(new java.awt.Color(51, 51, 51));
+        Title_JLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Title_JLabel.setText("Customer Management");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG_JPanell, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Title_JLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BG_Detail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG_JPanell, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Title_JLabel)
+                .addGap(1, 1, 1)
+                .addComponent(BG_Detail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -295,24 +284,9 @@ public class CustomerGUI extends javax.swing.JFrame {
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
-                    ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
-                    ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
-                    ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
-                    ex);
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
         }
         // </editor-fold>
 
@@ -326,7 +300,6 @@ public class CustomerGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BG_Detail;
-    private javax.swing.JPanel BG_JPanell;
     private javax.swing.JTable Customer_JTA;
     private javax.swing.JLabel Title_JLabel;
     private javax.swing.JButton addButton;

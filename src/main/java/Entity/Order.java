@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Data
 @Entity
-@Table(name = "Orders")
+@Table(name = "Order")
 public class Order {
 
     @Id
