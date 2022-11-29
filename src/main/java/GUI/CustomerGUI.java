@@ -43,7 +43,7 @@ public class CustomerGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         BG_JPanell = new javax.swing.JPanel();
@@ -68,21 +68,22 @@ public class CustomerGUI extends javax.swing.JFrame {
         BG_Detail.setBackground(new java.awt.Color(255, 255, 255));
 
         Customer_JTA.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null },
-                        { null, null, null },
-                        { null, null, null },
-                        { null, null, null }
-                },
-                new String[] {
-                        "CustomerID", "FullName", "Address"
-                }) {
-            boolean[] canEdit = new boolean[] {
-                    false, false, false
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "CustomerID", "FullName", "Address"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         Customer_JTA.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,7 +100,6 @@ public class CustomerGUI extends javax.swing.JFrame {
 
         searchText.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
 
-        searchButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +107,6 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
 
-        editButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         editButton.setText("Edit");
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +114,6 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
 
-        addButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +121,6 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
 
-        delButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         delButton.setText("Del");
         delButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +128,6 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
 
-        refreshButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         refreshButton.setText("Refresh");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,84 +138,75 @@ public class CustomerGUI extends javax.swing.JFrame {
         javax.swing.GroupLayout BG_DetailLayout = new javax.swing.GroupLayout(BG_Detail);
         BG_Detail.setLayout(BG_DetailLayout);
         BG_DetailLayout.setHorizontalGroup(
-                BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(BG_DetailLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(BG_DetailLayout.createSequentialGroup()
-                                                .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 327,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(refreshButton)
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(BG_DetailLayout.createSequentialGroup()
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 811,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31,
-                                                        Short.MAX_VALUE)
-                                                .addGroup(BG_DetailLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(editButton,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 73,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(delButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(19, 19, 19)))));
+            BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BG_DetailLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BG_DetailLayout.createSequentialGroup()
+                        .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(refreshButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(BG_DetailLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(delButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))))
+        );
         BG_DetailLayout.setVerticalGroup(
-                BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(BG_DetailLayout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(editButton)
-                                .addGap(48, 48, 48)
-                                .addComponent(addButton)
-                                .addGap(50, 50, 50)
-                                .addComponent(delButton)
-                                .addContainerGap(142, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BG_DetailLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(searchText)
-                                        .addComponent(refreshButton))
-                                .addGap(27, 27, 27)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)));
+            BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BG_DetailLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(editButton)
+                .addGap(48, 48, 48)
+                .addComponent(addButton)
+                .addGap(50, 50, 50)
+                .addComponent(delButton)
+                .addContainerGap(142, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BG_DetailLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(BG_DetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchText)
+                    .addComponent(refreshButton))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout BG_JPanellLayout = new javax.swing.GroupLayout(BG_JPanell);
         BG_JPanell.setLayout(BG_JPanellLayout);
         BG_JPanellLayout.setHorizontalGroup(
-                BG_JPanellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(BG_Detail, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BG_JPanellLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Title_JLabel)
-                                .addGap(222, 222, 222)));
+            BG_JPanellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BG_Detail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BG_JPanellLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Title_JLabel)
+                .addGap(222, 222, 222))
+        );
         BG_JPanellLayout.setVerticalGroup(
-                BG_JPanellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(BG_JPanellLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(Title_JLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(BG_Detail, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)));
+            BG_JPanellLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BG_JPanellLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(Title_JLabel)
+                .addGap(18, 18, 18)
+                .addComponent(BG_Detail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(BG_JPanell, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BG_JPanell, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(BG_JPanell, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BG_JPanell, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
