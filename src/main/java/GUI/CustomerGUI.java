@@ -172,7 +172,6 @@ public class CustomerGUI extends javax.swing.JFrame {
         );
 
         Title_JLabel.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
-        Title_JLabel.setForeground(new java.awt.Color(51, 51, 51));
         Title_JLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Title_JLabel.setText("Customer Management");
 

@@ -247,7 +247,7 @@ public class OrderGUI extends javax.swing.JFrame {
 
     private void btnAdd(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        addOrderGUI ui = new addOrderGUI();
+        AddOrderGUI ui = new AddOrderGUI();
         ui.setVisible(true);
     }
 
