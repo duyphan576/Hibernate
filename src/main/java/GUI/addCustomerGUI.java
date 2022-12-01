@@ -5,8 +5,9 @@
 package GUI;
 
 import BLL.CustomerBLL;
-import DAL.CustomerDAL;
 import Entity.Customer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,10 +38,10 @@ public class addCustomerGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         nameText = new javax.swing.JTextField();
-        passText = new javax.swing.JTextField();
         addressText = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        passText = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,23 +78,22 @@ public class addCustomerGUI extends javax.swing.JFrame {
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(cancelButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3))
                 .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(addressText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                        .addComponent(nameText))
-                    .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addressText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(nameText)
+                    .addComponent(passText))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +139,7 @@ public class addCustomerGUI extends javax.swing.JFrame {
     private void btnAdd(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd
         if (nameText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Name");
-        } else if (passText.getText().equals("")) {
+        } else if (String.copyValueOf(passText.getPassword()).equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Password");
         } else if (addressText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Address");
@@ -154,7 +154,7 @@ public class addCustomerGUI extends javax.swing.JFrame {
                 try {
                     Customer cus = new Customer();
                     cus.setFullName(nameText.getText().trim());
-                    cus.setPassword(passText.getText().trim());
+                    cus.setPassword(getMD5(String.copyValueOf(passText.getPassword())));
                     cus.setAddress(addressText.getText().trim());
                     cusBLL.addCustomer(cus);
                 } catch (Exception e) {
@@ -176,6 +176,24 @@ public class addCustomerGUI extends javax.swing.JFrame {
         this.dispose();
     }// GEN-LAST:event_btnCancel
 
+        public String convertByteToHex(byte[] data) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < data.length; i++) {
+            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+    }
+
+    public String getMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            return convertByteToHex(messageDigest);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JTextField addressText;
@@ -186,6 +204,6 @@ public class addCustomerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nameText;
-    private javax.swing.JTextField passText;
+    private javax.swing.JPasswordField passText;
     // End of variables declaration//GEN-END:variables
 }

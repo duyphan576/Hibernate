@@ -7,6 +7,8 @@ package GUI;
 import BLL.RoleBLL;
 import BLL.UserBLL;
 import Entity.Role;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -165,7 +167,7 @@ public class addUser extends javax.swing.JFrame {
         Role r = new Role();
         r.setRoleID(Integer.valueOf(part[0]));
         r.setRoleName(part[1]);
-        String temp = String.copyValueOf(txtpass.getPassword());
+        String temp = getMD5(String.copyValueOf(txtpass.getPassword()));
         int i;
         if(cbxstatus.equals("Lock"))i=1;else i=0;
         usbll.addUser(r, txtusername.getText(), temp,i);
@@ -188,6 +190,24 @@ public class addUser extends javax.swing.JFrame {
         cbxstatus.addItem("Open");
     }
 
+        public String convertByteToHex(byte[] data) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < data.length; i++) {
+            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+    }
+
+    public String getMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            return convertByteToHex(messageDigest);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbxrole;
     private javax.swing.JComboBox<String> cbxstatus;

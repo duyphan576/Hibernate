@@ -47,28 +47,26 @@
                   <Component id="addButton" min="-2" pref="73" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="61" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabel1" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="addressText" alignment="1" pref="208" max="32767" attributes="0"/>
-                          <Component id="nameText" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="passText" min="-2" pref="208" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="addressText" alignment="1" pref="208" max="32767" attributes="0"/>
+                      <Component id="nameText" alignment="0" max="32767" attributes="0"/>
+                      <Component id="passText" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -129,8 +127,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="nameText">
         </Component>
-        <Component class="javax.swing.JTextField" name="passText">
-        </Component>
         <Component class="javax.swing.JTextField" name="addressText">
         </Component>
         <Component class="javax.swing.JButton" name="addButton">
@@ -148,6 +144,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancel"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="passText">
         </Component>
       </SubComponents>
     </Container>
