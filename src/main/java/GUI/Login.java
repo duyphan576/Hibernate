@@ -115,7 +115,9 @@ public class Login extends javax.swing.JFrame {
         List<User> l = usbll.getUser(txtusename.getText(), getMD5(String.copyValueOf(txtpass.getPassword())));
         if (l.isEmpty()) {
             System.out.println("");
-        } else {
+        }else if(l.get(0).getStatus()==1){
+            JOptionPane.showMessageDialog(rootPane, "Tai khoan da bi khoa");
+        }else {
             new StatisticGUI(l.get(1).getStatus()).setVisible(true);
         }
     }//GEN-LAST:event_btnloginActionPerformed
