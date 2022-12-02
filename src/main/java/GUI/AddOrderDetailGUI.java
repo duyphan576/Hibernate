@@ -31,6 +31,8 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
 
     public addOrderDetailGUI() {
         initComponents();
+        comboxproduct();
+        
     }
 
     public addOrderDetailGUI(int data) {
@@ -73,6 +75,11 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
         jLabelStatus.setText("Price");
 
         jTextFieldPrice.setEditable(false);
+        jTextFieldPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPriceActionPerformed(evt);
+            }
+        });
 
         jButtonYes.setText("Yes");
         jButtonYes.addActionListener(new java.awt.event.ActionListener() {
@@ -174,12 +181,12 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
 
     private void btnYes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYes
         // TODO add your handling code here:
+        String[] part = cbxProduct.getSelectedItem().toString().split("-");
         OrderDetail oDe = new OrderDetail();
         oDe.setOrderID(Integer.parseInt(jTextFieldOID.getText()));
-        oDe.setProductID(Integer.parseInt(jTextFieldPID.getText()));
-        oDe.setQuantity(Integer.parseInt(jTextFieldQuantity.getText()));
+        oDe.setProductID(Integer.parseInt(part[0]));
+        oDe.setQuantity(Integer.valueOf(spnQuantity.getValue().toString()));
         oDe.setPrice(Float.parseFloat(jTextFieldPrice.getText()));
-
         odBll.addOrderDetail(oDe);
 
         OrderBLL oBll = new OrderBLL();
@@ -204,10 +211,14 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnNo
 
-    private void comboxbrand() {
+    private void jTextFieldPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPriceActionPerformed
+
+    private void comboxproduct() {
         List<Product> l = proBll.loadProduct();
         for (Product p : l) {
-            cbxProduct.addItem(p.getProductID() + " - " + p.getProductName());
+            cbxProduct.addItem(p.getProductID() + "-" + p.getProductName());
         }
     }
     /**
