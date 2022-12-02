@@ -235,7 +235,7 @@ public class OrderGUI extends javax.swing.JFrame {
     private void btnEdit(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if (rowID > 0) {
-            editOrderGUI ui = new editOrderGUI(rowID);
+            EditOrderGUI ui = new EditOrderGUI(rowID);
             ui.setVisible(true);
         }
     }

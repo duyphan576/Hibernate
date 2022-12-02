@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Clock
  */
-public class editOrderDetailGUI extends javax.swing.JFrame {
+public class EditOrderDetailGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form editOrderDetailGUI
@@ -24,11 +24,11 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
     int globalQuantity = 0;
     Float globalPrice = 0f;
 
-    public editOrderDetailGUI() {
+    public EditOrderDetailGUI() {
         initComponents();
     }
 
-    public editOrderDetailGUI(int data) {
+    public EditOrderDetailGUI(int data) {
         initComponents();
         OrderDetail ode = odBll.getOrderDetail(data);
 
@@ -230,21 +230,27 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(editOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(editOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(editOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(editOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new editOrderDetailGUI().setVisible(true);
+                new EditOrderDetailGUI().setVisible(true);
             }
         });
     }

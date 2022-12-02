@@ -10,7 +10,6 @@ import com.formdev.flatlaf.FlatLightLaf;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import sun.security.provider.MD5;
 
 /**
  *
@@ -111,11 +110,11 @@ public class Login extends javax.swing.JFrame {
         if (temp.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Password not ented");
         }
-        List l = usbll.getUser(txtusename.getText(), "76d80224611fc919a5d54f0ff9fba446");
+        List<User> l = usbll.getUser(txtusename.getText(), "76d80224611fc919a5d54f0ff9fba446");
         if (l.isEmpty()) {
-            System.out.println("");
+            System.out.println("erro");
         } else {
-            System.out.println("gogo");
+            new StatisticGUI(l.get(1).getStatus());
         }
     }//GEN-LAST:event_btnloginActionPerformed
 

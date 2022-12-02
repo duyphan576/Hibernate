@@ -19,18 +19,18 @@ import javax.swing.JOptionPane;
  *
  * @author Clock
  */
-public class editOrderGUI extends javax.swing.JFrame {
+public class EditOrderGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form editOrderGUI
      */
     OrderBLL oBll = new OrderBLL();
 
-    public editOrderGUI() {
+    public EditOrderGUI() {
         initComponents();
     }
 
-    public editOrderGUI(int dataConstructor) {
+    public EditOrderGUI(int dataConstructor) {
         initComponents();
         Order ord = oBll.getOrder(dataConstructor);
         jTextFieldOID.setText(Integer.toString(ord.getOrderID()));
@@ -267,7 +267,7 @@ public class editOrderGUI extends javax.swing.JFrame {
             ord2.setDate(sqlDate);
 
         } catch (ParseException ex) {
-            Logger.getLogger(editOrderGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditOrderGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         ord2.setStatus(Integer.parseInt(jTextFieldStatus.getText()));
@@ -307,25 +307,27 @@ public class editOrderGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(editOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(EditOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(editOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(EditOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(editOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(EditOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(editOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(EditOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
+        // </editor-fold>
+        // </editor-fold>
         // </editor-fold>
         // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new editOrderGUI().setVisible(true);
+                new EditOrderGUI().setVisible(true);
             }
         });
     }
