@@ -69,7 +69,7 @@ public class ProductDAL {
         session.getTransaction().commit();
     }
 
-    public void updateproduct(int id, Strap strap, Brand brand, String name, float price, int quantity, String detail) {
+    public void updateProduct(int id, Strap strap, Brand brand, String name, float price, int quantity, String detail) {
         session.clear();
         session.beginTransaction();
         Product pr = new Product();
@@ -84,7 +84,7 @@ public class ProductDAL {
         session.getTransaction().commit();
     }
 
-    public void addproduct(Strap strap, Brand brand, String name, float price, int quantity, String detail) {
+    public void addProduct(Strap strap, Brand brand, String name, float price, int quantity, String detail) {
         session.clear();
         session.beginTransaction();
         Product pr = new Product();
@@ -95,6 +95,16 @@ public class ProductDAL {
         pr.setBrand(brand);
         pr.setStrap(strap);
         session.save(pr);
+        session.getTransaction().commit();
+    }
+    
+    public void updateQuantity(int id, int quantity){
+        session.clear();
+        session.beginTransaction();
+        Product pr = new Product();
+        pr.setProductID(id);
+        pr.setQuantity(quantity);
+        session.update(pr);
         session.getTransaction().commit();
     }
 }

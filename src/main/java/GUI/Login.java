@@ -116,7 +116,7 @@ public class Login extends javax.swing.JFrame {
         if (l.isEmpty()) {
             System.out.println("");
         }else if(l.get(0).getStatus()==1){
-            JOptionPane.showMessageDialog(rootPane, "Tai khoan da bi khoa");
+            JOptionPane.showMessageDialog(rootPane, "This account is deactive");
         }else {
             new StatisticGUI(l.get(0).getRole().getRoleID()).setVisible(true);
         }
