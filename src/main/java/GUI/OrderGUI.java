@@ -61,8 +61,7 @@ public class OrderGUI extends javax.swing.JFrame {
         List list = oBll.loadOrder();
         Object[][] datamodel;
         datamodel = oBll.convertList(list);
-        String[] title = {"OrderID", "UserID", "CustomerID", "TotalQuantity", "TotalPrice", "Date", "Status",
-            "Count"};
+        String[] title = {"OrderID", "UserID", "CustomerID", "TotalQuantity", "TotalPrice", "Date", "Status"};
         DefaultTableModel model = new DefaultTableModel(datamodel, title);
         jTableOrder.setModel(model);
     }
@@ -268,8 +267,7 @@ public class OrderGUI extends javax.swing.JFrame {
             list.add(ord);
             Object[][] datamodel;
             datamodel = oBll.convertList(list);
-            String[] title = {"OrderID", "UserID", "CustomerID", "TotalQuantity", "TotalPrice", "Date", "Status",
-                "Count"};
+            String[] title = {"OrderID", "UserID", "CustomerID", "TotalQuantity", "TotalPrice", "Date", "Status"};
             DefaultTableModel model = new DefaultTableModel(datamodel, title);
             jTableOrder.setModel(model);
         } else {
