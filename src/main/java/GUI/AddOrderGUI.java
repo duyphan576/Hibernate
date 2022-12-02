@@ -5,11 +5,14 @@
  */
 package GUI;
 
+import BLL.CustomerBLL;
 import BLL.OrderBLL;
+import Entity.Customer;
 import Entity.Order;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -25,9 +28,11 @@ public class AddOrderGUI extends javax.swing.JFrame {
      * Creates new form addOrderGUI
      */
     OrderBLL oBll = new OrderBLL();
+    CustomerBLL cBll = new CustomerBLL();
 
     public AddOrderGUI() {
         initComponents();
+        loadCustomerComboBox();
     }
 
     /**
@@ -43,7 +48,6 @@ public class AddOrderGUI extends javax.swing.JFrame {
         jTextFieldUID = new javax.swing.JTextField();
         jLabelUID = new javax.swing.JLabel();
         jLabelCID = new javax.swing.JLabel();
-        jTextFieldCID = new javax.swing.JTextField();
         jLabelDate = new javax.swing.JLabel();
         jTextFieldDate = new javax.swing.JTextField();
         jLabelStatus = new javax.swing.JLabel();
@@ -52,6 +56,7 @@ public class AddOrderGUI extends javax.swing.JFrame {
         jButtonNo = new javax.swing.JButton();
         jLabelTitle = new javax.swing.JLabel();
         jLabelDate1 = new javax.swing.JLabel();
+        customerComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,8 +114,8 @@ public class AddOrderGUI extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTextFieldDate, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                     .addComponent(jTextFieldUID)
-                                    .addComponent(jTextFieldCID)
-                                    .addComponent(jTextFieldStatus)))))
+                                    .addComponent(jTextFieldStatus)
+                                    .addComponent(customerComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jButtonYes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,8 +135,8 @@ public class AddOrderGUI extends javax.swing.JFrame {
                     .addComponent(jLabelUID))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCID))
+                    .addComponent(jLabelCID)
+                    .addComponent(customerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDate)
@@ -172,7 +177,8 @@ public class AddOrderGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         Order ord = new Order();
         ord.setUserID(Integer.parseInt(jTextFieldUID.getText()));
-        ord.setCustomerID(Integer.parseInt(jTextFieldCID.getText()));
+        Customer selectedCus = (Customer) customerComboBox.getSelectedItem();
+        ord.setCustomerID(selectedCus.getCustomerID());
 
         try {
             java.util.Date d = new SimpleDateFormat("dd/MM/yyyy").parse(jTextFieldDate.getText());
@@ -192,6 +198,13 @@ public class AddOrderGUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Complete to add Order", "Message",
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnYes
+
+    public void loadCustomerComboBox() {
+        List<Customer> customers = cBll.loadCustomer();
+        Customer[] cusArr = new Customer[customers.size()];
+        CustomerModel customerModel = new CustomerModel(customers.toArray(cusArr));  
+        customerComboBox.setModel(customerModel);
+    }
 
     /**
      * @param args the command line arguments
@@ -221,6 +234,7 @@ public class AddOrderGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<Customer> customerComboBox;
     private javax.swing.JButton jButtonNo;
     private javax.swing.JButton jButtonYes;
     private javax.swing.JLabel jLabelCID;
@@ -230,7 +244,6 @@ public class AddOrderGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelUID;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextFieldCID;
     private javax.swing.JTextField jTextFieldDate;
     private javax.swing.JTextField jTextFieldStatus;
     private javax.swing.JTextField jTextFieldUID;
