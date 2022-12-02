@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import Entity.User;
 
 /**
  *
@@ -111,11 +112,11 @@ public class Login extends javax.swing.JFrame {
         if (temp.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Password not ented");
         }
-        List l = usbll.getUser(txtusename.getText(), getMD5(String.copyValueOf(txtpass.getPassword())));
+        List<User> l = usbll.getUser(txtusename.getText(), getMD5(String.copyValueOf(txtpass.getPassword())));
         if (l.isEmpty()) {
             System.out.println("");
         } else {
-            System.out.println("gogo");
+            new StatisticGUI(l.get(1).getStatus()).setVisible(true);
         }
     }//GEN-LAST:event_btnloginActionPerformed
 
