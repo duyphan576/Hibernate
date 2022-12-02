@@ -21,10 +21,11 @@ public class RoleGUI extends javax.swing.JFrame {
      * Creates new form RoleGUI
      */
     private static int id;
-    private RoleBLL roleBll;
+    private RoleBLL roleBll = new RoleBLL();
 
     public RoleGUI() {
         initComponents();
+        showTable();
     }
 
     /**
@@ -197,7 +198,7 @@ public class RoleGUI extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_btnSearchbtnSearch
 
-    public void showTable() {
+    private void showTable() {
         List listCate = roleBll.loadRole();
         Object[][] datamodel;
         datamodel = roleBll.converRole(listCate);

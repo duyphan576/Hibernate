@@ -118,7 +118,7 @@ public class Login extends javax.swing.JFrame {
         }else if(l.get(0).getStatus()==1){
             JOptionPane.showMessageDialog(rootPane, "Tai khoan da bi khoa");
         }else {
-            new StatisticGUI(l.get(1).getStatus()).setVisible(true);
+            new StatisticGUI(l.get(0).getRole().getRoleID()).setVisible(true);
         }
     }//GEN-LAST:event_btnloginActionPerformed
 
