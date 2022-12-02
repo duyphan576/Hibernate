@@ -9,6 +9,7 @@ import Entity.Order;
 import Utils.HibernateUtils;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -24,11 +25,12 @@ public class OrderDAL {
 
     public List loadOrder() {
         session.clear();
-        List<Order> order;
+        List<Order> list;
         session.beginTransaction();
-        order = session.createQuery("FROM Order", Order.class).list();
+        Query query = session.createSQLQuery("CALL GetAllOrders()").addEntity(Order.class);
+        list = query.list();
         session.getTransaction().commit();
-        return order;
+        return list;
     }
 
     public Order getOrder(int OrderID) {

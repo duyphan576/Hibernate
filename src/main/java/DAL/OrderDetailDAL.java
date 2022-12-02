@@ -21,25 +21,16 @@ public class OrderDetailDAL {
     public OrderDetailDAL() {
         // private static Session session = HibernateUtils.getSessionFactory().openSession();
     }
-
-    public List loadOrderDetail() {
-        session.clear();
-        List<OrderDetail> order;
-        session.beginTransaction();
-        order = session.createQuery("FROM OrderDetail", OrderDetail.class).list();
-        session.getTransaction().commit();
-        return order;
-    }
     
     public List loadOrderDetailByOrderID(int OrderID) {
         session.clear();
-        List<OrderDetail> order;
+        List<OrderDetail> list;
         session.beginTransaction();
-        Query q = session.createQuery("FROM OrderDetail Where OrderID = :OrderID");
-        q.setParameter("OrderID", OrderID);
-        order = q.list();
+        Query query = session.createSQLQuery("CALL GetOrderDetailsByOrderID(:OrderID)").addEntity(OrderDetail.class);
+        query.setParameter("OrderID", OrderID);
+        list = query.list();
         session.getTransaction().commit();
-        return order;
+        return list;
     }
 
     public OrderDetail getOrderDetail(int OrderDetailID) {
@@ -71,12 +62,4 @@ public class OrderDetailDAL {
         session.getTransaction().commit();
     }
     
-    public static void main(String[] args) {
-        
-    
-        
-        OrderDetailDAL odDal = new OrderDetailDAL();
-        odDal.loadOrderDetail();
-       
-    }
 }

@@ -4,6 +4,7 @@ import Entity.Strap;
 import Utils.HibernateUtils;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -51,7 +52,9 @@ public class StrapDAL {
 
     public List getlistStrap() {
         session.beginTransaction();
-        List<Strap> list = session.createQuery("FROM Strap", Strap.class).list();
+        List<Strap> list;
+        Query query = session.createSQLQuery("CALL GetAllStraps()").addEntity(Strap.class);
+        list = query.list();
         session.getTransaction().commit();
         return list;
     }
