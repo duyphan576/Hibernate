@@ -50,8 +50,6 @@ public class addOrderGUI extends javax.swing.JFrame {
         jLabelCID = new javax.swing.JLabel();
         jLabelDate = new javax.swing.JLabel();
         jTextFieldDate = new javax.swing.JTextField();
-        jLabelStatus = new javax.swing.JLabel();
-        jTextFieldStatus = new javax.swing.JTextField();
         jButtonYes = new javax.swing.JButton();
         jButtonNo = new javax.swing.JButton();
         jLabelTitle = new javax.swing.JLabel();
@@ -65,8 +63,6 @@ public class addOrderGUI extends javax.swing.JFrame {
         jLabelCID.setText("Customer ID");
 
         jLabelDate.setText("Date");
-
-        jLabelStatus.setText("Status");
 
         jButtonYes.setText("Yes");
         jButtonYes.addActionListener(new java.awt.event.ActionListener() {
@@ -101,9 +97,7 @@ public class addOrderGUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabelDate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabelDate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabelCID)
@@ -114,7 +108,6 @@ public class addOrderGUI extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTextFieldDate, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                     .addComponent(jTextFieldUID)
-                                    .addComponent(jTextFieldStatus)
                                     .addComponent(customerComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
@@ -127,7 +120,7 @@ public class addOrderGUI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -143,15 +136,11 @@ public class addOrderGUI extends javax.swing.JFrame {
                     .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelDate1)
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelStatus)
-                    .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonYes)
                     .addComponent(jButtonNo))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -190,7 +179,7 @@ public class addOrderGUI extends javax.swing.JFrame {
             Logger.getLogger(addOrderGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        ord.setStatus(Integer.parseInt(jTextFieldStatus.getText()));
+        ord.setStatus(0);
         ord.setTotalQuantity(0);
         ord.setTotalPrice(0);
 
@@ -201,9 +190,9 @@ public class addOrderGUI extends javax.swing.JFrame {
 
     public void loadCustomerComboBox() {
         List<Customer> customers = cBll.loadCustomer();
-        Customer[] cusArr = new Customer[customers.size()];
-        CustomerModel customerModel = new CustomerModel(customers.toArray(cusArr));  
-        customerComboBox.setModel(customerModel);
+        for(Customer c : customers) {
+            customerComboBox.addItem(c);
+        }
     }
 
     /**
@@ -240,12 +229,10 @@ public class addOrderGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCID;
     private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelDate1;
-    private javax.swing.JLabel jLabelStatus;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelUID;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldDate;
-    private javax.swing.JTextField jTextFieldStatus;
     private javax.swing.JTextField jTextFieldUID;
     // End of variables declaration//GEN-END:variables
 }

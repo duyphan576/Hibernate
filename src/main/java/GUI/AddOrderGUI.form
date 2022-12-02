@@ -47,10 +47,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabelDate" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                              <Component id="jLabelStatus" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLabelDate" min="-2" pref="67" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
@@ -65,7 +62,6 @@
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jTextFieldDate" alignment="0" pref="195" max="32767" attributes="0"/>
                                       <Component id="jTextFieldUID" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldStatus" alignment="0" max="32767" attributes="0"/>
                                       <Component id="customerComboBox" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -86,7 +82,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="45" max="32767" attributes="0"/>
                   <Component id="jLabelTitle" min="-2" pref="44" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -105,17 +101,12 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelDate1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonYes" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonNo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -139,13 +130,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDate">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabelStatus">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Status"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldStatus">
         </Component>
         <Component class="javax.swing.JButton" name="jButtonYes">
           <Properties>
