@@ -7,9 +7,13 @@ package GUI;
 
 import BLL.OrderBLL;
 import BLL.OrderDetailBLL;
+import BLL.ProductBLL;
+import Entity.Brand;
 import Entity.Order;
 import Entity.OrderDetail;
+import Entity.Product;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -17,18 +21,19 @@ import javax.swing.UIManager;
  *
  * @author Clock
  */
-public class AddOrderDetailGUI extends javax.swing.JFrame {
+public class addOrderDetailGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form addOrderDetailGUI
      */
-    OrderDetailBLL odBll = new OrderDetailBLL();
+    private OrderDetailBLL odBll = new OrderDetailBLL();
+    private ProductBLL proBll = new ProductBLL();
 
-    public AddOrderDetailGUI() {
+    public addOrderDetailGUI() {
         initComponents();
     }
 
-    public AddOrderDetailGUI(int data) {
+    public addOrderDetailGUI(int data) {
         initComponents();
         jTextFieldOID.setText(Integer.toString(data));
     }
@@ -52,8 +57,8 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
         jButtonYes = new javax.swing.JButton();
         jButtonNo = new javax.swing.JButton();
         jLabelTitle = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
+        cbxProduct = new javax.swing.JComboBox<>();
+        spnQuantity = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,8 +92,6 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitle.setText("Add Order Detail");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -112,8 +115,8 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldOID, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(jTextFieldPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSpinner1))
+                    .addComponent(cbxProduct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(spnQuantity))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -139,11 +142,11 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCID)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDate)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelStatus)
@@ -201,6 +204,12 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnNo
 
+    private void comboxbrand() {
+        List<Product> l = proBll.loadProduct();
+        for (Product p : l) {
+            cbxProduct.addItem(p.getProductID() + " - " + p.getProductName());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -221,7 +230,7 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AddOrderDetailGUI addDetailGUI = new AddOrderDetailGUI();
+                addOrderDetailGUI addDetailGUI = new addOrderDetailGUI();
                 addDetailGUI.setLocationRelativeTo(null);
                 addDetailGUI.setVisible(true);
             }
@@ -229,17 +238,17 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbxProduct;
     private javax.swing.JButton jButtonNo;
     private javax.swing.JButton jButtonYes;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabelCID;
     private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelOID;
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextFieldOID;
     private javax.swing.JTextField jTextFieldPrice;
+    private javax.swing.JSpinner spnQuantity;
     // End of variables declaration//GEN-END:variables
 }

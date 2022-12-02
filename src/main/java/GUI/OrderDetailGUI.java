@@ -161,7 +161,7 @@ public class OrderDetailGUI extends javax.swing.JFrame {
     private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         // TODO add your handling code here:
         if (id > 0) {
-            AddOrderDetailGUI ui = new AddOrderDetailGUI(id);
+            addOrderDetailGUI ui = new addOrderDetailGUI(id);
             ui.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Choose Order first", "Message", JOptionPane.ERROR_MESSAGE);

@@ -176,13 +176,13 @@ public class addProductGUI extends javax.swing.JFrame {
     private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         // TODO add your handling code here:
         if(txtproductname.equals(""))
-            JOptionPane.showMessageDialog(rootPane, "Vui long nhap Product Name");
+            JOptionPane.showMessageDialog(rootPane, "Product Name is empty");
         else if(txtquantity.equals(""))
-             JOptionPane.showMessageDialog(rootPane, "Vui long nhap Quantity");
+             JOptionPane.showMessageDialog(rootPane, "Quantity is empty");
         else if(txtprice.equals(""))
-             JOptionPane.showMessageDialog(rootPane, "Vui long nhap Price");
+             JOptionPane.showMessageDialog(rootPane, "Price is empty");
         else if(txtDetail.equals(""))
-             JOptionPane.showMessageDialog(rootPane, "Vui long nhap Product Detail");
+             JOptionPane.showMessageDialog(rootPane, "Product Detail is empty");
         else{
         String temp = cbstrap.getSelectedItem().toString();
         String[] temp1 = temp.split("-");
