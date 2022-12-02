@@ -8,7 +8,6 @@ package GUI;
 import BLL.OrderBLL;
 import BLL.OrderDetailBLL;
 import BLL.ProductBLL;
-import Entity.Brand;
 import Entity.Order;
 import Entity.OrderDetail;
 import Entity.Product;
@@ -32,12 +31,13 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
     public addOrderDetailGUI() {
         initComponents();
         comboxproduct();
-        
+
     }
 
     public addOrderDetailGUI(int data) {
         initComponents();
         jTextFieldOID.setText(Integer.toString(data));
+        comboxproduct();
     }
 
     /**
@@ -98,6 +98,18 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
         jLabelTitle.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitle.setText("Add Order Detail");
+
+        cbxProduct.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxProductItemStateChanged(evt);
+            }
+        });
+
+        spnQuantity.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnQuantityStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -215,12 +227,29 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldPriceActionPerformed
 
+    private void spnQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnQuantityStateChanged
+        // TODO add your handling code here:
+        String[] part = cbxProduct.getSelectedItem().toString().split("-");
+        Product p = proBll.getProduct(Integer.parseInt(part[0]));
+        float sum = Integer.valueOf(spnQuantity.getValue().toString()) * p.getPrice();
+        jTextFieldPrice.setText(String.valueOf(sum));
+    }//GEN-LAST:event_spnQuantityStateChanged
+
+    private void cbxProductItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxProductItemStateChanged
+        // TODO add your handling code here:
+        String[] part = cbxProduct.getSelectedItem().toString().split("-");
+        Product p = proBll.getProduct(Integer.parseInt(part[0]));
+        float sum = Integer.valueOf(spnQuantity.getValue().toString()) * p.getPrice();
+        jTextFieldPrice.setText(String.valueOf(sum));
+    }//GEN-LAST:event_cbxProductItemStateChanged
+
     private void comboxproduct() {
         List<Product> l = proBll.loadProduct();
         for (Product p : l) {
             cbxProduct.addItem(p.getProductID() + "-" + p.getProductName());
         }
     }
+
     /**
      * @param args the command line arguments
      */
