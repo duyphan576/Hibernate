@@ -7,8 +7,11 @@ package GUI;
 
 import BLL.OrderBLL;
 import BLL.OrderDetailBLL;
+import BLL.ProductBLL;
 import Entity.Order;
 import Entity.OrderDetail;
+import Entity.Product;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +23,7 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
     /**
      * Creates new form editOrderDetailGUI
      */
+    private ProductBLL proBll = new ProductBLL();
     OrderDetailBLL odBll = new OrderDetailBLL();
     int globalQuantity = 0;
     Float globalPrice = 0f;
@@ -30,14 +34,14 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
 
     public editOrderDetailGUI(int data) {
         initComponents();
+        comboxproduct();
         OrderDetail ode = odBll.getOrderDetail(data);
-
+        Product p = proBll.getProduct(ode.getProductID());
         jTextFieldODID.setText(Integer.toString(ode.getOrderDetailID()));
         jTextFieldOID.setText(Integer.toString(ode.getOrderID()));
-        jTextFieldPID.setText(Integer.toString(ode.getProductID()));
-        jTextFieldQuantity.setText(Integer.toString(ode.getQuantity()));
+        spnQuantity.setValue(ode.getQuantity());
+        cbxProduct.setSelectedItem(p.getProductID()+"-"+p.getProductName());
         jTextFieldPrice.setText(Float.toString(ode.getPrice()));
-
         globalQuantity = ode.getQuantity();
         globalPrice = ode.getPrice();
     }
@@ -55,16 +59,16 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
         jTextFieldOID = new javax.swing.JTextField();
         jLabelOID = new javax.swing.JLabel();
         jLabelCID = new javax.swing.JLabel();
-        jTextFieldPID = new javax.swing.JTextField();
         jLabelDate = new javax.swing.JLabel();
-        jTextFieldQuantity = new javax.swing.JTextField();
         jLabelStatus = new javax.swing.JLabel();
-        jTextFieldPrice = new javax.swing.JTextField();
         jButtonYes = new javax.swing.JButton();
         jButtonNo = new javax.swing.JButton();
         jLabelTitle = new javax.swing.JLabel();
         jLabelODID = new javax.swing.JLabel();
         jTextFieldODID = new javax.swing.JTextField();
+        cbxProduct = new javax.swing.JComboBox<>();
+        spnQuantity = new javax.swing.JSpinner();
+        jTextFieldPrice = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +103,25 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
 
         jTextFieldODID.setEditable(false);
 
+        cbxProduct.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxProductItemStateChanged(evt);
+            }
+        });
+
+        spnQuantity.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnQuantityStateChanged(evt);
+            }
+        });
+
+        jTextFieldPrice.setEditable(false);
+        jTextFieldPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPriceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -109,30 +132,36 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
                 .addGap(105, 105, 105))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabelODID)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextFieldODID))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelDate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelCID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonYes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabelOID, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(44, 44, 44)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldOID, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldPID)
-                                    .addComponent(jTextFieldPrice))
-                                .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelODID)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldODID, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabelDate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelCID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonYes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelOID, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(spnQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbxProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jTextFieldOID, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,11 +179,11 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCID)
-                    .addComponent(jTextFieldPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDate)
-                    .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelStatus)
@@ -182,13 +211,13 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
 
     private void btnYes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYes
         // TODO add your handling code here:
+        String[] part = cbxProduct.getSelectedItem().toString().split("-");
         OrderDetail oDe = new OrderDetail();
-        oDe.setOrderDetailID(Integer.parseInt(jTextFieldODID.getText()));
+        oDe.setOrderDetailID(Integer.valueOf(jTextFieldODID.getText()));
         oDe.setOrderID(Integer.parseInt(jTextFieldOID.getText()));
-        oDe.setProductID(Integer.parseInt(jTextFieldPID.getText()));
-        oDe.setQuantity(Integer.parseInt(jTextFieldQuantity.getText()));
+        oDe.setProductID(Integer.parseInt(part[0]));
+        oDe.setQuantity(Integer.valueOf(spnQuantity.getValue().toString()));
         oDe.setPrice(Float.parseFloat(jTextFieldPrice.getText()));
-
         odBll.updateOrderDetail(oDe);
 
         OrderBLL oBll = new OrderBLL();
@@ -205,13 +234,34 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, "Complete to update OrderDetail", "Message",
                 JOptionPane.INFORMATION_MESSAGE);
-
+        this.setVisible(false);
+        new OrderDetailGUI(oDe.getOrderID()).setVisible(true);
     }//GEN-LAST:event_btnYes
 
     private void btnNo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNo
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_btnNo
+
+    private void cbxProductItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxProductItemStateChanged
+        // TODO add your handling code here:
+        String[] part = cbxProduct.getSelectedItem().toString().split("-");
+        Product p = proBll.getProduct(Integer.parseInt(part[0]));
+        float sum = Integer.valueOf(spnQuantity.getValue().toString()) * p.getPrice();
+        jTextFieldPrice.setText(String.valueOf(sum));
+    }//GEN-LAST:event_cbxProductItemStateChanged
+
+    private void spnQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnQuantityStateChanged
+        // TODO add your handling code here:
+        String[] part = cbxProduct.getSelectedItem().toString().split("-");
+        Product p = proBll.getProduct(Integer.parseInt(part[0]));
+        float sum = Integer.valueOf(spnQuantity.getValue().toString()) * p.getPrice();
+        jTextFieldPrice.setText(String.valueOf(sum));
+    }//GEN-LAST:event_spnQuantityStateChanged
+
+    private void jTextFieldPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPriceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,8 +298,14 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
             }
         });
     }
-
+    private void comboxproduct() {
+        List<Entity.Product> l = proBll.loadProduct();
+        for (Entity.Product p : l) {
+            cbxProduct.addItem(p.getProductID() + "-" + p.getProductName());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbxProduct;
     private javax.swing.JButton jButtonNo;
     private javax.swing.JButton jButtonYes;
     private javax.swing.JLabel jLabelCID;
@@ -261,8 +317,7 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldODID;
     private javax.swing.JTextField jTextFieldOID;
-    private javax.swing.JTextField jTextFieldPID;
     private javax.swing.JTextField jTextFieldPrice;
-    private javax.swing.JTextField jTextFieldQuantity;
+    private javax.swing.JSpinner spnQuantity;
     // End of variables declaration//GEN-END:variables
 }

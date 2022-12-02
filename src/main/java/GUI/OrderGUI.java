@@ -31,12 +31,14 @@ public class OrderGUI extends javax.swing.JFrame {
     public static String key;
     private OrderBLL oBll;
     private OrderDetailBLL ordBll;
+    private int userID;
 
     /**
      * Creates new form OrderGUI
      */
-    public OrderGUI() {
+    public OrderGUI(int userID) {
         initComponents();
+        this.userID = userID;
         oBll = new OrderBLL();
         ordBll = new OrderDetailBLL();
         listOrder();
@@ -246,7 +248,7 @@ public class OrderGUI extends javax.swing.JFrame {
 
     private void btnAdd(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        addOrderGUI ui = new addOrderGUI();
+        addOrderGUI ui = new addOrderGUI(userID);
         ui.setVisible(true);
     }
 

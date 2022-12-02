@@ -210,7 +210,8 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, "Complete to add OrderDetail", "Message",
                 JOptionPane.INFORMATION_MESSAGE);
-
+        this.setVisible(false);
+        new OrderDetailGUI(oDe.getOrderID()).setVisible(true);
     }//GEN-LAST:event_btnYes
 
     private void btnNo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNo
