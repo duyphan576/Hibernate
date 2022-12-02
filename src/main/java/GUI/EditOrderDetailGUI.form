@@ -45,37 +45,46 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                          <Component id="jLabelTitle" min="-2" pref="230" max="-2" attributes="0"/>
+                          <Component id="jLabelODID" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jTextFieldODID" min="-2" pref="196" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabelODID" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextFieldODID" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="jLabelDate" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                      <Component id="jLabelStatus" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                      <Component id="jLabelCID" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                      <Component id="jButtonYes" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabelOID" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                  <Component id="jLabelTitle" min="-2" pref="230" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTextFieldOID" alignment="0" pref="139" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldPID" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldPrice" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Component id="jLabelDate" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
+                                          <Component id="jLabelStatus" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
+                                          <Component id="jLabelCID" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
+                                          <Component id="jButtonYes" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jLabelOID" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jTextFieldQuantity" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="spnQuantity" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="cbxProduct" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldPrice" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldOID" min="-2" pref="196" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -99,12 +108,12 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelCID" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldPID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbxProduct" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spnQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -137,21 +146,15 @@
             <Property name="text" type="java.lang.String" value="ProductID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldPID">
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabelDate">
           <Properties>
             <Property name="text" type="java.lang.String" value="Quantity"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldQuantity">
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabelStatus">
           <Properties>
             <Property name="text" type="java.lang.String" value="Price"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldPrice">
         </Component>
         <Component class="javax.swing.JButton" name="jButtonYes">
           <Properties>
@@ -186,6 +189,32 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbxProduct">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxProductItemStateChanged"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spnQuantity">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spnQuantityStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextFieldPrice">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPriceActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
