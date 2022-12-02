@@ -62,23 +62,17 @@ public class addProductGUI extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Product Name:");
 
-        txtproductname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Strap Type:");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Brand:");
 
-        txtprice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Price:");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Quantity:");
-
-        txtquantity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtDetail.setColumns(20);
         txtDetail.setLineWrap(true);
