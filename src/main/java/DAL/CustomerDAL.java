@@ -4,10 +4,12 @@
  */
 package DAL;
 
+import Entity.Brand;
 import Entity.Customer;
 import Utils.HibernateUtils;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -58,7 +60,8 @@ public class CustomerDAL {
     public List getlistCustomer() {
         List<Customer> list;
         session.beginTransaction();
-        list = session.createQuery("FROM Customer", Customer.class).list();
+        Query query = session.createSQLQuery("CALL GetAllCustomers()").addEntity(Customer.class);
+        list = query.list();
         session.getTransaction().commit();
         return list;
     }

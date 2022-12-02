@@ -8,6 +8,7 @@ import Entity.Role;
 import Utils.HibernateUtils;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -57,7 +58,8 @@ public class RoleDAL {
     public List getlistRole() {
         List<Role> list;
         session.beginTransaction();
-        list = session.createQuery("FROM Role", Role.class).list();
+        Query query = session.createSQLQuery("CALL GetAllRoles()").addEntity(Role.class);
+        list = query.list();
         session.getTransaction().commit();
         return list;
     }

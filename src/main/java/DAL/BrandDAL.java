@@ -8,6 +8,7 @@ import Entity.Brand;
 import Utils.HibernateUtils;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -57,7 +58,8 @@ public class BrandDAL {
     public List getlistBrand() {
         List<Brand> list;
         session.beginTransaction();
-        list = session.createQuery("FROM Brand", Brand.class).list();
+        Query query = session.createSQLQuery("CALL GetAllBrands()").addEntity(Brand.class);
+        list = query.list();
         session.getTransaction().commit();
         return list;
     }

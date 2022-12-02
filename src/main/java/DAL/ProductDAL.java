@@ -25,11 +25,12 @@ public class ProductDAL {
     }
 
     public List getAllProduct() {
-        List<Product> product;
+        List<Product> list;
         session.beginTransaction();
-        product = session.createQuery("FROM Product", Product.class).list();
+        Query query = session.createSQLQuery("CALL GetAllProducts()").addEntity(Product.class);
+        list = query.list();
         session.getTransaction().commit();
-        return product;
+        return list;
     }
 
     public Product getProduct(int productID) {

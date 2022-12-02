@@ -4,8 +4,6 @@ package GUI;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-
 import BLL.StatisticBLL;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -310,16 +308,25 @@ public class StatisticGUI extends javax.swing.JFrame {
         }
         String[] part = a.split(", ");
         int c = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (c < part.length / 2) {
-                for (int j = 0; c < part.length / 2; j++) {
-                    data[i][j] = part[c];
-                    c++;
-                }
-            } else {
-                for (int j = 0; c < part.length; j++) {
-                    data[i][j] = part[c];
-                    c++;
+        int count = 0;
+        while (count!=list.size()) {
+            for (int i = 0; i < list.size(); i++) {
+                if (i == 0) {
+                    for (int j = 0; c < 3; j++) {
+                        System.out.println(c);
+                        System.out.println(part[c]);
+                        data[i][j] = part[c];
+                        c++;
+                    }
+                    count++;
+                } else {
+                    for (int j = 0; c < 3 * (i+1); j++) {
+                        System.out.println(c);
+                        System.out.println(part[c]);
+                        data[i][j] = part[c];
+                        c++;
+                    }
+                    count++;
                 }
             }
         }
@@ -346,17 +353,23 @@ public class StatisticGUI extends javax.swing.JFrame {
         }
         String[] part = a.split(", ");
         int c = 0;
-        System.out.println(part.length);
-        for (int i = 0; i < list.size(); i++) {
-            if (c < part.length / 2) {
-                for (int j = 0; j < part.length / 2; j++) {
-                    data[i][j] = part[c];
-                    c++;
-                }
-            } else {
-                for (int j = 0; c < part.length; j++) {
-                    data[i][j] = part[c];
-                    c++;
+        int count = 0;
+        while (count!=list.size()) {
+            for (int i = 0; i < list.size(); i++) {
+                if (i == 0) {
+                    for (int j = 0; c < 2; j++) {
+                        System.out.println(c);
+                        System.out.println(part[c]);
+                        data[i][j] = part[c];
+                        c++;
+                    }
+                    count++;
+                } else {
+                    for (int j = 0; c < 2 * (i+1); j++) {
+                        data[i][j] = part[c];
+                        c++;
+                    }
+                    count++;
                 }
             }
         }
@@ -367,7 +380,6 @@ public class StatisticGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
     public void setbtnid2() {
         btn5.setVisible(false);
         btn6.setVisible(false);
