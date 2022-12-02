@@ -19,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
  * @author duyph
  */
 public class StatisticGUI extends javax.swing.JFrame {
+    
+    private int userID;
 
     /**
      * Creates new form StatisticGUI
@@ -31,6 +33,7 @@ public class StatisticGUI extends javax.swing.JFrame {
 
     public StatisticGUI(int id) {
         initComponents();
+        this.userID = id;
         if (id == 1) {
         } else if (id == 2) {
             setbtnid2();
@@ -273,7 +276,7 @@ public class StatisticGUI extends javax.swing.JFrame {
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
-        new OrderGUI().setVisible(true);
+        new OrderGUI(userID).setVisible(true);
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed

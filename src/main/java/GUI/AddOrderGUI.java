@@ -30,8 +30,9 @@ public class addOrderGUI extends javax.swing.JFrame {
     OrderBLL oBll = new OrderBLL();
     CustomerBLL cBll = new CustomerBLL();
 
-    public addOrderGUI() {
+    public addOrderGUI(int userID) {
         initComponents();
+        jTextFieldUID.setText(userID+"");
         loadCustomerComboBox();
     }
 
@@ -57,6 +58,8 @@ public class addOrderGUI extends javax.swing.JFrame {
         customerComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTextFieldUID.setEditable(false);
 
         jLabelUID.setText("User ID");
 
