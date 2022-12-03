@@ -245,7 +245,7 @@ public class OrderGUI extends javax.swing.JFrame {
     private void btnEdit(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if (rowID > 0) {
-            editOrderGUIa ui = new editOrderGUIa(rowID);
+            editOrderGUI ui = new editOrderGUI(rowID);
             ui.setVisible(true);
         }
     }
@@ -257,7 +257,7 @@ public class OrderGUI extends javax.swing.JFrame {
 
     private void btnAdd(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        addOrderGUIa ui = new addOrderGUIa(userID);
+        addOrderGUI ui = new addOrderGUI(userID);
         ui.setVisible(true);
     }
 

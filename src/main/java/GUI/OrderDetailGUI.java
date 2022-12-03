@@ -172,7 +172,7 @@ public class OrderDetailGUI extends javax.swing.JFrame {
     private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         // TODO add your handling code here:
         if (id > 0) {
-            addOrderDetailGUIa ui = new addOrderDetailGUIa(id);
+            addOrderDetailGUI ui = new addOrderDetailGUI(id);
             ui.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Choose Order first", "Message", JOptionPane.ERROR_MESSAGE);
@@ -182,7 +182,7 @@ public class OrderDetailGUI extends javax.swing.JFrame {
     private void btnEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit
         // TODO add your handling code here:
         if (rowIDDetail > 0) {
-            editOrderDetailGUIa ui = new editOrderDetailGUIa(rowIDDetail);
+            editOrderDetailGUI ui = new editOrderDetailGUI(rowIDDetail);
             ui.setVisible(true);
         }
     }//GEN-LAST:event_btnEdit

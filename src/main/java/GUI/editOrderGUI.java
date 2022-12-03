@@ -21,19 +21,19 @@ import javax.swing.JOptionPane;
  *
  * @author Clock
  */
-public class editOrderGUIa extends javax.swing.JFrame {
+public class editOrderGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form editOrderGUIa
+     * Creates new form editOrderGUI
      */
     OrderBLL oBll = new OrderBLL();
     private Order order;
 
-    public editOrderGUIa() {
+    public editOrderGUI() {
         initComponents();
     }
 
-    public editOrderGUIa(int dataConstructor) {
+    public editOrderGUI(int dataConstructor) {
         initComponents();
         order = oBll.getOrder(dataConstructor);
         jTextFieldOID.setText(Integer.toString(order.getOrderID()));
@@ -194,18 +194,22 @@ public class editOrderGUIa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(editOrderGUIa.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(editOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(editOrderGUIa.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(editOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(editOrderGUIa.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(editOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(editOrderGUIa.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(editOrderGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
         // </editor-fold>
         // </editor-fold>
         // </editor-fold>
@@ -214,7 +218,7 @@ public class editOrderGUIa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new editOrderGUIa().setVisible(true);
+                new editOrderGUI().setVisible(true);
             }
         });
     }
