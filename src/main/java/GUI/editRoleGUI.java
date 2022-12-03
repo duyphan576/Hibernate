@@ -6,6 +6,8 @@ package GUI;
 
 import BLL.RoleBLL;
 import Entity.Role;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -27,6 +29,12 @@ public class editRoleGUI extends javax.swing.JFrame {
         Role role = roleBll.getRole(id);
         lblId.setText(String.valueOf(role.getRoleID()));
         txtName.setText(role.getRoleName());
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

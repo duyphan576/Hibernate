@@ -5,8 +5,11 @@
 package GUI;
 
 import BLL.CustomerBLL;
-import DAL.CustomerDAL;
 import Entity.Customer;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +22,12 @@ public class addCustomerGUI extends javax.swing.JFrame {
 
     public addCustomerGUI() {
         initComponents();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**
@@ -28,7 +37,7 @@ public class addCustomerGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -37,27 +46,23 @@ public class addCustomerGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         nameText = new javax.swing.JTextField();
-        passText = new javax.swing.JTextField();
         addressText = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        passText = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Add Customer");
 
-        jLabel2.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jLabel2.setText("FullName");
 
-        jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
-        jLabel3.setText("PassWord");
+        jLabel3.setText("Password");
 
-        jLabel4.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jLabel4.setText("Address");
 
-        addButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +70,6 @@ public class addCustomerGUI extends javax.swing.JFrame {
             }
         });
 
-        cancelButton.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,84 +80,66 @@ public class addCustomerGUI extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addGap(61, 61, 61))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(24, 24, 24)
-                                                .addComponent(jLabel2)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 276,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGap(26, 26, 26)
-                                                                .addComponent(jLabel4)
-                                                                .addGap(32, 32, 32))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                jPanel1Layout.createSequentialGroup()
-                                                                        .addContainerGap()
-                                                                        .addComponent(jLabel3)
-                                                                        .addGap(18, 18, 18)))
-                                                .addGroup(jPanel1Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(addressText,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 276,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap(30, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cancelButton)
-                                .addGap(55, 55, 55)));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(cancelButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addressText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(nameText)
+                    .addComponent(passText))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel1)
-                                .addGap(85, 85, 85)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel2)
-                                        .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(85, 85, 85)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3))
-                                .addGap(85, 85, 85)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(addressText, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59,
-                                        Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(addButton)
-                                        .addComponent(cancelButton))
-                                .addGap(30, 30, 30)));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(addressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton)
+                    .addComponent(cancelButton))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,7 +147,7 @@ public class addCustomerGUI extends javax.swing.JFrame {
     private void btnAdd(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd
         if (nameText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Name");
-        } else if (passText.getText().equals("")) {
+        } else if (String.copyValueOf(passText.getPassword()).equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Password");
         } else if (addressText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui long nhap Customer Address");
@@ -176,7 +162,7 @@ public class addCustomerGUI extends javax.swing.JFrame {
                 try {
                     Customer cus = new Customer();
                     cus.setFullName(nameText.getText().trim());
-                    cus.setPassword(passText.getText().trim());
+                    cus.setPassword(getMD5(String.copyValueOf(passText.getPassword())));
                     cus.setAddress(addressText.getText().trim());
                     cusBLL.addCustomer(cus);
                 } catch (Exception e) {
@@ -198,6 +184,24 @@ public class addCustomerGUI extends javax.swing.JFrame {
         this.dispose();
     }// GEN-LAST:event_btnCancel
 
+        public String convertByteToHex(byte[] data) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < data.length; i++) {
+            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+    }
+
+    public String getMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            return convertByteToHex(messageDigest);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JTextField addressText;
@@ -208,6 +212,6 @@ public class addCustomerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nameText;
-    private javax.swing.JTextField passText;
+    private javax.swing.JPasswordField passText;
     // End of variables declaration//GEN-END:variables
 }

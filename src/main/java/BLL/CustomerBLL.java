@@ -27,6 +27,7 @@ public class CustomerBLL {
     public void addCustomer(Customer customer) {
         Customer cus = new Customer();
         cus.setCustomerID(customer.getCustomerID());
+        cus.setAccount(customer.getAccount());
         cus.setFullName(customer.getFullName());
         cus.setPassword(customer.getPassword());
         cus.setAddress(cus.getAddress());
@@ -59,12 +60,13 @@ public class CustomerBLL {
 
     public Object[][] convertCustomer(List<Customer> list) {
         int rows = list.size();
-        int cols = 3;
+        int cols = 4;
         Object[][] obj = new Object[rows][cols];
         for (int i = 0; i < rows; i++) {
             obj[i][0] = list.get(i).getCustomerID();
-            obj[i][1] = list.get(i).getFullName();
-            obj[i][2] = list.get(i).getAddress();
+            obj[i][1] = list.get(i).getAccount();
+            obj[i][2] = list.get(i).getFullName();
+            obj[i][3] = list.get(i).getAddress();
         }
         return obj;
     }

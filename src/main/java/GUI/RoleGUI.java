@@ -7,6 +7,8 @@ package GUI;
 import BLL.RoleBLL;
 import Entity.Role;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -21,10 +23,18 @@ public class RoleGUI extends javax.swing.JFrame {
      * Creates new form RoleGUI
      */
     private static int id;
-    private RoleBLL roleBll;
+    private RoleBLL roleBll = new RoleBLL();
 
     public RoleGUI() {
         initComponents();
+        showTable();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -197,7 +207,7 @@ public class RoleGUI extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_btnSearchbtnSearch
 
-    public void showTable() {
+    private void showTable() {
         List listCate = roleBll.loadRole();
         Object[][] datamodel;
         datamodel = roleBll.converRole(listCate);

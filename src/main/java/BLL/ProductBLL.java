@@ -56,11 +56,11 @@ public class ProductBLL {
     }
 
     public void updateProduct(int id, Strap strap, Brand brand, String name, float price, int quantity, String detail) {
-        proDAL.updateproduct(id, strap, brand, name, price, quantity, detail);
+        proDAL.updateProduct(id, strap, brand, name, price, quantity, detail);
     }
 
     public void addProduct(Strap strap, Brand brand, String name, float price, int quantity, String detail) {
-        proDAL.addproduct(strap, brand, name, price, quantity, detail);
+        proDAL.addProduct(strap, brand, name, price, quantity, detail);
     }
 
     public Object[][] converProduct(List<Product> list) {
@@ -79,14 +79,4 @@ public class ProductBLL {
         return obj;
     }
 
-//    public Object[][] converStrap(List<Strap> list) {
-//        int rows = list.size();
-//        int cols = 2;
-//        Object[][] obj = new Object[rows][cols];
-//        for (int i = 0; i < rows; i++) {
-//            obj[i][0] = list.get(i).getStrapID();
-//            obj[i][1] = list.get(i).getStrapName();
-//        }
-//        return obj;
-//    }
 }

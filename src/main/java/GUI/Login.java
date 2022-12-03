@@ -5,11 +5,13 @@
 package GUI;
 
 import BLL.UserBLL;
-import Entity.User;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import Entity.User;
 
 /**
  *
@@ -46,7 +48,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("User Name :");
+        jLabel1.setText("Username :");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Password :");
@@ -110,14 +112,34 @@ public class Login extends javax.swing.JFrame {
         if (temp.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Password not ented");
         }
-        List<User> l = usbll.getUser(txtusename.getText(), "76d80224611fc919a5d54f0ff9fba446");
+        List<User> l = usbll.getUser(txtusename.getText(), getMD5(String.copyValueOf(txtpass.getPassword())));
         if (l.isEmpty()) {
-            System.out.println("erro");
-        } else {
-            new StatisticGUI(l.get(1).getStatus());
+            System.out.println("");
+        }else if(l.get(0).getStatus()==1){
+            JOptionPane.showMessageDialog(rootPane, "This account is deactive");
+        }else {
+            dispose();
+            new StatisticGUI(l.get(0).getRole().getRoleID()).setVisible(true);
         }
     }//GEN-LAST:event_btnloginActionPerformed
 
+        public String convertByteToHex(byte[] data) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < data.length; i++) {
+            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+    }
+
+    public String getMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            return convertByteToHex(messageDigest);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
     /**
      * @param args the command line arguments
      */

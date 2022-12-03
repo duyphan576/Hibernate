@@ -6,6 +6,8 @@ package GUI;
 
 import BLL.BrandBLL;
 import Entity.Brand;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -20,6 +22,12 @@ public class addBrandGUI extends javax.swing.JFrame {
 
     public addBrandGUI() {
         initComponents();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

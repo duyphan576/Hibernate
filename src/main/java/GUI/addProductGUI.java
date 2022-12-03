@@ -9,6 +9,8 @@ import Entity.Brand;
 import Entity.Strap;
 import BLL.ProductBLL;
 import BLL.StrapBLL;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -29,6 +31,12 @@ public class addProductGUI extends javax.swing.JFrame {
         initComponents();
         comboxstap();
         comboxbrand();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**
@@ -62,23 +70,17 @@ public class addProductGUI extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Product Name:");
 
-        txtproductname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Strap Type:");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Brand:");
 
-        txtprice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Price:");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Quantity:");
-
-        txtquantity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtDetail.setColumns(20);
         txtDetail.setLineWrap(true);
@@ -95,7 +97,7 @@ public class addProductGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Add Product");
 
@@ -143,7 +145,7 @@ public class addProductGUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -182,13 +184,13 @@ public class addProductGUI extends javax.swing.JFrame {
     private void btnAdd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd
         // TODO add your handling code here:
         if(txtproductname.equals(""))
-            JOptionPane.showMessageDialog(rootPane, "Vui long nhap Product Name");
+            JOptionPane.showMessageDialog(rootPane, "Product Name is empty");
         else if(txtquantity.equals(""))
-             JOptionPane.showMessageDialog(rootPane, "Vui long nhap Quantity");
+             JOptionPane.showMessageDialog(rootPane, "Quantity is empty");
         else if(txtprice.equals(""))
-             JOptionPane.showMessageDialog(rootPane, "Vui long nhap Price");
+             JOptionPane.showMessageDialog(rootPane, "Price is empty");
         else if(txtDetail.equals(""))
-             JOptionPane.showMessageDialog(rootPane, "Vui long nhap Product Detail");
+             JOptionPane.showMessageDialog(rootPane, "Product Detail is empty");
         else{
         String temp = cbstrap.getSelectedItem().toString();
         String[] temp1 = temp.split("-");

@@ -34,11 +34,12 @@ public class UserDAL {
         return list;
     }
     public List getAllUser() {
-        List<User> user;
+        List<User> list;
         session.beginTransaction();
-        user = session.createQuery("FROM User", User.class).list();
+        Query query = session.createSQLQuery("CALL GetAllUsers()").addEntity(User.class);
+        list = query.list();
         session.getTransaction().commit();
-        return user;
+        return list;
     }
      public void addUser(Role role, String username, String password,int status) {
         session.clear();

@@ -7,28 +7,45 @@ package GUI;
 
 import BLL.OrderBLL;
 import BLL.OrderDetailBLL;
+import BLL.ProductBLL;
 import Entity.Order;
 import Entity.OrderDetail;
+import Entity.Product;
+import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
  * @author Clock
  */
-public class AddOrderDetailGUI extends javax.swing.JFrame {
+public class addOrderDetailGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form addOrderDetailGUI
      */
-    OrderDetailBLL odBll = new OrderDetailBLL();
+    private OrderDetailBLL odBll = new OrderDetailBLL();
+    private ProductBLL proBll = new ProductBLL();
 
-    public AddOrderDetailGUI() {
+    public addOrderDetailGUI() {
         initComponents();
+        comboxproduct();
+
     }
 
-    public AddOrderDetailGUI(int data) {
+    public addOrderDetailGUI(int data) {
         initComponents();
         jTextFieldOID.setText(Integer.toString(data));
+        comboxproduct();
+        this.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    dispose();
+                }
+            });
     }
 
     /**
@@ -44,26 +61,28 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
         jTextFieldOID = new javax.swing.JTextField();
         jLabelOID = new javax.swing.JLabel();
         jLabelCID = new javax.swing.JLabel();
-        jTextFieldPID = new javax.swing.JTextField();
         jLabelDate = new javax.swing.JLabel();
-        jTextFieldQuantity = new javax.swing.JTextField();
         jLabelStatus = new javax.swing.JLabel();
         jTextFieldPrice = new javax.swing.JTextField();
         jButtonYes = new javax.swing.JButton();
         jButtonNo = new javax.swing.JButton();
         jLabelTitle = new javax.swing.JLabel();
+        cbxProduct = new javax.swing.JComboBox<>();
+        spnQuantity = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextFieldOID.setEditable(false);
 
-        jLabelOID.setText("OrderID");
+        jLabelOID.setText("Order ID");
 
-        jLabelCID.setText("ProductID");
+        jLabelCID.setText("Product ID");
 
         jLabelDate.setText("Quantity");
 
         jLabelStatus.setText("Price");
+
+        jTextFieldPrice.setEditable(false);
 
         jButtonYes.setText("Yes");
         jButtonYes.addActionListener(new java.awt.event.ActionListener() {
@@ -79,69 +98,86 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabelTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelTitle.setText("ADD ORDER DETAIL");
+        jLabelTitle.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
+        jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitle.setText("Add Order Detail");
+
+        cbxProduct.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxProductItemStateChanged(evt);
+            }
+        });
+
+        spnQuantity.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnQuantityStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabelCID)
+                            .addGap(23, 23, 23))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabelDate)
+                            .addGap(34, 34, 34))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabelStatus)
+                            .addGap(53, 53, 53)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelOID)
+                        .addGap(33, 33, 33)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldOID, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(jTextFieldPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(cbxProduct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(spnQuantity))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelDate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonYes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldPrice)
-                            .addComponent(jTextFieldPID)
-                            .addComponent(jTextFieldQuantity)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelOID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldOID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(144, 144, 144)))))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonNo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
+                        .addComponent(jButtonYes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonNo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jLabelTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldOID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelOID))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCID))
+                    .addComponent(jLabelCID)
+                    .addComponent(cbxProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDate)
-                    .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelStatus)
                     .addComponent(jTextFieldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNo)
                     .addComponent(jButtonYes))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,10 +196,19 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
 
     private void btnYes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYes
         // TODO add your handling code here:
+        String[] part = cbxProduct.getSelectedItem().toString().split("-");
         OrderDetail oDe = new OrderDetail();
         oDe.setOrderID(Integer.parseInt(jTextFieldOID.getText()));
-        oDe.setProductID(Integer.parseInt(jTextFieldPID.getText()));
-        oDe.setQuantity(Integer.parseInt(jTextFieldQuantity.getText()));
+        oDe.setProductID(Integer.parseInt(part[0]));
+        Product p = proBll.getProduct(Integer.parseInt(part[0]));
+        if (Integer.valueOf(spnQuantity.getValue().toString()) > p.getQuantity()) {
+            spnQuantity.setValue(p.getQuantity());
+            oDe.setQuantity(p.getQuantity());
+            p.setQuantity(p.getQuantity()-Integer.valueOf(spnQuantity.getValue().toString()));
+            proBll.updateProduct(p.getProductID(), p.getStrap(), p.getBrand(), p.getProductName(), p.getPrice(), p.getQuantity() , p.getProductDetail());
+        } else {
+            oDe.setQuantity(Integer.valueOf(spnQuantity.getValue().toString()));
+        }
         oDe.setPrice(Float.parseFloat(jTextFieldPrice.getText()));
 
         odBll.addOrderDetail(oDe);
@@ -182,13 +227,37 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, "Complete to add OrderDetail", "Message",
                 JOptionPane.INFORMATION_MESSAGE);
-
+        this.setVisible(false);
+        new OrderDetailGUI(oDe.getOrderID()).setVisible(true);
     }//GEN-LAST:event_btnYes
 
     private void btnNo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNo
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_btnNo
+
+    private void spnQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnQuantityStateChanged
+        // TODO add your handling code here:
+        String[] part = cbxProduct.getSelectedItem().toString().split("-");
+        Product p = proBll.getProduct(Integer.parseInt(part[0]));
+        float sum = Integer.valueOf(spnQuantity.getValue().toString()) * p.getPrice();
+        jTextFieldPrice.setText(String.valueOf(sum));
+    }//GEN-LAST:event_spnQuantityStateChanged
+
+    private void cbxProductItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxProductItemStateChanged
+        // TODO add your handling code here:
+        String[] part = cbxProduct.getSelectedItem().toString().split("-");
+        Product p = proBll.getProduct(Integer.parseInt(part[0]));
+        float sum = Integer.valueOf(spnQuantity.getValue().toString()) * p.getPrice();
+        jTextFieldPrice.setText(String.valueOf(sum));
+    }//GEN-LAST:event_cbxProductItemStateChanged
+
+    private void comboxproduct() {
+        List<Product> l = proBll.loadProduct();
+        for (Product p : l) {
+            cbxProduct.addItem(p.getProductID() + "-" + p.getProductName());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -200,35 +269,25 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddOrderDetailGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddOrderDetailGUI().setVisible(true);
+                addOrderDetailGUI addDetailGUI = new addOrderDetailGUI();
+                addDetailGUI.setLocationRelativeTo(null);
+                addDetailGUI.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbxProduct;
     private javax.swing.JButton jButtonNo;
     private javax.swing.JButton jButtonYes;
     private javax.swing.JLabel jLabelCID;
@@ -238,8 +297,7 @@ public class AddOrderDetailGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldOID;
-    private javax.swing.JTextField jTextFieldPID;
     private javax.swing.JTextField jTextFieldPrice;
-    private javax.swing.JTextField jTextFieldQuantity;
+    private javax.swing.JSpinner spnQuantity;
     // End of variables declaration//GEN-END:variables
 }

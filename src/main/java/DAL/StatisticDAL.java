@@ -24,7 +24,7 @@ public class StatisticDAL {
     public List totalSale() {
         session.clear();
         session.beginTransaction();
-        List<Object[][]> data = session.createQuery("SELECT year(Date), month(Date), sum(TotalPrice) FROM Order GROUP BY year(Date), month(Date) ORDER BY year(Date), month(Date)").list();
+        List<Object[][]> data = session.createSQLQuery("CALL GetTotalSales()").list();
         session.getTransaction().commit();
         return data;
     }
@@ -32,9 +32,15 @@ public class StatisticDAL {
     public List topProduct() {
         session.clear();
         session.beginTransaction();
-        List<Object[][]> data = session.createQuery("SELECT p.ProductName, SUM(od.Quantity) FROM Product p, OrderDetail od WHERE p.ProductID = od.ProductID GROUP BY p.ProductName ORDER BY SUM(od.Quantity) DESC").list();
+        List<Object[][]> data = session.createSQLQuery("CALL GetTopProduct()").list();
         session.getTransaction().commit();
         return data;
     }
 
+    public static void main(String[] args) {
+        StatisticDAL s = new StatisticDAL();
+        List<Object[]> l = s.totalSale();
+        for(int i = 0; i < l.size();i++)
+        System.out.println(Arrays.toString(l.get(i)));
+    }
 }

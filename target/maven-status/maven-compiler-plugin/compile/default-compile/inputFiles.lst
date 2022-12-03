@@ -24,6 +24,7 @@ C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\Entity\Customer.jav
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\DAL\BrandDAL.java
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\GUI\User.java
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\Entity\Order.java
+C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\GUI\Status.java
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\BLL\BrandBLL.java
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\GUI\editUser.java
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\GUI\addStrapGUI.java
@@ -50,5 +51,5 @@ C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\BLL\CustomerBLL.jav
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\DAL\OrderDAL.java
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\DAL\StatisticDAL.java
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\GUI\Login.java
-C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\GUI\EditOrderDetailGUI.java
+C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\GUI\editOrderDetailGUI.java
 C:\Users\jukut\OneDrive\Desktop\Code\Hibernate\src\main\java\Utils\HibernateUtils.java

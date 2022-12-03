@@ -7,6 +7,8 @@ package GUI;
 import BLL.CustomerBLL;
 import Entity.Customer;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -26,13 +28,20 @@ public class CustomerGUI extends javax.swing.JFrame {
         initComponents();
         cusbll = new CustomerBLL();
         showTable();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     public void showTable() {
         List listCate = cusbll.loadCustomer();
         Object[][] datamodel;
         datamodel = cusbll.convertCustomer(listCate);
-        String[] title = { "CustomerId", "FullName", "Address" };
+        String[] title = { "CustomerId", "Account", "FullName", "Address" };
         DefaultTableModel model = new DefaultTableModel(datamodel, title);
         Customer_JTA.setModel(model);
     }
@@ -172,7 +181,6 @@ public class CustomerGUI extends javax.swing.JFrame {
         );
 
         Title_JLabel.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
-        Title_JLabel.setForeground(new java.awt.Color(51, 51, 51));
         Title_JLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Title_JLabel.setText("Customer Management");
 
@@ -260,7 +268,7 @@ public class CustomerGUI extends javax.swing.JFrame {
     private void loadAllCustomer() {
         List cusList = cusbll.loadCustomer();
         Object[][] data = cusbll.convertCustomer(cusList);
-        String[] title = { "CustomerID", "FullName", "Address" };
+        String[] title = { "CustomerID", "Account","FullName", "Address" };
         DefaultTableModel model = new DefaultTableModel(data, title);
         Customer_JTA.setModel(model);
     }

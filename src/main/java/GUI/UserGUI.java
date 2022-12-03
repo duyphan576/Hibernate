@@ -6,6 +6,8 @@ package GUI;
 
 import BLL.UserBLL;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -14,15 +16,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jukut
  */
-public class User extends javax.swing.JFrame {
+public class UserGUI extends javax.swing.JFrame {
     UserBLL usbll = new UserBLL();
     private int id;
     /**
      * Creates new form User
      */
-    public User() {
+    public UserGUI() {
         initComponents();
         showtable();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -92,32 +101,32 @@ public class User extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3))
-                        .addContainerGap(101, Short.MAX_VALUE))))
+                    .addComponent(jButton2)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
+                .addGap(24, 24, 24))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(jButton1)
-                .addGap(73, 73, 73)
-                .addComponent(jButton2)
-                .addGap(95, 95, 95)
-                .addComponent(jButton3)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addContainerGap(273, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane1))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,14 +184,14 @@ public class User extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new User().setVisible(true);
+                new UserGUI().setVisible(true);
             }
         });
     }
     public void showtable(){
         List l = usbll.loadUser();
         Object[][] data = usbll.converProduct(l);
-        String[] title = { "User ID", "User Name", "Role","Status" };
+        String[] title = { "User ID", "User Name", "Role", "Status" };
         DefaultTableModel model = new DefaultTableModel(data, title);
         tbluser.setModel(model);
     }

@@ -7,6 +7,8 @@ package GUI;
 import BLL.BrandBLL;
 import Entity.Brand;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author jukut
  */
 public class BrandGUI extends javax.swing.JFrame {
-
+    
     private static int id;
     private BrandBLL brbll;
 
@@ -27,8 +29,15 @@ public class BrandGUI extends javax.swing.JFrame {
         initComponents();
         brbll = new BrandBLL();
         showTable();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
-
+    
     public void showTable() {
         List listCate = brbll.loadBrand();
         Object[][] datamodel;
@@ -86,7 +95,6 @@ public class BrandGUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblbrand);
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Brand");
 

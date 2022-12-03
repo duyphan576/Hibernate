@@ -20,13 +20,6 @@ public class OrderDetailBLL {
         orderdetailDAL = new OrderDetailDAL();
     }
 
-    public List loadOrderDetail() {
-        List list;
-        list = orderdetailDAL.loadOrderDetail();
-
-        return list;
-    }
-
     public List loadOrderDetailByOrderID(int OrderID) {
         List list;
         list = orderdetailDAL.loadOrderDetailByOrderID(OrderID);

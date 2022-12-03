@@ -6,8 +6,12 @@ package GUI;
 
 import BLL.OrderBLL;
 import BLL.OrderDetailBLL;
+import BLL.ProductBLL;
 import Entity.Order;
 import Entity.OrderDetail;
+import Entity.Product;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +27,7 @@ public class OrderDetailGUI extends javax.swing.JFrame {
      * Creates new form OrderDetailGUI
      */
     private OrderDetailBLL ordBll = new OrderDetailBLL();
+    private ProductBLL proBll = new ProductBLL();
 
     public static int rowIDDetail;
     private int id;
@@ -35,6 +40,12 @@ public class OrderDetailGUI extends javax.swing.JFrame {
         initComponents();
         this.id = rowID;
         listOrderDetailByOrderID();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     private void listOrderDetailByOrderID() {
@@ -179,6 +190,7 @@ public class OrderDetailGUI extends javax.swing.JFrame {
     private void btnDelete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete
         // TODO add your handling code here:
         OrderDetail ode = ordBll.getOrderDetail(rowIDDetail);
+        Product p = proBll.getProduct(ode.getProductID());
 
         int result = JOptionPane.showConfirmDialog(null,
                 "Confirm delete OrderDetail with Id: " + ode.getOrderDetailID() + " has OrderID: " + ode.getOrderID(),
@@ -189,6 +201,9 @@ public class OrderDetailGUI extends javax.swing.JFrame {
             OrderBLL oBll = new OrderBLL();
             Order ord = oBll.getOrder(ode.getOrderID());
 
+            p.setQuantity(p.getQuantity() + ode.getQuantity());
+            proBll.updateProduct(p.getProductID(), p.getStrap(), p.getBrand(), p.getProductName(), p.getPrice(), p.getQuantity(), p.getProductDetail());
+
             int toquan = ord.getTotalQuantity();
             Float topri = ord.getTotalPrice();
             toquan = toquan - ode.getQuantity();
@@ -198,7 +213,7 @@ public class OrderDetailGUI extends javax.swing.JFrame {
             ord.setTotalPrice(topri);
             oBll.updateOrder(ord);
 
-            JOptionPane.showMessageDialog(this, "Complete to delete Order", "Message",
+            JOptionPane.showMessageDialog(this, "Complete to delete OrderDetail", "Message",
                     JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDelete
