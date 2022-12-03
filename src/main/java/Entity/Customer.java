@@ -21,6 +21,9 @@ public class Customer {
     private int CustomerID;
 
     @Column
+    private String Account;
+    
+    @Column
     private String Password;
 
     @Column

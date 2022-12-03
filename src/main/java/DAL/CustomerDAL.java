@@ -42,6 +42,7 @@ public class CustomerDAL {
         session.beginTransaction();
         Customer customer = new Customer();
         customer.setCustomerID(cus.getCustomerID());
+        customer.setAccount(cus.getAccount());
         customer.setFullName(cus.getFullName());
         customer.setPassword(cus.getPassword());
         customer.setAddress(cus.getAddress());
