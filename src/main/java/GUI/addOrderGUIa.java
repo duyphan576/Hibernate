@@ -22,15 +22,15 @@ import javax.swing.UIManager;
  *
  * @author Clock
  */
-public class addOrderGUI extends javax.swing.JFrame {
+public class addOrderGUIa extends javax.swing.JFrame {
 
     /**
-     * Creates new form addOrderGUI
+     * Creates new form addOrderGUIa
      */
     OrderBLL oBll = new OrderBLL();
     CustomerBLL cBll = new CustomerBLL();
 
-    public addOrderGUI(int userID) {
+    public addOrderGUIa(int userID) {
         initComponents();
         jTextFieldUID.setText(userID+"");
         loadCustomerComboBox();
@@ -179,7 +179,7 @@ public class addOrderGUI extends javax.swing.JFrame {
             ord.setDate(sqlDate);
             System.out.println(sqlDate);
         } catch (ParseException ex) {
-            Logger.getLogger(addOrderGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(addOrderGUIa.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         ord.setStatus(0);
@@ -218,7 +218,7 @@ public class addOrderGUI extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                addOrderGUI addGUI = new addOrderGUI();
+//                addOrderGUIa addGUI = new addOrderGUIa();
 //                addGUI.setLocationRelativeTo(null);
 //                addGUI.setVisible(true);
 //            }

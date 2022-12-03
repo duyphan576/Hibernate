@@ -22,21 +22,21 @@ import javax.swing.UIManager;
  *
  * @author Clock
  */
-public class addOrderDetailGUI extends javax.swing.JFrame {
+public class addOrderDetailGUIa extends javax.swing.JFrame {
 
     /**
-     * Creates new form addOrderDetailGUI
+     * Creates new form addOrderDetailGUIa
      */
     private OrderDetailBLL odBll = new OrderDetailBLL();
     private ProductBLL proBll = new ProductBLL();
 
-    public addOrderDetailGUI() {
+    public addOrderDetailGUIa() {
         initComponents();
         comboxproduct();
 
     }
 
-    public addOrderDetailGUI(int data) {
+    public addOrderDetailGUIa(int data) {
         initComponents();
         jTextFieldOID.setText(Integer.toString(data));
         comboxproduct();
@@ -279,7 +279,7 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                addOrderDetailGUI addDetailGUI = new addOrderDetailGUI();
+                addOrderDetailGUIa addDetailGUI = new addOrderDetailGUIa();
                 addDetailGUI.setLocationRelativeTo(null);
                 addDetailGUI.setVisible(true);
             }
