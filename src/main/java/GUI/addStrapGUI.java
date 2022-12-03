@@ -7,6 +7,8 @@ package GUI;
 import BLL.StrapBLL;
 import DAL.StrapDAL;
 import Entity.Strap;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -21,6 +23,12 @@ public class addStrapGUI extends javax.swing.JFrame {
 
     public addStrapGUI() {
         initComponents();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

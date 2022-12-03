@@ -6,6 +6,8 @@ package GUI;
 
 import BLL.CustomerBLL;
 import Entity.Customer;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
@@ -20,6 +22,12 @@ public class addCustomerGUI extends javax.swing.JFrame {
 
     public addCustomerGUI() {
         initComponents();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

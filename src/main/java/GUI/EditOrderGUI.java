@@ -7,6 +7,8 @@ package GUI;
 
 import BLL.OrderBLL;
 import Entity.Order;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,6 +44,13 @@ public class editOrderGUI extends javax.swing.JFrame {
         } else {
             statusComboBox.setSelectedIndex(1);
         }
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     /**

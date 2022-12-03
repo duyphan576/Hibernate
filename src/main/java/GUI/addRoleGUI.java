@@ -6,6 +6,8 @@ package GUI;
 
 import BLL.RoleBLL;
 import Entity.Role;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -20,6 +22,12 @@ public class addRoleGUI extends javax.swing.JFrame {
 
     public addRoleGUI() {
         initComponents();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

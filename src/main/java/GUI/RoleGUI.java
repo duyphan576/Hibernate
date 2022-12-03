@@ -7,6 +7,8 @@ package GUI;
 import BLL.RoleBLL;
 import Entity.Role;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +28,13 @@ public class RoleGUI extends javax.swing.JFrame {
     public RoleGUI() {
         initComponents();
         showTable();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     /**

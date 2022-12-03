@@ -12,6 +12,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -55,6 +57,13 @@ public class OrderGUI extends javax.swing.JFrame {
                     rowID = Integer.parseInt(model.getValueAt(row, 0).toString());
                     new OrderDetailGUI(rowID).setVisible(true);
                 }
+            }
+        });
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
             }
         });
     }

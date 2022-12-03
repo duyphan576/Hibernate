@@ -11,6 +11,8 @@ import BLL.ProductBLL;
 import Entity.Order;
 import Entity.OrderDetail;
 import Entity.Product;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -45,6 +47,12 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
         jTextFieldPrice.setText(Float.toString(ode.getPrice()));
         globalQuantity = ode.getQuantity();
         globalPrice = ode.getPrice();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

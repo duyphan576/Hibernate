@@ -7,6 +7,8 @@ package GUI;
 import BLL.RoleBLL;
 import BLL.UserBLL;
 import Entity.Role;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -15,8 +17,10 @@ import javax.swing.JOptionPane;
  * @author jukut
  */
 public class editUser extends javax.swing.JFrame {
+
     UserBLL usbll = new UserBLL();
     RoleBLL rlbll = new RoleBLL();
+
     /**
      * Creates new form addUser
      */
@@ -24,20 +28,25 @@ public class editUser extends javax.swing.JFrame {
         initComponents();
         cbx();
     }
-    public editUser(int id){
+
+    public editUser(int id) {
         initComponents();
         cbx();
         txtuserid.setText(String.valueOf(usbll.getUser(id).getUserID()));
         txtusername.setText(usbll.getUser(id).getUserName());
         txtpass.setText(usbll.getUser(id).getPassword());
-        cbxrole.setSelectedItem(usbll.getUser(id).getRole().getRoleID()+"-"+usbll.getUser(id).getRole().getRoleName());
-        if(usbll.getUser(id).getStatus()==1)
-        {
+        cbxrole.setSelectedItem(usbll.getUser(id).getRole().getRoleID() + "-" + usbll.getUser(id).getRole().getRoleName());
+        if (usbll.getUser(id).getStatus() == 1) {
             cbxstatus.setSelectedItem("Lock");
-        }
-        else{
+        } else {
             cbxstatus.setSelectedItem("Open");
         }
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**
@@ -197,9 +206,9 @@ public class editUser extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(txtusername.getText().equals("")){
+        if (txtusername.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Username not empty");
-        }else if(txtpass.getPassword().length==0){
+        } else if (txtpass.getPassword().length == 0) {
             JOptionPane.showMessageDialog(rootPane, "Password not empty");
         }
         String[] part = cbxrole.getSelectedItem().toString().split("-");
@@ -208,13 +217,17 @@ public class editUser extends javax.swing.JFrame {
         r.setRoleName(part[1]);
         String temp = String.copyValueOf(txtpass.getPassword());
         int i;
-        if(cbxstatus.equals("Lock"))i=1;else i=0;
-        usbll.upUser(Integer.valueOf(txtuserid.getText()),r, txtusername.getText(), temp,i);
+        if (cbxstatus.equals("Lock")) {
+            i = 1;
+        } else {
+            i = 0;
+        }
+        usbll.upUser(Integer.valueOf(txtuserid.getText()), r, txtusername.getText(), temp, i);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        new User().setVisible(true);
+        new UserGUI().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void cbxroleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxroleActionPerformed
@@ -224,10 +237,10 @@ public class editUser extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void cbx(){
+    public void cbx() {
         List<Role> l = rlbll.loadRole();
-        for(Role r : l){
-            cbxrole.addItem(r.getRoleID()+"-"+r.getRoleName());
+        for (Role r : l) {
+            cbxrole.addItem(r.getRoleID() + "-" + r.getRoleName());
         }
         cbxstatus.addItem("Lock");
         cbxstatus.addItem("Open");

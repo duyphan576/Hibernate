@@ -7,6 +7,8 @@ package GUI;
 import BLL.CustomerBLL;
 import Entity.Customer;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -26,6 +28,13 @@ public class CustomerGUI extends javax.swing.JFrame {
         initComponents();
         cusbll = new CustomerBLL();
         showTable();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     public void showTable() {

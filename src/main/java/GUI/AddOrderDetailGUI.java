@@ -12,6 +12,8 @@ import Entity.Order;
 import Entity.OrderDetail;
 import Entity.Product;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -38,6 +40,12 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
         initComponents();
         jTextFieldOID.setText(Integer.toString(data));
         comboxproduct();
+        this.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    dispose();
+                }
+            });
     }
 
     /**
