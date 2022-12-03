@@ -32,7 +32,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         List listCate = cusbll.loadCustomer();
         Object[][] datamodel;
         datamodel = cusbll.convertCustomer(listCate);
-        String[] title = { "CustomerId", "FullName", "Address" };
+        String[] title = { "CustomerId", "Account", "FullName", "Address" };
         DefaultTableModel model = new DefaultTableModel(datamodel, title);
         Customer_JTA.setModel(model);
     }
@@ -259,7 +259,7 @@ public class CustomerGUI extends javax.swing.JFrame {
     private void loadAllCustomer() {
         List cusList = cusbll.loadCustomer();
         Object[][] data = cusbll.convertCustomer(cusList);
-        String[] title = { "CustomerID", "FullName", "Address" };
+        String[] title = { "CustomerID", "Account","FullName", "Address" };
         DefaultTableModel model = new DefaultTableModel(data, title);
         Customer_JTA.setModel(model);
     }
