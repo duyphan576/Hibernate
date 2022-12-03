@@ -192,8 +192,17 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
         OrderDetail oDe = new OrderDetail();
         oDe.setOrderID(Integer.parseInt(jTextFieldOID.getText()));
         oDe.setProductID(Integer.parseInt(part[0]));
-        oDe.setQuantity(Integer.valueOf(spnQuantity.getValue().toString()));
+        Product p = proBll.getProduct(Integer.parseInt(part[0]));
+        if (Integer.valueOf(spnQuantity.getValue().toString()) > p.getQuantity()) {
+            spnQuantity.setValue(p.getQuantity());
+            oDe.setQuantity(p.getQuantity());
+            p.setQuantity(p.getQuantity()-Integer.valueOf(spnQuantity.getValue().toString()));
+            proBll.updateProduct(p.getProductID(), p.getStrap(), p.getBrand(), p.getProductName(), p.getPrice(), p.getQuantity() , p.getProductDetail());
+        } else {
+            oDe.setQuantity(Integer.valueOf(spnQuantity.getValue().toString()));
+        }
         oDe.setPrice(Float.parseFloat(jTextFieldPrice.getText()));
+
         odBll.addOrderDetail(oDe);
 
         OrderBLL oBll = new OrderBLL();
