@@ -7,6 +7,8 @@ package GUI;
 import BLL.RoleBLL;
 import BLL.UserBLL;
 import Entity.Role;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -25,6 +27,12 @@ public class addUser extends javax.swing.JFrame {
     public addUser() {
         initComponents();
         cbx();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**
@@ -175,7 +183,7 @@ public class addUser extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        new User().setVisible(true);
+        new UserGUI().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

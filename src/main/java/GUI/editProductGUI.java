@@ -10,6 +10,8 @@ import BLL.StrapBLL;
 import Entity.Brand;
 import Entity.Product;
 import Entity.Strap;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -37,6 +39,12 @@ public class editProductGUI extends javax.swing.JFrame {
         txtDetail.setText(pr.getProductDetail());
         comboxstapstring(pr.getStrap().getStrapName());
         comboxbrandstring(pr.getBrand().getBrandName());
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

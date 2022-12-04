@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author duyph
  */
 public class StatisticGUI extends javax.swing.JFrame {
-    
+
     private int userID;
 
     /**
@@ -34,12 +34,10 @@ public class StatisticGUI extends javax.swing.JFrame {
         this.userID = id;
         if (id == 1) {
         } else if (id == 2) {
-            setbtnid2();
+            setStaff();
         } else if (id == 3) {
-            setbtnid3();
-        } else if (id == 4) {
-            setbtnid4();
-        }
+            setSale();
+        } 
     }
 
     /**
@@ -58,13 +56,13 @@ public class StatisticGUI extends javax.swing.JFrame {
         btnSale = new javax.swing.JButton();
         btnTop = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        btn1 = new javax.swing.JButton();
-        btn6 = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
-        btn7 = new javax.swing.JButton();
-        btn4 = new javax.swing.JButton();
-        btn5 = new javax.swing.JButton();
-        btn3 = new javax.swing.JButton();
+        btnOrder = new javax.swing.JButton();
+        btnCustomer = new javax.swing.JButton();
+        btnProduct = new javax.swing.JButton();
+        btnRole = new javax.swing.JButton();
+        btnStrap = new javax.swing.JButton();
+        btnUser = new javax.swing.JButton();
+        btnBrand = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,52 +101,52 @@ public class StatisticGUI extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Home Page");
 
-        btn1.setText("Order");
-        btn1.addActionListener(new java.awt.event.ActionListener() {
+        btnOrder.setText("Order");
+        btnOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
+                btnOrderActionPerformed(evt);
             }
         });
 
-        btn6.setText("Customer");
-        btn6.addActionListener(new java.awt.event.ActionListener() {
+        btnCustomer.setText("Customer");
+        btnCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn6ActionPerformed(evt);
+                btnCustomerActionPerformed(evt);
             }
         });
 
-        btn2.setText("Product");
-        btn2.addActionListener(new java.awt.event.ActionListener() {
+        btnProduct.setText("Product");
+        btnProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
+                btnProductActionPerformed(evt);
             }
         });
 
-        btn7.setText("Role");
-        btn7.addActionListener(new java.awt.event.ActionListener() {
+        btnRole.setText("Role");
+        btnRole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn7ActionPerformed(evt);
+                btnRoleActionPerformed(evt);
             }
         });
 
-        btn4.setText("Strap");
-        btn4.addActionListener(new java.awt.event.ActionListener() {
+        btnStrap.setText("Strap");
+        btnStrap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn4ActionPerformed(evt);
+                btnStrapActionPerformed(evt);
             }
         });
 
-        btn5.setText("User");
-        btn5.addActionListener(new java.awt.event.ActionListener() {
+        btnUser.setText("User");
+        btnUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn5ActionPerformed(evt);
+                btnUserActionPerformed(evt);
             }
         });
 
-        btn3.setText("Brand");
-        btn3.addActionListener(new java.awt.event.ActionListener() {
+        btnBrand.setText("Brand");
+        btnBrand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn3ActionPerformed(evt);
+                btnBrandActionPerformed(evt);
             }
         });
 
@@ -157,35 +155,28 @@ public class StatisticGUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSale)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnTop)
-                        .addGap(66, 66, 66))))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 40, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(btnSale)
+                .addGap(36, 36, 36)
+                .addComponent(btnTop)
+                .addGap(66, 66, 66))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnStrap, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(btnBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,28 +186,26 @@ public class StatisticGUI extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(btnSale)
                     .addComponent(btnTop))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(btn1)
-                        .addGap(50, 50, 50)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btn2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn3))
+                                .addComponent(btnOrder)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnProduct)
+                                .addGap(9, 9, 9)
+                                .addComponent(btnBrand))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btn5)
+                                .addComponent(btnUser)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn6)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn4)
-                            .addComponent(btn7))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))))
+                                .addComponent(btnCustomer)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnRole)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnStrap)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -257,40 +246,40 @@ public class StatisticGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTop
 
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+    private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
         // TODO add your handling code here:
         new ProductGUI().setVisible(true);
-    }//GEN-LAST:event_btn2ActionPerformed
+    }//GEN-LAST:event_btnProductActionPerformed
 
-    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+    private void btnBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrandActionPerformed
         // TODO add your handling code here:
         new BrandGUI().setVisible(true);
-    }//GEN-LAST:event_btn3ActionPerformed
+    }//GEN-LAST:event_btnBrandActionPerformed
 
-    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+    private void btnStrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStrapActionPerformed
         // TODO add your handling code here:
         new StrapGUI().setVisible(true);
-    }//GEN-LAST:event_btn4ActionPerformed
+    }//GEN-LAST:event_btnStrapActionPerformed
 
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         // TODO add your handling code here:
         new OrderGUI(userID).setVisible(true);
-    }//GEN-LAST:event_btn1ActionPerformed
+    }//GEN-LAST:event_btnOrderActionPerformed
 
-    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+    private void btnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserActionPerformed
         // TODO add your handling code here:
-        new User().setVisible(true);
-    }//GEN-LAST:event_btn5ActionPerformed
+        new UserGUI().setVisible(true);
+    }//GEN-LAST:event_btnUserActionPerformed
 
-    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+    private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
         // TODO add your handling code here:
         new CustomerGUI().setVisible(true);
-    }//GEN-LAST:event_btn6ActionPerformed
+    }//GEN-LAST:event_btnCustomerActionPerformed
 
-    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+    private void btnRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoleActionPerformed
         // TODO add your handling code here:
         new RoleGUI().setVisible(true);
-    }//GEN-LAST:event_btn7ActionPerformed
+    }//GEN-LAST:event_btnRoleActionPerformed
 
     private void listTotalSale() throws SQLException {
         List<Object[]> list = sta.totalSale();
@@ -312,7 +301,7 @@ public class StatisticGUI extends javax.swing.JFrame {
         String[] part = a.split(", ");
         int c = 0;
         int count = 0;
-        while (count!=list.size()) {
+        while (count != list.size()) {
             for (int i = 0; i < list.size(); i++) {
                 if (i == 0) {
                     for (int j = 0; c < 3; j++) {
@@ -323,7 +312,7 @@ public class StatisticGUI extends javax.swing.JFrame {
                     }
                     count++;
                 } else {
-                    for (int j = 0; c < 3 * (i+1); j++) {
+                    for (int j = 0; c < 3 * (i + 1); j++) {
                         System.out.println(c);
                         System.out.println(part[c]);
                         data[i][j] = part[c];
@@ -357,7 +346,7 @@ public class StatisticGUI extends javax.swing.JFrame {
         String[] part = a.split(", ");
         int c = 0;
         int count = 0;
-        while (count!=list.size()) {
+        while (count != list.size()) {
             for (int i = 0; i < list.size(); i++) {
                 if (i == 0) {
                     for (int j = 0; c < 2; j++) {
@@ -368,7 +357,7 @@ public class StatisticGUI extends javax.swing.JFrame {
                     }
                     count++;
                 } else {
-                    for (int j = 0; c < 2 * (i+1); j++) {
+                    for (int j = 0; c < 2 * (i + 1); j++) {
                         data[i][j] = part[c];
                         c++;
                     }
@@ -383,39 +372,31 @@ public class StatisticGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void setbtnid2() {
-        btn5.setVisible(false);
-        btn6.setVisible(false);
-        btn7.setVisible(false);
-        btn2.setVisible(false);
-        btn3.setVisible(false);
-        btn4.setVisible(false);
+    private void setStaff() {
+        btnUser.setVisible(false);
+        btnProduct.setVisible(false);
+        btnBrand.setVisible(false);
+        btnStrap.setVisible(false);
     }
 
-    public void setbtnid3() {
-        btn1.setVisible(false);
-        btn5.setVisible(false);
-        btn6.setVisible(false);
-        btn7.setVisible(false);
-    }
-
-    public void setbtnid4() {
-        btn1.setVisible(false);
-        btn2.setVisible(false);
-        btn3.setVisible(false);
-        btn4.setVisible(false);
+    private void setSale() {
+        btnRole.setVisible(false);
+        btnProduct.setVisible(false);
+        btnBrand.setVisible(false);
+        btnStrap.setVisible(false);
+        btnUser.setVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
-    private javax.swing.JButton btn2;
-    private javax.swing.JButton btn3;
-    private javax.swing.JButton btn4;
-    private javax.swing.JButton btn5;
-    private javax.swing.JButton btn6;
-    private javax.swing.JButton btn7;
+    private javax.swing.JButton btnBrand;
+    private javax.swing.JButton btnCustomer;
+    private javax.swing.JButton btnOrder;
+    private javax.swing.JButton btnProduct;
+    private javax.swing.JButton btnRole;
     private javax.swing.JButton btnSale;
+    private javax.swing.JButton btnStrap;
     private javax.swing.JButton btnTop;
+    private javax.swing.JButton btnUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

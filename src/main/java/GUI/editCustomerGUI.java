@@ -6,6 +6,8 @@ package GUI;
 
 import BLL.CustomerBLL;
 import Entity.Customer;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +26,12 @@ public class editCustomerGUI extends javax.swing.JFrame {
         this.nameText.setText(custemp.getFullName().trim());
         this.passText.setText(custemp.getPassword().trim());
         this.addressText.setText(custemp.getAddress().trim());
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

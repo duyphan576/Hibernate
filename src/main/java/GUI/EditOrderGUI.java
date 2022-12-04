@@ -7,6 +7,14 @@ package GUI;
 
 import BLL.OrderBLL;
 import Entity.Order;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -38,6 +46,13 @@ public class editOrderGUI extends javax.swing.JFrame {
             statusComboBox.setSelectedIndex(1);
             statusComboBox.setEnabled(false);
         }
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     /**

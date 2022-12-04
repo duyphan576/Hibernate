@@ -9,6 +9,8 @@ import Entity.Brand;
 import Entity.Strap;
 import BLL.ProductBLL;
 import BLL.StrapBLL;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -29,6 +31,12 @@ public class addProductGUI extends javax.swing.JFrame {
         initComponents();
         comboxstap();
         comboxbrand();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

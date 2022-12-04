@@ -38,20 +38,9 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="169" max="32767" attributes="0"/>
-                  <Component id="jButtonNo" min="-2" pref="67" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabelODID" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jTextFieldODID" min="-2" pref="196" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -59,32 +48,40 @@
                                   <Component id="jLabelTitle" min="-2" pref="230" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="jLabelDate" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                          <Component id="jLabelStatus" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                          <Component id="jLabelCID" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                          <Component id="jButtonYes" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jLabelOID" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabelDate" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
+                                      <Component id="jLabelStatus" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
+                                      <Component id="jLabelCID" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
+                                      <Component id="jLabelOID" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="spnQuantity" min="-2" pref="200" max="-2" attributes="0"/>
-                                              <Component id="cbxProduct" min="-2" pref="200" max="-2" attributes="0"/>
-                                              <Component id="jTextFieldPrice" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldPrice" min="-2" pref="196" max="-2" attributes="0"/>
+                                              <Component id="cbxProduct" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldOID" min="-2" pref="196" max="-2" attributes="0"/>
+                                              <Component id="spnQuantity" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldOID" min="-2" pref="196" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jButtonNo" min="-2" pref="67" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="10" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jButtonYes" min="-2" pref="67" max="-2" attributes="0"/>
+                              <Component id="jLabelODID" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jTextFieldODID" min="-2" pref="196" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

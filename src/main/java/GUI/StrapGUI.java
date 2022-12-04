@@ -9,6 +9,8 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import Entity.Strap;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.UIManager;
 
 /**
@@ -27,6 +29,13 @@ public class StrapGUI extends javax.swing.JFrame {
         initComponents();
         strbll = new StrapBLL();
         showTable();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     public void showTable() {

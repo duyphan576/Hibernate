@@ -9,6 +9,8 @@ import DAL.BrandDAL;
 import DAL.StrapDAL;
 import Entity.Brand;
 import Entity.Strap;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -30,6 +32,12 @@ public class editBrandGUI extends javax.swing.JFrame {
         Brand br = brbll.getBrand(id);
         txtid.setText(String.valueOf(br.getBrandID()));
         txtname.setText(br.getBrandName());
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**

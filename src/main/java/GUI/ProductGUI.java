@@ -12,6 +12,8 @@ import Entity.Brand;
 import Entity.Product;
 import Entity.Strap;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +37,13 @@ public class ProductGUI extends javax.swing.JFrame {
         loadAllproduct();
         comboxfindstap();
         comboxfindBrand();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     /**

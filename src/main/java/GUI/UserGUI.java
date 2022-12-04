@@ -6,6 +6,8 @@ package GUI;
 
 import BLL.UserBLL;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -14,15 +16,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jukut
  */
-public class User extends javax.swing.JFrame {
+public class UserGUI extends javax.swing.JFrame {
     UserBLL usbll = new UserBLL();
     private int id;
     /**
      * Creates new form User
      */
-    public User() {
+    public UserGUI() {
         initComponents();
         showtable();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                new StatisticGUI().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -175,14 +184,14 @@ public class User extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new User().setVisible(true);
+                new UserGUI().setVisible(true);
             }
         });
     }
     public void showtable(){
         List l = usbll.loadUser();
         Object[][] data = usbll.converProduct(l);
-        String[] title = { "User ID", "User Name", "Role","Status" };
+        String[] title = { "User ID", "User Name", "Role", "Status" };
         DefaultTableModel model = new DefaultTableModel(data, title);
         tbluser.setModel(model);
     }
