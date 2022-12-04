@@ -7,13 +7,8 @@ package GUI;
 
 import BLL.OrderBLL;
 import Entity.Order;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -41,6 +36,7 @@ public class editOrderGUI extends javax.swing.JFrame {
             statusComboBox.setSelectedIndex(0);
         } else {
             statusComboBox.setSelectedIndex(1);
+            statusComboBox.setEnabled(false);
         }
     }
 
@@ -74,7 +70,7 @@ public class editOrderGUI extends javax.swing.JFrame {
             }
         });
 
-        jButtonNo.setText("Cancle");
+        jButtonNo.setText("Cancel");
         jButtonNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNo(evt);

@@ -38,7 +38,6 @@ public class addRoleGUI extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(450, 200));
         setResizable(false);
 
         addRole.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
