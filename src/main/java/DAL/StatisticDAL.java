@@ -37,10 +37,4 @@ public class StatisticDAL {
         return data;
     }
 
-    public static void main(String[] args) {
-        StatisticDAL s = new StatisticDAL();
-        List<Object[]> l = s.totalSale();
-        for(int i = 0; i < l.size();i++)
-        System.out.println(Arrays.toString(l.get(i)));
-    }
 }

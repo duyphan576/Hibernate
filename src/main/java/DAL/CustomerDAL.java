@@ -67,9 +67,4 @@ public class CustomerDAL {
         return list;
     }
 
-    public static void main(String[] args) {
-        CustomerDAL cusdal = new CustomerDAL();
-        List l = cusdal.getlistCustomer();
-        System.out.println(l.get(0).toString());
-    }
 }
