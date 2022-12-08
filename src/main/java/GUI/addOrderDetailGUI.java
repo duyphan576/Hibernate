@@ -70,7 +70,7 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
         cbxProduct = new javax.swing.JComboBox<>();
         spnQuantity = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextFieldOID.setEditable(false);
 
@@ -192,6 +192,7 @@ public class addOrderDetailGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnYes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYes

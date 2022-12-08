@@ -51,7 +51,7 @@ public class addCustomerGUI extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         passText = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -142,6 +142,7 @@ public class addCustomerGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdd(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd

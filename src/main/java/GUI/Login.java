@@ -26,7 +26,6 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-
     }
 
     /**
@@ -101,6 +100,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
@@ -115,15 +115,15 @@ public class Login extends javax.swing.JFrame {
         List<User> l = usbll.getUser(txtusename.getText(), getMD5(String.copyValueOf(txtpass.getPassword())));
         if (l.isEmpty()) {
             System.out.println("");
-        }else if(l.get(0).getStatus()==1){
+        } else if (l.get(0).getStatus() == 1) {
             JOptionPane.showMessageDialog(rootPane, "This account is deactive");
-        }else {
+        } else {
             dispose();
             new StatisticGUI(l.get(0).getRole().getRoleID()).setVisible(true);
         }
     }//GEN-LAST:event_btnloginActionPerformed
 
-        public String convertByteToHex(byte[] data) {
+    public String convertByteToHex(byte[] data) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < data.length; i++) {
             sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
@@ -140,7 +140,7 @@ public class Login extends javax.swing.JFrame {
             throw new RuntimeException(e);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -161,9 +161,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Login login = new Login();
-                login.setLocationRelativeTo(null);
-                login.setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }

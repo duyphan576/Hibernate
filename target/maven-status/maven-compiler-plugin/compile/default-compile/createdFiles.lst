@@ -13,12 +13,12 @@ GUI\addRoleGUI$3.class
 DAL\UserDAL.class
 GUI\addRoleGUI.class
 GUI\editCustomerGUI.class
-GUI\User$3.class
 GUI\CustomerGUI$2.class
 GUI\editBrandGUI$1.class
 GUI\BrandGUI$5.class
 DAL\OrderDAL.class
 GUI\StrapGUI$5.class
+BLL\OrderDetailBLL.class
 GUI\editRoleGUI$3.class
 Entity\User.class
 GUI\RoleGUI$6.class
@@ -34,7 +34,6 @@ GUI\editUser.class
 GUI\addCustomerGUI$2.class
 DAL\StrapDAL.class
 GUI\RoleGUI$1.class
-GUI\User$1.class
 GUI\CustomerGUI$4.class
 Entity\Product.class
 GUI\addStrapGUI$2.class
@@ -44,7 +43,6 @@ DAL\StatisticDAL.class
 GUI\CustomerGUI.class
 GUI\editRoleGUI.class
 GUI\editUser$3.class
-GUI\User.class
 GUI\RoleGUI$2.class
 GUI\BrandGUI$3.class
 GUI\editProductGUI.class
@@ -74,12 +72,9 @@ GUI\addBrandGUI$1.class
 GUI\addCustomerGUI$1.class
 GUI\ProductGUI.class
 Utils\HibernateUtils.class
-Utils\Test.class
 GUI\addStrapGUI.class
 GUI\addUser$1.class
-GUI\User$5.class
 GUI\addStrapGUI$1.class
-GUI\User$2.class
 GUI\StrapGUI$1.class
 GUI\editProductGUI$1.class
 GUI\addProductGUI.class
@@ -92,7 +87,6 @@ GUI\CustomerGUI$8.class
 GUI\StrapGUI.class
 GUI\ProductGUI$6.class
 GUI\addUser.class
-GUI\User$4.class
 GUI\BrandGUI$6.class
 DAL\OrderDetailDAL.class
 GUI\editBrandGUI$2.class

@@ -72,7 +72,7 @@ public class editOrderGUI extends javax.swing.JFrame {
         jTextFieldOID = new javax.swing.JTextField();
         statusComboBox = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabelStatus.setText("Status");
 
@@ -156,6 +156,7 @@ public class editOrderGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnYes(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnYes

@@ -70,7 +70,7 @@ public class ProductGUI extends javax.swing.JFrame {
         cbfinbrand = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         productTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -209,6 +209,7 @@ public class ProductGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRefresh(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRefresh

@@ -67,7 +67,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         refreshButton = new javax.swing.JButton();
         Title_JLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Customer_JTA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,6 +206,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdd(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd

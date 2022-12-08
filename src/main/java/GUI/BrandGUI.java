@@ -66,7 +66,7 @@ public class BrandGUI extends javax.swing.JFrame {
         btndel = new javax.swing.JButton();
         btnedit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tblbrand.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -186,6 +186,7 @@ public class BrandGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDelete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete

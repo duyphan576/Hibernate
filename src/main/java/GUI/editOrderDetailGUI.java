@@ -79,7 +79,7 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
         spnQuantity = new javax.swing.JSpinner();
         jTextFieldPrice = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextFieldOID.setEditable(false);
 
@@ -214,6 +214,7 @@ public class editOrderDetailGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnYes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYes

@@ -226,6 +226,7 @@ public class StatisticGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSale(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSale

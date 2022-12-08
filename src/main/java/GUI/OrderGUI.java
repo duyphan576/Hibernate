@@ -99,7 +99,7 @@ public class OrderGUI extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableOrder = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButtonAddO.setText("Add");
         jButtonAddO.addActionListener(new java.awt.event.ActionListener() {
@@ -216,6 +216,7 @@ public class OrderGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDelete(java.awt.event.ActionEvent evt) {

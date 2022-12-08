@@ -57,7 +57,7 @@ public class addOrderGUI extends javax.swing.JFrame {
         jLabelDate1 = new javax.swing.JLabel();
         customerComboBox = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextFieldUID.setEditable(false);
 
@@ -158,6 +158,7 @@ public class addOrderGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNo
